@@ -16,6 +16,7 @@ jobs:
           username: ${{ secrets.TEST_SERVER_USER }}
           key: ${{ secrets.TEST_SSH_PRIVATE_KEY }}
           passphrase: ${{ secrets.TEST_SERVER_PASSPHRASE }}
+          port: ${{ secrets.TEST_SSH_SERVER_PORT }}
           debug: true
           use_insecure_cipher: true
           script: |
