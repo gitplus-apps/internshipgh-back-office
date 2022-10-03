@@ -15,20 +15,20 @@ $phone     = $_POST['phone'];
 $comments = $_POST['comments'];
 
 if(trim($name) == '') {
-	echo '<div class="alert alert-error">You must enter your name.</div>';
+	echo '<div class="alert text-danger">The name field is required.</div>';
 	exit();
 } else if(trim($email) == '') {
-	echo '<div class="alert alert-error">You must enter email address.</div>';
+	echo '<div class="alert text-danger">The email field is required.</div>';
 	exit();
 } else if(!isEmail($email)) {
-	echo '<div class="alert alert-error">You must enter a valid email address.</div>';
+	echo '<div class="alert text-danger">The entered email is not valid.</div>';
 	exit();
 } else if(trim($phone) == '') {
-	echo '<div class="alert alert-error">Please fill all fields!</div>';
+	echo '<div class="alert text-danger">Please fill all fields!</div>';
 	exit();
 }
 else if(trim($comments) == '') {
-	echo '<div class="alert alert-error">You must enter your comments</div>';
+	echo '<div class="alert text-danger">You must enter your comments</div>';
 	exit();
 }
 
@@ -42,7 +42,7 @@ if(get_magic_quotes_gpc()) {
 // Example $address = "joe.doe@yourdomain.com";
 
 //$address = "example@themeforest.net";
-$address = "Info@yourdomain.com";
+$address = "bernarddormon31@gmail.com";
 
 
 // Configuration option.
@@ -69,6 +69,9 @@ $headers .= "MIME-Version: 1.0" . PHP_EOL;
 $headers .= "Content-type: text/plain; charset=utf-8" . PHP_EOL;
 $headers .= "Content-Transfer-Encoding: quoted-printable" . PHP_EOL;
 
+$response = mail($address, $e_subject, $msg, $headers);
+
+
 if(mail($address, $e_subject, $msg, $headers)) {
 
 	// Email has sent successfully, echo a success page.
@@ -80,6 +83,6 @@ if(mail($address, $e_subject, $msg, $headers)) {
 
 } else {
 
-	echo 'ERROR!';
+	echo 'ERROR!'.$response;
 
 }

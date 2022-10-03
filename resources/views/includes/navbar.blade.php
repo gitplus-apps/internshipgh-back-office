@@ -47,10 +47,10 @@
                         
                     </li>
                     <li>
-                        <a href="{{url('/login')}}"><i class="far fa-user"></i> Login </a>
+                        <a href="{{url('#')}}"><i class="far fa-user"></i> Login </a>
                     </li>
                     <li class="dropdown">
-                        <a href="/register" class="active" >Register</a>
+                        <a href="{{url('#')}}" class="active" >Register</a>
                     
                     </li>
                    
