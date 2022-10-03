@@ -14,7 +14,7 @@
     
         @yield('page-content')
         
-        
+      
     @include('includes.footer')
 </body>
 </html>

@@ -1,7 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-
+use App\Http\Controllers\RouteController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -13,21 +13,16 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/', [RouteController::class,'homePage']);
+Route::get('/contact',[RouteController::class,'contactUs']);
+Route::get('/about-us', [RouteController::class,'aboutUs']);
 
-Route::get('/contact', function () {
-    return view('contact');
-});
+Route::get('/services',[RouteController::class,'services']
+);
 
-Route::get('/terms-of-use', function () {
-    return view('terms-of-use');
-});
+Route::get('/terms-of-use',[ RouteController::class,'termsOfUse']);
 
-Route::get('/privacy', function () {
-    return view('privacy');
-});
+Route::get('/privacy',[RouteController::class,'privacy']);
 
 Auth::routes();
 

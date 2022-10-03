@@ -22,7 +22,7 @@
                     <i class="fa fa-bars"></i>
                 </button>
                 <a class="navbar-brand" href="{{url('/')}}">
-                    <img src="{{asset('assets/img/logo.png')}}" class="logo" alt="Logo">
+                    <img src="{{asset('assets/img/logo.png')}}" class="logo " alt="Logo">
                 </a>
             </div>
             <!-- End Header Navigation -->
@@ -31,19 +31,19 @@
             <div class="collapse navbar-collapse" id="navbar-menu">
                 <ul class="nav navbar-nav navbar-center" data-in="fadeInDown" data-out="fadeOutUp">
                     <li class="dropdown">
-                        <a href="{{url('/')}}" class=" "  >Home</a>
+                        <a href="{{url('/')}}" class="{{request()->is('/') ? 'active':''}}">Home</a>
+                     
+                    </li>
+                    <li class="dropdown">
+                        <a href="{{url('/about-us')}}" class="{{request()->is('about-us') ? 'active':''}}"  >About Us</a>
                       
                     </li>
                     <li class="dropdown">
-                        <a href="{{url('/about-us')}}" class=""  >About Us</a>
-                      
-                    </li>
-                    <li class="dropdown">
-                        <a href="{{url('/services')}}" class=""  >Services</a>
+                        <a href="{{url('/services')}}" class="{{request()->is('services') ? 'active':''}}"  >Services</a>
                        
                     </li>
                     <li class="dropdown">
-                        <a href="{{url('/contact')}}" class=""  >Contact</a>
+                        <a href="{{url('/contact')}}" class="{{request()->is('contact') ? 'active':''}}"  >Contact</a>
                         
                     </li>
                     <li>
