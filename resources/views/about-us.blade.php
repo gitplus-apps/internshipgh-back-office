@@ -6,7 +6,7 @@
     <div class="container">
         <div class="row align-center">
             <div class="col-lg-6">
-                <h2>About Us (Internship Ghana)</h2>
+                <h2>About Us</h2>
             </div>
             <div class="col-lg-6 text-right">
                 <ul class="breadcrumb">
@@ -38,7 +38,7 @@
             </div>
 
             <div class="col-lg-5 offset-lg-1 info">
-                    <h2>We Help IT Companies Scale Engineering Capacity...</h2>
+                    <h2>We Help IT Companies Scale Engineering Capacity</h2>
                     <p>
                         Dissuade ecstatic and properly saw entirely sir why laughter endeavor. In on my jointure horrible margaret suitable he followed speedily. Indeed vanity excuse or mr lovers of on. By offer scale an stuff.
                     </p>
