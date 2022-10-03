@@ -1,0 +1,29 @@
+name: Deploy to staging
+on:
+  push:
+    branches:
+      - develop
+
+jobs:
+  deploy:
+    name: Deploy
+    runs-on: ubuntu-latest
+    steps:
+      - name: Execute SSH commands
+        uses: appleboy/ssh-action@master
+        with:
+          host: ${{ secrets.TEST_SERVER_IP }}
+          username: ${{ secrets.TEST_SERVER_USER }}
+          key: ${{ secrets.TEST_SSH_PRIVATE_KEY }}
+          passphrase: ${{ secrets.TEST_SERVER_PASSPHRASE }}
+          debug: true
+          use_insecure_cipher: true
+          script: |
+            cd ${{ secrets.TEST_APP_PATH }}
+            git checkout develop
+            php artisan down
+            git pull origin develop
+            /opt/cpanel/composer/bin/composer install --no-dev --no-interaction
+            php artisan migrate
+            php artisan view:cache
+            php artisan up
