@@ -4,7 +4,7 @@
 @section('page-content')
     <!-- Start Breadcrumb 
     ============================================= -->
-    <div class="breadcrumb-area shadow dark bg-fixed text-light" style="background-image: url(assets/img/2440x1578.png);">
+    <div class="breadcrumb-area shadow dark bg-fixed text-light" style="background-image: url({{asset('assets/img/contact.jpg')}});">
         <div class="container">
             <div class="row align-center">
                 <div class="col-lg-6">
@@ -31,8 +31,8 @@
                 <div class="col-lg-6 contact-form-box">
                     <div class="content">
                         <div class="heading">
-                            <h2>Need Help?</h2>
-                            <p>Reach out to the world’s most reliable IT services.</p>
+                            <h2>Contact US</h2>
+                            <p>Reach out to us NOW! Our Support Team is ready to attend to you!</p>
                         </div>
                         <form action="assets/mail/contact.php" method="POST" class="contact-form">
                             <div class="row">
@@ -67,7 +67,7 @@
                             <div class="row">
                                 <div class="col-lg-12">
                                     <button type="submit" name="submit" id="submit">
-                                        Get a free consultation
+                                        Contact
                                     </button>
                                 </div>
                             </div>

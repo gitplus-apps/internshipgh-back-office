@@ -35,51 +35,19 @@
                     <div class="thumb">
                         <img src="{{asset('assets/img/800x600.png')}}" alt="Thumb">
                         <img src="{{asset('assets/img/800x600.png')}}" alt="Thumb">
-                        <div class="overlay">
-                            <div class="content">
-                                <h4>20 years of experience</h4>
-                            </div>
-                        </div>
+                  
                     </div>
                 </div>
                 <div class="col-lg-5 offset-lg-1 info">
-                    <h2>We Help IT Companies Scale Engineering Capacity</h2>
+                    <h2>We link students to the right job environment</h2>
                     <p>
-                        Dissuade ecstatic and properly saw entirely sir why laughter endeavor. In on my jointure horrible margaret suitable he followed speedily. Indeed vanity excuse or mr lovers of on. By offer scale an stuff. Blush be sorry no sight sang lose. 
+                        The Groom+ platform is specifically designed to “GROOM” students for a specific industry they seek to venture into. Students take so many courses that gives them broader scope of understanding into many different areas. 
                     </p>
-                    <ul>
-                        <li>
-                            <div class="icon">
-                                <i class="flaticon-certification"></i>
-                            </div>
-                            <div class="info">
-                                <h4>Certified Company</h4>
-                                <p>
-                                    Assurance yet bed was improving furniture man. Distrusts delighted she listening. 
-                                </p>
-                            </div>
-                        </li>
-                        <li>
-                            <div class="icon">
-                                <i class="flaticon-award-star-with-olive-branches"></i>
-                            </div>
-                            <div class="info">
-                                <h4>Award Ceremony</h4>
-                                <p>
-                                    Assurance yet bed was improving furniture man. Distrusts delighted she listening mrs extensive. 
-                                </p>
-                            </div>
-                        </li>
-                    </ul>
-                    <div class="author">
-                        <div class="signature">
-                            <img src="{{asset('assets/img/signature.png')}}" alt="signature">
-                        </div>
-                        <div class="intro">
-                            <h5>Spark Moun</h5>
-                            <span>Chairman & Founder Techa</span>
-                        </div>
-                    </div>
+                    <p>
+                        The Groom+ platform takes this to another level where we narrow down the skillset and give students specific training in the very area they intend to practice and build the specific industry needed skills.
+                    </p>
+                   
+              
                 </div>
             </div>
         </div>
@@ -400,138 +368,10 @@
 
     <!-- Start Case Studies Area
     ============================================= -->
-    <div class="case-studies-area half-bg default-padding-top">
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-8 offset-lg-2">
-                    <div class="site-heading text-center">
-                        <h4>Case Studies</h4>
-                        <h2>Our Work Showcase</h2>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="container-fill">
-            <div class="case-carousel owl-carousel owl-theme">
-                <div class="item">
-                    <div class="thumb">
-                        <img src="{{asset('assets/img/800x700.png')}}" alt="Thumb">
-                    </div>
-                    <div class="info">
-                        <div class="info-items">
-                            <div class="left-info">
-                                <h4>
-                                    <a href="#">Cyber Security</a>
-                                </h4>
-                                <ul>
-                                    <li>Technology</li>
-                                </ul>
-                            </div>
-                            <div class="right-info">
-                                <a class="item popup-gallery" href="{{asset('assets/img/800x600.png')}}"><i class="fas fa-plus"></i></a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="item">
-                    <div class="thumb">
-                        <img src="{{asset('assets/img/800x700.png')}}" alt="Thumb">
-                    </div>
-                    <div class="info">
-                        <div class="info-items">
-                            <div class="left-info">
-                                <h4>
-                                    <a href="#">IT Counsultancy</a>
-                                </h4>
-                                <ul>
-                                    <li>Technology</li>
-                                </ul>
-                            </div>
-                            <div class="right-info">
-                                <a class="item popup-gallery" href="{{asset('assets/img/800x600.png')}}"><i class="fas fa-plus"></i></a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="item">
-                    <div class="thumb">
-                        <img src="{{asset('assets/img/800x700.png')}}" alt="Thumb">
-                    </div>
-                    <div class="info">
-                        <div class="info-items">
-                            <div class="left-info">
-                                <h4>
-                                    <a href="#">Analysis of Security</a>
-                                </h4>
-                                <ul>
-                                    <li>Technology</li>
-                                </ul>
-                            </div>
-                            <div class="right-info">
-                                <a class="item popup-gallery" href="{{asset('assets/img/800x600.png')}}"><i class="fas fa-plus"></i></a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="item">
-                    <div class="thumb">
-                        <img src="{{asset('assets/img/800x700.png')}}" alt="Thumb">
-                    </div>
-                    <div class="info">
-                        <div class="info-items">
-                            <div class="left-info">
-                                <h4>
-                                    <a href="#">Social Media App</a>
-                                </h4>
-                                <ul>
-                                    <li>Technology</li>
-                                </ul>
-                            </div>
-                            <div class="right-info">
-                                <a class="item popup-gallery" href="{{asset('assets/img/800x600.png')}}"><i class="fas fa-plus"></i></a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
     <!-- End Case Studies Area -->
 
     <!-- Start Fun Factor Area
     ============================================= -->
-    <div class="fun-factor-area overflow-hidden">
-        <div class="container">
-            <div class="fun-fact-items default-padding text-center">
-                <div class="row">
-                    <div class="col-lg-3 col-md-6 item">
-                        <div class="fun-fact">
-                            <div class="timer" data-to="687" data-speed="5000">687</div>
-                            <span class="medium">Happy Clients</span>
-                        </div>
-                    </div>
-                    <div class="col-lg-3 col-md-6 item">
-                        <div class="fun-fact">
-                            <div class="timer" data-to="2348" data-speed="5000">2348</div>
-                            <span class="medium">Finished Projects</span>
-                        </div>
-                    </div>
-                    <div class="col-lg-3 col-md-6 item">
-                        <div class="fun-fact">
-                            <div class="timer" data-to="450" data-speed="5000">450</div>
-                            <span class="medium">Skilled Experts</span>
-                        </div>
-                    </div>
-                    <div class="col-lg-3 col-md-6 item">
-                        <div class="fun-fact">
-                            <div class="timer" data-to="1200" data-speed="5000">1200</div>
-                            <span class="medium">Media Posts</span>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
     <!-- End Fun Factor Area -->
 
     <!-- Start Team 
