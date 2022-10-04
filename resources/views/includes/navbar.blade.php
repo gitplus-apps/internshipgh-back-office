@@ -43,7 +43,7 @@
                        
                     </li>
                     <li class="dropdown">
-                        <a href="{{url('/contact')}}" class="{{request()->is('contact') ? 'active':''}}"  >Contact</a>
+                        <a href="{{url('/contact')}}" class="{{request()->is('contact') ? 'active':''}}"  >Contact US</a>
                         
                     </li>
                     <li>

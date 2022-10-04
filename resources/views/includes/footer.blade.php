@@ -14,7 +14,7 @@
                             Join us today! We are present everywhere in Ghana! We are connected with industry! We know the employers!
                         </p>
                         <form action="#">
-                            <input type="email" placeholder="Subscribe" class="form-control" name="email">
+                            <input type="email" placeholder="Subscribe!" class="form-control" name="email">
                             <button type="submit"> <i class="fa fa-paper-plane"></i></button>  
                         </form>
                     </div>
