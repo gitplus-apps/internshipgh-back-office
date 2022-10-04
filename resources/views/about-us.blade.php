@@ -94,7 +94,7 @@
 </div>
 <!-- End About Area -->
 
-<!-- Start Works About 
+<!-- Start Works About
 ============================================= -->
 <div class="works-about-area overflow-hidden">
     <div class="container">
@@ -104,7 +104,7 @@
                     <h5>Works About</h5>
                     <h2>Trusted by 5,000+ <br> Happy Customers</h2>
                     <p>
-                         Jennings appetite disposed me an at subjects an. To no indulgence diminution so discovered mr apartments. Are off under folly death wrote cause her way spite. Plan upon yet way get cold spot its week. Almost do am or limits hearts. Resolve parties but why she shewing. She sang know now how nay cold real case. 
+                         Jennings appetite disposed me an at subjects an. To no indulgence diminution so discovered mr apartments. Are off under folly death wrote cause her way spite. Plan upon yet way get cold spot its week. Almost do am or limits hearts. Resolve parties but why she shewing. She sang know now how nay cold real case.
                     </p>
                     <ul>
                         <li>
@@ -131,7 +131,7 @@
 </div>
 <!-- End Works About Area -->
 
-<!-- Start Work Process 
+<!-- Start Work Process
 ============================================= -->
 <div class="work-process-area overflow-hidden default-padding bottom-less">
     <div class="container">
@@ -157,7 +157,7 @@
                             </div>
                             <h5>Choose a Service</h5>
                             <p>
-                                Arose mr rapid in so vexed words. Gay welcome led add lasting chiefly say looking better. 
+                                Arose mr rapid in so vexed words. Gay welcome led add lasting chiefly say looking better.
                             </p>
                         </div>
                     </div>
@@ -173,7 +173,7 @@
                             </div>
                             <h5>Request a Meeting</h5>
                             <p>
-                                Arose mr rapid in so vexed words. Gay welcome led add lasting chiefly say looking better. 
+                                Arose mr rapid in so vexed words. Gay welcome led add lasting chiefly say looking better.
                             </p>
                         </div>
                     </div>
@@ -189,7 +189,7 @@
                             </div>
                             <h5>Receive Custom Plan</h5>
                             <p>
-                                Arose mr rapid in so vexed words. Gay welcome led add lasting chiefly say looking better. 
+                                Arose mr rapid in so vexed words. Gay welcome led add lasting chiefly say looking better.
                             </p>
                         </div>
                     </div>
@@ -205,7 +205,7 @@
                             </div>
                             <h5>Let’s Make it Happen</h5>
                             <p>
-                                Arose mr rapid in so vexed words. Gay welcome led add lasting chiefly say looking better. 
+                                Arose mr rapid in so vexed words. Gay welcome led add lasting chiefly say looking better.
                             </p>
                         </div>
                     </div>
@@ -217,7 +217,7 @@
 </div>
 <!-- End Work Process Area -->
 
-<!-- Start Video Area 
+<!-- Start Video Area
 ============================================= -->
 <div class="video-area extra-padding text-center default-padding faq-area bg-gray bg-fixed shadow dark text-light" style="background-image: url(assets/img/2440x1578.png);">
     <div class="container">
@@ -241,7 +241,7 @@
 </div>
 <!-- End Video Area -->
 
-<!-- Start Why Choose Us 
+<!-- Start Why Choose Us
 ============================================= -->
 <div class="choose-us-area default-padding-bottom">
     <div class="container">
@@ -290,7 +290,7 @@
 <!-- End Why Choose Us Area -->
 
 
-<!-- Start Team 
+<!-- Start Team
 ============================================= -->
 <div class="team-area default-padding-bottom bottom-less">
     <div class="container">
@@ -395,7 +395,7 @@
     </div>
 </div>
 
-<script>  
+<script>
     console.log("hello world")
         let url = @php config('url') @endphp
         console.log(url)
