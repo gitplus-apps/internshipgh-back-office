@@ -5,13 +5,13 @@
         <div class="item">
             <div class="container">
                 <div class="row align-center">
-                    
+                     
                     <div class="col-lg-6">
                         <div class="content">
-                            <h4 class="wow fadeInUp">Optimize IT Systems </h4>
-                            <h2 class="wow fadeInDown">Creating a better <strong>IT solutions</strong></h2>
+                            <h4 class="wow fadeInUp">Helping to build</h4>
+                            <h2 class="wow fadeInDown">Students’ capacity for the <strong>Industry and the Job market</strong></h2>
                             <p class="wow fadeInLeft">
-                                Affixed pretend account ten natural. Need eat week even yet that. Incommode delighted he resolving sportsmen do in listening. 
+                                We link students to the right job environment to acquire the appropriate and relevant skillset needed in their desired field of practice.
                             </p>
                             <a class="btn circle btn-theme effect btn-md wow fadeInUp" href="{{url('/login')}}">Start Now <i class="fas fa-arrow-alt-circle-right"></i></a>
                         </div>

@@ -11,60 +11,43 @@
                     <div class="f-item about">
                         <img src="{{asset('assets/img/logo-light.png')}}" alt="Logo">
                         <p>
-                            Happen active county. Winding for the morning am shyness evident to poor. Garrets because elderly new.
+                            Join us today! We are present everywhere in Ghana! We are connected with industry! We know the employers!
                         </p>
                         <form action="#">
-                            <input type="email" placeholder="Your Email" class="form-control" name="email">
+                            <input type="email" placeholder="Subscribe" class="form-control" name="email">
                             <button type="submit"> <i class="fa fa-paper-plane"></i></button>  
                         </form>
                     </div>
                 </div>
                 <div class="col-lg-2 col-md-6 item">
                     <div class="f-item link">
-                        <h4 class="widget-title">Company</h4>
+                        <h4 class="widget-title">Internship Gh</h4>
                         <ul>
                             <li>
-                                <a href="#">About Us</a>
+                                <a href="{{url('/about-us')}}">About Us</a>
                             </li>
                             <li>
-                                <a href="#">Meet Our Team</a>
+                                <a href="{{url('services')}}">Services</a>
                             </li>
                             <li>
-                                <a href="#">News & Media</a>
+                                <a href="#">Schools</a>
                             </li>
-                            <li>
-                                <a href="#">Case Studies</a>
-                            </li>
-                            <li>
-                                <a href="#">Contact Us</a>
-                            </li>
-                            <li>
-                                <a href="#">Investors</a>
-                            </li>
+                            
                         </ul>
                     </div>
                 </div>
                 <div class="col-lg-2 col-md-6 item">
                     <div class="f-item link">
-                        <h4 class="widget-title">Solutions</h4>
+                        <h4 class="widget-title">What We Do</h4>
                         <ul>
                             <li>
-                                <a href="#">IT Management</a>
+                                <a href="#">Scholarship</a>
                             </li>
                             <li>
-                                <a href="#">Cyber Security</a>
+                                <a href="#">Training</a>
                             </li>
                             <li>
-                                <a href="#">Cloud Computing</a>
-                            </li>
-                            <li>
-                                <a href="#">IT Consulting</a>
-                            </li>
-                            <li>
-                                <a href="#">Software Dev</a>
-                            </li>
-                            <li>
-                                <a href="#">Backup & Recovery</a>
+                                <a href="#">Industry Tips</a>
                             </li>
                         </ul>
                     </div>
