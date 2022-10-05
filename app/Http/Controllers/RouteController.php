@@ -32,6 +32,9 @@ class RouteController extends Controller
     public function privacy(){
         return view('privacy');
     }
- 
+    
+    public function registration(){
+        return view('registration');
+    }
 }
 

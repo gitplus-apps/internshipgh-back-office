@@ -9,7 +9,7 @@
             <div class="row">
                 <div class="col-lg-4 col-md-6 item">
                     <div class="f-item about">
-                        <img src="{{asset('assets/img/logo-light.png')}}" alt="Logo">
+                        <img src="{{asset('assets/img/logo.png')}}" alt="Logo">
                         <p>
                             Join us today! We are present everywhere in Ghana! We are connected with industry! We know the employers!
                         </p>
@@ -108,6 +108,7 @@
 
 <!-- jQuery Frameworks
 ============================================= -->
+
 <script src="{{asset('assets/js/jquery-1.12.4.min.js')}}"></script>
 <script src="{{asset('assets/js/popper.min.js')}}"></script>
 <script src="{{asset('assets/js/bootstrap.min.js')}}"></script>
