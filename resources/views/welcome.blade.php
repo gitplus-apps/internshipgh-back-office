@@ -267,7 +267,7 @@
                         <h2>Reach out to us NOW! Our Support Team is ready to attend to you!</h2>
                     </div>
                     <div class="col-lg-4 text-right">
-                        <a class="btn btn-light effect btn-md">Contact Us</a>
+                        <a href="{{url('/contact')}}" class="btn btn-light effect btn-md">Contact Us</a>
                     </div>
                 </div>
             </div>

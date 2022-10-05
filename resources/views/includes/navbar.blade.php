@@ -50,7 +50,7 @@
                         <a href="{{url('#')}}"><i class="far fa-user"></i> Login </a>
                     </li>
                     <li class="dropdown">
-                        <a href="{{url('#')}}" class="active" >Register</a>
+                        <a href="{{url('/registration')}}" class="active" >Register</a>
                     
                     </li>
                    
