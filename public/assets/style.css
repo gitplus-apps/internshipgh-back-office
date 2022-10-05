@@ -5291,7 +5291,7 @@ body,
   content: "";
   height: 60%;
   width: 100%;
-  background: #f3f7fd;
+ /*  background: #f3f7fd; */
   z-index: -1;
 }
 
