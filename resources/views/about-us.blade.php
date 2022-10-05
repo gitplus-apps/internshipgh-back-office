@@ -32,8 +32,8 @@
         <div class="row align-center">
             <div class="col-lg-6">
                 <div class="thumb">
+                    <img src="{{asset('assets/img/about.jpg')}}" alt="Thumb">
                     <img src="{{asset('assets/img/about4.jpg')}}" alt="Thumb">
-                    <img src="assets/img/800x900.png" alt="Thumb">
                    
                 </div>
             </div>

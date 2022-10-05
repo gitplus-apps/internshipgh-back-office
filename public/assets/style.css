@@ -709,7 +709,7 @@ input {
 }
 
 .bg-dark {
-  background: #FF0816 !important;
+  background: #8c1b1b !important;
 }
 
 .bg-dark-hard {
@@ -2760,7 +2760,7 @@ body,
   content: "";
   height: 100%;
   width: 40%;
-  background: url("img/shape/1.png");
+  /* background: url("img/shape/1.png"); */
   background-size: contain;
   background-repeat: no-repeat;
   z-index: -1;
@@ -3119,7 +3119,7 @@ body,
 .about-standard-area .thumb img:nth-child(2) {
     position: absolute;
     left: -100px;
-    top: -60px;
+    top: -170px;
     width: 300px;
 }
 

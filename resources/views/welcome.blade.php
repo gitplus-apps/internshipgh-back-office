@@ -33,8 +33,9 @@
             <div class="row">
                 <div class="col-lg-6">
                     <div class="thumb">
-                        <img src="{{asset('assets/img/800x600.png')}}" alt="Thumb">
-                        <img src="{{asset('assets/img/800x600.png')}}" alt="Thumb">
+                        <img src="{{asset('assets/img/2.jpg')}}" alt="Thumb">
+                        <img src="{{asset('assets/img/home2.jpg')}}" alt="Thumb">
+                       
                   
                     </div>
                 </div>
@@ -56,7 +57,7 @@
 
     <!-- Start Features 
     ============================================= -->
-    <div class="features-area overflow-hidden bg-gray default-padding">
+   {{--  <div class="features-area overflow-hidden bg-gray default-padding">
         <!-- Fixed Shpae  -->
         <div class="fixed-shape shape left bottom">
             <img src="{{asset('assets/img/shape/3.png')}}" alt="Shape">
@@ -127,96 +128,8 @@
             </div>
         </div>
     </div>
-    <!-- End Features Area -->
+    --}} <!-- End Features Area -->
 
-    <!-- Start Work Process 
-    ============================================= -->
-    <div class="work-process-area overflow-hidden default-padding bottom-less">
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-8 offset-lg-2">
-                    <div class="site-heading text-center">
-                        <h4>Process</h4>
-                        <h2>How It Works</h2>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="container-full">
-            <div class="work-pro-items">
-                <div class="row">
-                    <!-- Single Item -->
-                    <div class="single-item col-lg-3 col-md-6">
-                        <div class="item">
-                            <div class="item-inner">
-                                <div class="icon">
-                                    <i class="flaticon-select"></i>
-                                    <span>01</span>
-                                </div>
-                                <h5>Create Account</h5>
-                                <p>
-                                    Arose mr rapid in so vexed words. Gay welcome led add lasting chiefly say looking better. 
-                                </p>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- End Single Item -->
-                    <!-- Single Item -->
-                    <div class="single-item col-lg-3 col-md-6">
-                        <div class="item">
-                            <div class="item-inner">
-                                <div class="icon">
-                                    <i class="flaticon-video-call"></i>
-                                    <span>02</span>
-                                </div>
-                                <h5>Request a Meeting</h5>
-                                <p>
-                                    Arose mr rapid in so vexed words. Gay welcome led add lasting chiefly say looking better. 
-                                </p>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- End Single Item -->
-                    <!-- Single Item -->
-                    <div class="single-item col-lg-3 col-md-6">
-                        <div class="item">
-                            <div class="item-inner">
-                                <div class="icon">
-                                    <i class="flaticon-strategy"></i>
-                                    <span>03</span>
-                                </div>
-                                <h5>Receive Custom Plan</h5>
-                                <p>
-                                    Arose mr rapid in so vexed words. Gay welcome led add lasting chiefly say looking better. 
-                                </p>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- End Single Item -->
-                    <!-- Single Item -->
-                    <div class="single-item col-lg-3 col-md-6">
-                        <div class="item">
-                            <div class="item-inner">
-                                <div class="icon">
-                                    <i class="flaticon-help"></i>
-                                    <span>04</span>
-                                </div>
-                                <h5>Let’s Make it Happen</h5>
-                                <p>
-                                    Arose mr rapid in so vexed words. Gay welcome led add lasting chiefly say looking better. 
-                                </p>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- End Single Item -->
-                </div>
-            </div>
-        </div>
-    </div>
-    <!-- End Work Process Area -->
-
-    <!-- Start Works About 
-    ============================================= -->
     <div class="works-about-area overflow-hidden">
         <div class="container">
             <div class="works-about-items default-padding">
@@ -232,7 +145,7 @@
                     </div>
                     <div class="col-lg-6">
                         <div class="thumb">
-                            <img src="{{asset('assets/img/800x700.png')}}" alt="Thumb">
+                            <img src="{{asset('assets/img/about.jpg')}}" alt="Thumb">
                             <div class="fun-fact">
                                 <div class="timer" data-to="875" data-speed="5000"></div>
                                 <span class="medium">Completed Projects</span>
@@ -245,6 +158,99 @@
     </div>
     <!-- End Works About Area -->
 
+
+    <!-- Start Work Process 
+    ============================================= -->
+    <div class="work-process-area overflow-hidden default-padding bottom-less">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-8 offset-lg-2">
+                    <div class="site-heading text-center">
+                        <h4>Process</h4>
+                        <h2>How It Works</h2>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+
+        <div class="container-full">
+            <div class="work-pro-items">
+                <div class="row">
+                    <!-- Single Item -->
+                    <div class="single-item col-lg-3 col-md-6">
+                        <div class="item" style="height:450px;">
+                            <div class="item-inner">
+                                <div class="icon">
+                                    <i class="flaticon-select"></i>
+                                    <span>01</span>
+                                </div>
+                                <h5>Register </h5>
+                                <p>
+                                    Register on the platform with personal details such first name, middle name,last name , email ,contact .... 
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- End Single Item -->
+                    <div class="single-item col-lg-3 col-md-6">
+                        <div class="item" style="height:450px;">
+                            <div class="item-inner">
+                                <div class="icon">
+                                    <i class="flaticon-strategy"></i>
+                                    <span>02</span>
+                                </div>
+                                <h5>Receive Subscription Plan</h5>
+                                <p>
+                                     Receive the payment subscription plan through email or text message. Pay the required amount  
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Single Item -->
+                    <div class="single-item col-lg-3 col-md-6">
+                        <div class="item" style="height:450px;">
+                            <div class="item-inner">
+                                <div class="icon">
+                                    <i class="flaticon-video-call"></i>
+                                    <span>03</span>
+                                </div>
+                                <h5>Get Notifications</h5>
+                                <p>
+                                    Get Realtime notification of internship opportunities from organizations on our mobile app.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- End Single Item -->
+                    <!-- Single Item -->
+                   
+                    <!-- End Single Item -->
+                    <!-- Single Item -->
+                    <div class="single-item col-lg-3 col-md-6">
+                        <div class="item" style="height:450px;">
+                            <div class="item-inner">
+                                <div class="icon">
+                                    <i class="flaticon-help"></i>
+                                    <span>04</span>
+                                </div>
+                                <h5>Apply To Organizations</h5>
+                                <p>
+                                    Apply to the Organizations who have internship opportunities open. Receive acceptance message from Organizations and begin internship. 
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- End Single Item -->
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- End Work Process Area -->
+
+    <!-- Start Works About 
+    ============================================= -->
+    
     <!-- Start Services 
     ============================================= -->
    
@@ -254,7 +260,7 @@
     ============================================= -->
     <div class="quick-contact-area half-bg default-padding">
         <div class="container">
-            <div class="quick-contact-items shadow dark bg-cover text-light" style="background-image: url({{asset('assets/img/2440x1578.png')}});">
+            <div class="quick-contact-items shadow dark bg-cover text-light" style="background-image: url({{asset('assets/img/about2.jpg')}});">
                 <div class="row align-center">
                     <div class="col-lg-8">
                         <h5>Need help?</h5>
