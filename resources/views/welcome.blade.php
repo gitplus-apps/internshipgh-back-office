@@ -33,8 +33,9 @@
             <div class="row">
                 <div class="col-lg-6">
                     <div class="thumb">
-                        <img src="{{asset('assets/img/800x600.png')}}" alt="Thumb">
-                        <img src="{{asset('assets/img/800x600.png')}}" alt="Thumb">
+                        <img src="{{asset('assets/img/2.jpg')}}" alt="Thumb">
+                        <img src="{{asset('assets/img/home2.jpg')}}" alt="Thumb">
+                       
                   
                     </div>
                 </div>
@@ -56,7 +57,7 @@
 
     <!-- Start Features 
     ============================================= -->
-    <div class="features-area overflow-hidden bg-gray default-padding">
+   {{--  <div class="features-area overflow-hidden bg-gray default-padding">
         <!-- Fixed Shpae  -->
         <div class="fixed-shape shape left bottom">
             <img src="{{asset('assets/img/shape/3.png')}}" alt="Shape">
@@ -127,7 +128,36 @@
             </div>
         </div>
     </div>
-    <!-- End Features Area -->
+    --}} <!-- End Features Area -->
+
+    <div class="works-about-area overflow-hidden">
+        <div class="container">
+            <div class="works-about-items default-padding">
+                <div class="row align-center">
+                    <div class="col-lg-6 info">
+                        <h5>About Us</h5>
+                        <h2>Over 200+ companies OnBoard</h2>
+                        <p>
+                            We created this platform as a result of the overwhelming requests by students to undertake their internship with us. We researched and found that there are so many students who are unable to secure places for their internship. Likewise, there are so many organizations seeking students to undertake some internship with them.
+                        </p>
+                        
+                        <a class="btn btn-theme effect btn-sm" href="{{url('/about-us')}}">Read more...</a>
+                    </div>
+                    <div class="col-lg-6">
+                        <div class="thumb">
+                            <img src="{{asset('assets/img/about.jpg')}}" alt="Thumb">
+                            <div class="fun-fact">
+                                <div class="timer" data-to="875" data-speed="5000"></div>
+                                <span class="medium">Completed Projects</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- End Works About Area -->
+
 
     <!-- Start Work Process 
     ============================================= -->
@@ -142,68 +172,71 @@
                 </div>
             </div>
         </div>
+        
+
         <div class="container-full">
             <div class="work-pro-items">
                 <div class="row">
                     <!-- Single Item -->
                     <div class="single-item col-lg-3 col-md-6">
-                        <div class="item">
+                        <div class="item" style="height:450px;">
                             <div class="item-inner">
                                 <div class="icon">
                                     <i class="flaticon-select"></i>
                                     <span>01</span>
                                 </div>
-                                <h5>Create Account</h5>
+                                <h5>Register </h5>
                                 <p>
-                                    Arose mr rapid in so vexed words. Gay welcome led add lasting chiefly say looking better. 
+                                    Register on the platform with personal details such first name, middle name,last name , email ,contact .... 
                                 </p>
                             </div>
                         </div>
                     </div>
                     <!-- End Single Item -->
-                    <!-- Single Item -->
                     <div class="single-item col-lg-3 col-md-6">
-                        <div class="item">
-                            <div class="item-inner">
-                                <div class="icon">
-                                    <i class="flaticon-video-call"></i>
-                                    <span>02</span>
-                                </div>
-                                <h5>Request a Meeting</h5>
-                                <p>
-                                    Arose mr rapid in so vexed words. Gay welcome led add lasting chiefly say looking better. 
-                                </p>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- End Single Item -->
-                    <!-- Single Item -->
-                    <div class="single-item col-lg-3 col-md-6">
-                        <div class="item">
+                        <div class="item" style="height:450px;">
                             <div class="item-inner">
                                 <div class="icon">
                                     <i class="flaticon-strategy"></i>
+                                    <span>02</span>
+                                </div>
+                                <h5>Receive Subscription Plan</h5>
+                                <p>
+                                     Receive the payment subscription plan through email or text message. Pay the required amount  
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Single Item -->
+                    <div class="single-item col-lg-3 col-md-6">
+                        <div class="item" style="height:450px;">
+                            <div class="item-inner">
+                                <div class="icon">
+                                    <i class="flaticon-video-call"></i>
                                     <span>03</span>
                                 </div>
-                                <h5>Receive Custom Plan</h5>
+                                <h5>Get Notifications</h5>
                                 <p>
-                                    Arose mr rapid in so vexed words. Gay welcome led add lasting chiefly say looking better. 
+                                    Get Realtime notification of internship opportunities from organizations on our mobile app.
                                 </p>
                             </div>
                         </div>
                     </div>
                     <!-- End Single Item -->
                     <!-- Single Item -->
+                   
+                    <!-- End Single Item -->
+                    <!-- Single Item -->
                     <div class="single-item col-lg-3 col-md-6">
-                        <div class="item">
+                        <div class="item" style="height:450px;">
                             <div class="item-inner">
                                 <div class="icon">
                                     <i class="flaticon-help"></i>
                                     <span>04</span>
                                 </div>
-                                <h5>Let’s Make it Happen</h5>
+                                <h5>Apply To Organizations</h5>
                                 <p>
-                                    Arose mr rapid in so vexed words. Gay welcome led add lasting chiefly say looking better. 
+                                    Apply to the Organizations who have internship opportunities open. Receive acceptance message from Organizations and begin internship. 
                                 </p>
                             </div>
                         </div>
@@ -217,145 +250,21 @@
 
     <!-- Start Works About 
     ============================================= -->
-    <div class="works-about-area overflow-hidden">
-        <div class="container">
-            <div class="works-about-items default-padding">
-                <div class="row align-center">
-                    <div class="col-lg-6 info">
-                        <h5>Works About</h5>
-                        <h2>Trusted by 5,000+ <br> Happy Customers</h2>
-                        <p>
-                             Jennings appetite disposed me an at subjects an. To no indulgence diminution so discovered mr apartments. Are off under folly death wrote cause her way spite. Plan upon yet way get cold spot its week. Almost do am or limits hearts. Resolve parties but why she shewing. She sang know now how nay cold real case. 
-                        </p>
-                        <ul>
-                            <li>
-                                <h5>100% Client Satisfaction</h5>
-                            </li>
-                            <li>
-                                <h5>World Class Worker</h5>
-                            </li>
-                        </ul>
-                        <a class="btn btn-theme effect btn-sm">Talk to a consultant</a>
-                    </div>
-                    <div class="col-lg-6">
-                        <div class="thumb">
-                            <img src="{{asset('assets/img/800x700.png')}}" alt="Thumb">
-                            <div class="fun-fact">
-                                <div class="timer" data-to="875" data-speed="5000"></div>
-                                <span class="medium">Completed Projects</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    <!-- End Works About Area -->
-
+    
     <!-- Start Services 
     ============================================= -->
-    <div class="services-area carousel-shadow default-padding-top bg-cover">
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-8 offset-lg-2">
-                    <div class="site-heading text-center">
-                        <h4>Services</h4>
-                        <h2>What we do</h2>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="container">
-            <div class="services-items services-carousel owl-carousel owl-theme text-center">
-                <!-- Single Item -->
-                <div class="item">
-                    <div class="icon">
-                        <i class="flaticon-strategy"></i>
-                    </div>
-                    <div class="info">
-                        <h4><a href="#">Business Reform</a></h4>
-                        <p>
-                            Necessary up knowledge it tolerably. Unwilling departure education is be dashwoods or an. Use off agreeable.If miss part by fact he park
-                        </p>
-                        <a href="#"><i class="fas fa-angle-right"></i></a>
-                    </div>
-                </div>
-                <!-- End Single Item -->
-                <!-- Single Item -->
-                <div class="item">
-                    <div class="icon">
-                        <i class="flaticon-strategy"></i>
-                    </div>
-                    <div class="info">
-                        <h4><a href="#">Business Reform</a></h4>
-                        <p>
-                            Necessary up knowledge it tolerably. Unwilling departure education is be dashwoods or an. Use off agreeable.If miss part by fact he park
-                        </p>
-                        <a href="#"><i class="fas fa-angle-right"></i></a>
-                    </div>
-                </div>
-                <!-- End Single Item -->
-                <!-- Single Item -->
-                <div class="item">
-                    <div class="icon">
-                        <i class="flaticon-strategy"></i>
-                    </div>
-                    <div class="info">
-                        <h4><a href="#">Business Reform</a></h4>
-                        <p>
-                            Necessary up knowledge it tolerably. Unwilling departure education is be dashwoods or an. Use off agreeable.If miss part by fact he park
-                        </p>
-                        <a href="#"><i class="fas fa-angle-right"></i></a>
-                    </div>
-                </div>
-                <!-- End Single Item -->
-                <!-- Single Item -->
-                <div class="item">
-                    <div class="icon">
-                        <i class="flaticon-strategy"></i>
-                    </div>
-                    <div class="info">
-                        <h4><a href="#">Business Reform</a></h4>
-                        <p>
-                            Necessary up knowledge it tolerably. Unwilling departure education is be dashwoods or an. Use off agreeable.If miss part by fact he park
-                        </p>
-                        <a href="#"><i class="fas fa-angle-right"></i></a>
-                    </div>
-                </div>
-                <!-- End Single Item -->
-                <!-- Single Item -->
-                <div class="item">
-                    <div class="icon">
-                        <i class="flaticon-strategy"></i>
-                    </div>
-                    <div class="info">
-                        <h4><a href="#">Business Reform</a></h4>
-                        <p>
-                            Necessary up knowledge it tolerably. Unwilling departure education is be dashwoods or an. Use off agreeable.If miss part by fact he park
-                        </p>
-                        <a href="#"><i class="fas fa-angle-right"></i></a>
-                    </div>
-                </div>
-                <!-- End Single Item -->
-            </div>
-        </div>
-        <!-- Fixed Shpae Bottom -->
-        <div class="fixed-shape-bottom">
-            <img src="{{asset('assets/img/shape/1.svg')}}" alt="Shape">
-        </div>
-        <!-- Fixed Shpae Bottom -->
-    </div>
+   
     <!-- End Services Area -->
 
     <!-- Start Quick Contact Area
     ============================================= -->
-    <div class="quick-contact-area half-bg default-padding-top">
+    <div class="quick-contact-area half-bg default-padding">
         <div class="container">
-            <div class="quick-contact-items shadow dark bg-cover text-light" style="background-image: url({{asset('assets/img/2440x1578.png')}});">
+            <div class="quick-contact-items shadow dark bg-cover text-light" style="background-image: url({{asset('assets/img/about2.jpg')}});">
                 <div class="row align-center">
                     <div class="col-lg-8">
                         <h5>Need help?</h5>
-                        <h2>Easy solutions for all <strong>difficult IT problems</strong>, keep business safe & ensure high availability.</h2>
+                        <h2>Reach out to us NOW! Our Support Team is ready to attend to you!</h2>
                     </div>
                     <div class="col-lg-4 text-right">
                         <a class="btn btn-light effect btn-md">Contact Us</a>
@@ -376,108 +285,7 @@
 
     <!-- Start Team 
     ============================================= -->
-    <div class="team-area default-padding bottom-less">
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-8 offset-lg-2">
-                    <div class="site-heading text-center">
-                        <h4>Expert Team</h4>
-                        <h2>Meet Our Leadership</h2>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="container">
-            <div class="team-items text-center">
-                <div class="row">
-                    <!-- Sngle Item -->
-                    <div class="single-item col-lg-4 col-md-6">
-                        <div class="item">
-                            <div class="thumb">
-                                <img src="{{asset('assets/img/800x800.png')}}" alt="Thumb">
-                                <div class="social">
-                                    <input type="checkbox" id="toggle" class="share-toggle" hidden>
-                                    <label for="toggle" class="share-button">
-                                        <i class="fas fa-plus"></i>
-                                    </label>
-                                    <a href="#" class="share-icon facebook">
-                                        <i class="fab fa-facebook-f"></i>
-                                    </a>
-                                    <a href="#" class="share-icon twitter">
-                                        <i class="fab fa-twitter"></i>
-                                    </a>
-                                    <a href="#" class="share-icon instagram">
-                                        <i class="fab fa-instagram"></i>
-                                    </a>
-                                </div>
-                            </div>
-                            <div class="info">
-                                <h4>Sporia Deko</h4>
-                                <span>Marketing</span>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- End Sngle Item -->
-                    <!-- Sngle Item -->
-                    <div class="single-item col-lg-4 col-md-6">
-                        <div class="item">
-                            <div class="thumb">
-                                <img src="{{asset('assets/img/800x800.png')}}" alt="Thumb">
-                                <div class="social">
-                                    <input type="checkbox" id="toggle-2" class="share-toggle" hidden>
-                                    <label for="toggle-2" class="share-button">
-                                        <i class="fas fa-plus"></i>
-                                    </label>
-                                    <a href="#" class="share-icon facebook">
-                                        <i class="fab fa-facebook-f"></i>
-                                    </a>
-                                    <a href="#" class="share-icon twitter">
-                                        <i class="fab fa-twitter"></i>
-                                    </a>
-                                    <a href="#" class="share-icon instagram">
-                                        <i class="fab fa-instagram"></i>
-                                    </a>
-                                </div>
-                            </div>
-                            <div class="info">
-                                <h4>Adhom Jonam</h4>
-                                <span>Project Manager</span>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- End Sngle Item -->
-                    <!-- Sngle Item -->
-                    <div class="single-item col-lg-4 col-md-6">
-                        <div class="item">
-                            <div class="thumb">
-                                <img src="{{asset('assets/img/800x800.png')}}" alt="Thumb">
-                                <div class="social">
-                                    <input type="checkbox" id="toggle-3" class="share-toggle" hidden>
-                                    <label for="toggle-3" class="share-button">
-                                        <i class="fas fa-plus"></i>
-                                    </label>
-                                    <a href="#" class="share-icon facebook">
-                                        <i class="fab fa-facebook-f"></i>
-                                    </a>
-                                    <a href="#" class="share-icon twitter">
-                                        <i class="fab fa-twitter"></i>
-                                    </a>
-                                    <a href="#" class="share-icon instagram">
-                                        <i class="fab fa-instagram"></i>
-                                    </a>
-                                </div>
-                            </div>
-                            <div class="info">
-                                <h4>Emmanuel Gadasu</h4>
-                                <span>CEO, Founder</span>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- End Sngle Item -->
-                </div>
-            </div>
-        </div>
-    </div>
+   
     <!-- End Team Area -->
 
     <!-- Start Faq 
