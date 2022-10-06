@@ -189,18 +189,18 @@ class RegistrationController extends Controller
 
             return response()->json([
                 "ok" => true,
-                "msg" => "User added successfully",
+                "msg" => "Account created successfully",
             ]);
         } catch (\Exception $e) {
             return response()->json([
                 "ok" => false,
-                "msg" => "An error occured while adding record, please contact admin",
+                "msg" => "Account creation failed. An internal error occured",
                 "error" => [
-                    "msg" => $e->__toString(),
-                    "fix" => "Please complete all required fields",
+                    "msg" => $e->getMessage(),
+                    "file" => $e->getFile(),
+                    "line" => $e->getLine(),
                 ]
             ]);
-
         }
         
     }
