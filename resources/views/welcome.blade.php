@@ -147,8 +147,8 @@
                         <div class="thumb">
                             <img src="{{asset('assets/img/about.jpg')}}" alt="Thumb">
                             <div class="fun-fact">
-                                <div class="timer" data-to="875" data-speed="5000"></div>
-                                <span class="medium">Completed Projects</span>
+                                <div class="timer" data-to="200" data-speed="5000"></div>
+                                <span class="medium">Companies OnBoard</span>
                             </div>
                         </div>
                     </div>
