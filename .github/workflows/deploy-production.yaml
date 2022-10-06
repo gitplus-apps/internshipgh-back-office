@@ -1,4 +1,4 @@
-name: Deploy to staging
+name: Deploy to production
 on:
   push:
     branches:
@@ -12,14 +12,14 @@ jobs:
       - name: Execute SSH commands
         uses: appleboy/ssh-action@master
         with:
-          host: ${{ secrets.TEST_SERVER_IP }}
-          username: ${{ secrets.TEST_SERVER_USER }}
-          key: ${{ secrets.TEST_SSH_PRIVATE_KEY }}
-          port: ${{ secrets.TEST_SSH_SERVER_PORT }}
+          host: ${{ secrets.LIVE_SERVER_IP }}
+          username: ${{ secrets.LIVE_SERVER_USER }}
+          key: ${{ secrets.LIVE_SSH_PRIVATE_KEY }}
+          port: ${{ secrets.LIVE_SSH_PRIVATE_KEY }}
           debug: true
           use_insecure_cipher: true
           script: |
-            cd ${{ secrets.TEST_APP_PATH }}
+            cd ${{ secrets.LIVE_APP_PATH }}
             git checkout master
             php artisan down
             git pull origin master
