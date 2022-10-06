@@ -15,7 +15,7 @@ jobs:
           host: ${{ secrets.LIVE_SERVER_IP }}
           username: ${{ secrets.LIVE_SERVER_USER }}
           key: ${{ secrets.LIVE_SSH_PRIVATE_KEY }}
-          port: ${{ secrets.LIVE_SSH_PRIVATE_KEY }}
+          port: ${{ secrets.LIVE_SSH_SERVER_PORT }}
           debug: true
           use_insecure_cipher: true
           script: |
