@@ -4,6 +4,8 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.0/jquery.min.js"> </script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
+<script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
 <style>
     /*custom font*/
             @import url(https://fonts.googleapis.com/css?family=Montserrat);
@@ -227,27 +229,18 @@
 </div>
 
 <div class="container">
-    <div class="row default-padding">
+    <div class="row default-padding1">
         <div class="col-md-6 col-md-offset-3">
-            <form id="msform">
-                <!-- progressbar -->
-               {{--  <ul id="progressbar">
-                    <li class="active">Personal Details</li>
-                    <li>Social Profiles</li>
-                    <li>Account Setup</li>
-                    <li>Social Profiles</li>
-                    <li>Account Setup</li>
-                    <li>Social Profiles</li>
-                    <li>Account Setup</li>
-                </ul> --}}
+            <form id="msform" method="POST" action="/registration">
                 <!-- fieldsets -->
+                @csrf
                 <fieldset>
                     <h2 class="fs-title">Personal Details</h2>
                     
-                    <input type="text" name="fname" placeholder="First Name" required/>
+                    <input type="text" name="fname" placeholder="First Name"  {{--  required--}} />
                     <input type="text" name="mname" placeholder="Middle Name" />
-                    <input type="text" name="lname" placeholder="Last Name" required/>
-                    <select type="text" name="gender" placeholder="Gender" required>
+                    <input type="text" name="lname" placeholder="Last Name" {{--  required--}}/>
+                    <select type="text" name="gender" placeholder="Gender" {{--  required--}}>
                         <option value=""  selected disabled>Gender</option>
                         <option value="">Male</option>
                         <option value="">Female</option>
@@ -258,9 +251,9 @@
                 <fieldset>
                     <h2 class="fs-title">Contact Details</h2>
                     
-                    <input type="text" name="email" placeholder="Email" required/>
-                    <input type="text" name="phone" placeholder="Phone" required/>
-                    <input type="text" name="whatsapp" placeholder="WhatsApp Number" required/>
+                    <input type="text" name="email" placeholder="Email" {{--  required--}}/>
+                    <input type="text" name="phone" placeholder="Phone" {{--  required--}}/>
+                    <input type="text" name="whatsapp" placeholder="WhatsApp Number" {{--  required--}}/>
                   
                     <input type="button" name="previous" class="previous action-button-previous" value="Previous"/>
                     <input type="button" name="next" class="next action-button" value="Next"/>
@@ -268,25 +261,29 @@
                 <fieldset>
                     <h2 class="fs-title">Academic Details</h2>
                   
-                    <select type="text" name="school_code"  required>
+                    <select type="text" name="school_code"  {{--  required--}}>
                     <option value="" selected disabled>Select School</option>
-                        <option value="">Male</option>
-                        <option value="">Female</option>
+                    @foreach ($schools as $school)
+                        <option value="{{$school->school_code}}">{{$school->school_desc}}</option>
+                    @endforeach
                     </select>
-                    <select type="text"  name="program" placeholder="Programme" required>
+                    <select type="text" class=" form-control"  name="prog_code" placeholder="Programme" {{--  required--}}>
                         <option value="" selected disabled>Select Programme</option>
-                        <option value="">Male</option>
-                        <option value="">Female</option>
+                        @foreach($programmes as $program)
+                            <option value="{{$program->prog_code}}">{{$program->prog_desc}}</option>
+                        @endforeach
                     </select>
-                    <select type="text" name="degree_type" placeholder="Degree Type" required>
+                    <select type="text" name="qual_code" placeholder="Degree Type" {{--  required--}}>
                         <option value="" selected disabled>Degree Type</option>
-                        <option value="">Male</option>
-                        <option value="">Female</option>
+                      @foreach($qualifications as $qualification)
+                         <option value="{{$qualification->qual_code}}">{{$qualification->qual_desc}}</option>
+                      @endforeach
                     </select>
-                    <select type="text" name="level" placeholder="Level" required>
-                        <option value="" selected disabled>Level</option>
-                        <option value="">Male</option>
-                        <option value="">Female</option>
+                    <select type="text" name="level_code" placeholder="Level" {{--  required--}}>
+                        <option value="" selected disabled>Select Level</option>
+                        @foreach ($levels as $level)
+                            <option value="{{$level->level_code}}">{{$level->level_desc}}</option>
+                        @endforeach
                     </select>
                    
                   
@@ -296,27 +293,29 @@
                 <fieldset>
                     <h2 class="fs-title">Internship Details</h2>
                   
-                    <select type="text" name="industry" class="select2" required>
-                    <option value="" selected disabled>Industries</option>
-                        <option value="">Male</option>
-                        <option value="">Female</option>
+                    <select type="text" name="sectors" class="select2" {{--  required--}}>
+                    <option value="" selected disabled>Select Sectors</option>
+                        @foreach($sectors as $sector)
+                            <option value="{{$sector->sector_code}}" >{{$sector->sector_desc}}</option>
+                        @endforeach
                     </select>
-                    <select type="text" name="regions" class="select2" placeholder="Programme" required>
+                    <select type="text" name="regions[]" class="js-example-basic-multiple" multiple="multiple"  {{--  required--}}>
                         <option value="" selected disabled>Preferred Regions</option>
-                        <option value="">Male</option>
-                        <option value="">Female</option>
+                        @foreach ($regions as $region)
+                            <option value="{{$region->code}}">{{$region->description}}</option>
+                        @endforeach
+                      {{--   @foreach ($regions as $region)
+                            <option value="{{$region->code}}">{{$region->name}}</option>
+                        @endforeach --}}
                     </select>
-                    <select type="text" name="districts" placeholder="Degree Type" required>
-                        <option value="" selected class="select2" disabled>Districts</option>
-                        <option value="">Male</option>
-                        <option value="">Female</option>
-                    </select>
-                    <select type="text" name="cities" placeholder="Level" required>
-                        <option value="" selected class="select2" disabled>Cities / Towns</option>
-                        <option value="">Male</option>
-                        <option value="">Female</option>
+                    <select type="text" name="districts" class="" {{--  required--}}>
+                        <option value="" selected class="select2" multiple disabled>Select Districts</option>
+                       @foreach ($districts as $district)
+                            <option value="{{$district->code}}">{{$district->name}}</option>                           
+                       @endforeach
                     </select>
                    
+                   <input type="text" name="cities" {{--  required--}} placeholder="Preferred Cities (Separate By ` ,` )">
                   
                     <input type="button" name="previous" class="previous action-button-previous" value="Previous"/>
                     <input type="button" name="next" class="next action-button" value="Next"/>
@@ -324,18 +323,20 @@
                 <fieldset>
                     <h2 class="fs-title">Skills / Experience</h2>
                    
-                    <input type="text" name="skills" placeholder="Skillset"/>
+                    <input type="text" name="skill" placeholder="Skillset"/>
                     <input type="text" name="job_roles[]" placeholder="Job roles "/>
-                    
+                    <select name="job_roles" id="">
+                        <option value="" disabled selected>Select Job Roles</option>
+                    </select>
                     <input type="button" name="previous" class="previous action-button-previous" value="Previous"/>
                     <input type="button" name="next" class="next action-button" value="Next"/>
                 </fieldset>
                 <fieldset>
                     <h2 class="fs-title">Availability (Start - End Date) </h2>
                     
-                    <input type="text" name="start-date"type="text" placeholder="Start Date"
+                    <input type="text" name="start_date"type="text" placeholder="Start Date"
                     onfocus="(this.type='date')"/>
-                    <input type="text" name="end-date" placeholder="End Date" onfocus="(this.type='date')"/>
+                    <input type="text" name="end_date" placeholder="End Date" onfocus="(this.type='date')"/>
                    
                     <input type="button" name="previous" class="previous action-button-previous" value="Previous"/>
                     <input type="button" name="next" class="next action-button" value="Next"/>
@@ -371,12 +372,18 @@
 </div>
 <script src='http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.5/jquery-ui.min.js'></script>
 <script>
+    // In your Javascript (external .js resource or <script> tag)
+       
+        $('.js-example-basic-single').select2({
+            width: 'resolve' 
+        });
+        $('.js-example-basic-multiple').select2();
     
     //jQuery time
     var current_fs, next_fs, previous_fs; //fieldsets
     var left, opacity, scale; //fieldset properties which we will animate
     var animating; //flag to prevent quick multi-click glitches
-    
+    let registrationForm = document.getElementById('msform');
     $(".next").click(function(){
       if(animating) return false;
       animating = true;
@@ -451,7 +458,7 @@
     });
     
     $(".submit").click(function(){
-      return false;
+        return true;
     })
     </script>
 @endsection

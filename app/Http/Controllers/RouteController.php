@@ -3,7 +3,13 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-
+use App\Models\Programme;
+use App\Models\School;
+use App\Models\Level;
+use App\Models\Qualification;
+use App\Models\District;
+use App\Models\Sector;
+use App\Models\Region;
 class RouteController extends Controller
 {
     //homepage
@@ -34,7 +40,15 @@ class RouteController extends Controller
     }
     
     public function registration(){
-        return view('registration');
+        $programmes = Programme::all();
+        $schools = School::all();
+        $levels = Level::all();
+        $qualifications = Qualification::all();
+        $districts = District::all();
+        $regions = Region::all();
+        $sectors = Sector::all();
+        return view('registration',compact('programmes','schools','levels','qualifications','districts','regions','sectors'));
     }
+    
 }
 
