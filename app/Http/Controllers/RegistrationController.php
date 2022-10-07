@@ -14,7 +14,9 @@ use App\Models\InternSector;
 use App\Models\User;
 use App\Models\InternJobRole;
 use Illuminate\Support\Facades\Hash;
-
+use App\Mail\InternRegistrationEmail;
+use Illuminate\Support\Facades\Mail;
+use App\Gitplus\Arkesel as Sms;
 class RegistrationController extends Controller
 {
     /**
@@ -206,9 +208,21 @@ class RegistrationController extends Controller
                         ]);
                     }
                     
+                    $message = <<<MSG
+                    Hello{$request->fname} {$request->lname},welcome to Internship Ghana.
+                    Here, we link students to the right job environment to acquire the appropriate and relevant skillset needed in their desired field of practice.
+                    MSG;
                 
-                
+                    if (!empty($request->phone)) {
 
+                        $sms = new Sms("InternshipGh", env("ARKESEL_SMS_API_KEY"));
+                        $sms->send($request->phone, $message);
+                    };
+        
+                    Mail::to($request->email)->send(new InternRegistrationEmail([
+                        "fname" => $request->fname,
+                        "lname" => $request->lname,
+                    ]));
                 
                
             });
