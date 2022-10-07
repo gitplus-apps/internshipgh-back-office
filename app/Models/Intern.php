@@ -17,14 +17,14 @@ class Intern extends Model
     
     protected $fillable = [
         "transid","intern_type","intern_code","school_code","fname","mname","lname",
-        "whatsapp","prog_code",
+        "whatsapp","prog_code","user_code","gender",
         "qual_code","level_code","start_date","end_date","experience",
         "branch_desc","deleted","createuser",
         "createdate","modifyuser","modifydate"
     ];
     
     public function user(){
-        return $this->belongsTo(User::class,'user_id','user_id');
+        return $this->belongsTo(User::class,'user_code','user_code');
     }
     
     public function region(){

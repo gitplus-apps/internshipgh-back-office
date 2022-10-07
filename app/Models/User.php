@@ -13,15 +13,21 @@ class User extends Authenticatable
     use HasApiTokens, HasFactory, Notifiable;
 
     protected $table ="tbluser";
+    protected $primaryKey = "transid";
+    
+    public $incrementing = false;
+    const CREATED_AT = 'createdate';
+    const UPDATED_AT = 'modifydate';
+    
     protected $fillable = [
-        'userid',
+        'transid',
+        'user_code',
         'email',
-        'fname',
-        'mname',
-        'lname',
         'phone',
         'usertype',
         'password',
+        "deleted","createuser",
+        "createdate","modifyuser","modifydate"
     ];
 
     /**

@@ -12,6 +12,7 @@ use App\Models\InternDistrict;
 use App\Models\InternRegion;
 use App\Models\InternSector;
 use App\Models\User;
+use App\Models\InternJobRole;
 use Illuminate\Support\Facades\Hash;
 
 class RegistrationController extends Controller
@@ -49,12 +50,11 @@ class RegistrationController extends Controller
             $request->all(),
             [
                 "fname" => ['required', 'string', 'max:255'],
-                "mname" => ['required', 'string', 'max:255'],
                 "lname" => ['required', 'string', 'max:255'],
                 "gender"=>['required'],
                 "email" => ['required', 'string', 'email', 'max:255', 'unique:tbluser'],
                 "phone" => ['required','unique:tbluser'],
-                "school_code" => ['required', 'string', 'max:255'],
+                "school_code" => ['required'],
                 "prog_code"=> ['required'],
                 "qual_code"=>  ['required'],
                 "level_code" => ['required'],
@@ -63,6 +63,7 @@ class RegistrationController extends Controller
                 "experience"=> ['required'],
                 "start_date"=> ['required'],
                 "end_date"=> ['required'],
+                "job_roles"=>['required'],
                 "internship_type"=>['required'],
             ],
             [
@@ -92,23 +93,39 @@ class RegistrationController extends Controller
         if ($validator->fails()) {
             return response()->json([
                 "ok" => false,
-                "msg" => "User Registration Failed: " . join(" ", $validator->errors()->all()),
+                "msg" => "Account creation failed: " . join(" ", $validator->errors()->all()),
+            ]);
+        }
+        
+        $checkemail = User::where("email", $request->email)->first();
+        if (!empty($checkemail)) {
+            return response()->json([
+                "ok" => false,
+                "msg" => "Account creation failed, email already taken"
             ]);
         }
         
         try {
             $transResult = DB::transaction(function () use ($request) {
+            
                 $transid = strtoupper(bin2hex(random_bytes(4)));
                 $intern_code = 'INT' . $transid;
+                $user_transid = strtoupper(bin2hex(random_bytes(4)));
+                $user_code = "USR" . $user_transid;
+                
                 Intern::insert([
                     "transid" => $transid,
                     "intern_code" => $intern_code,
+                    "user_id"=>$user_code,
                     "email"=> $request->email,
                     "fname" => $request->fname,
                     "lname" => $request->lname,
                     "mname" => $request->mname,
+                    "gender"=>$request->gender,
                     "phone" => $request->phone,
                     "whatsapp"=> $request->whatsapp,
+                    "intern_type"=> $request->internship_type,
+                    "school_code"=>$request->school_code,
                     "prog_code"=> $request->prog_code,
                     "qual_code"=>$request->qual_code,
                     "level_code"=> $request->level_code,
@@ -121,21 +138,22 @@ class RegistrationController extends Controller
                 ]);
                 
                 User::insert([
-                    "userid" => "USR" . strtoupper(bin2hex(random_bytes(4))),
-                    "fname"=> $request->fname,
-                    "lname"=> $request->lname,
-                    "mname"=> $request->mname,
+                    "transid"=> $user_transid,
+                    "user_code" => $user_code,
                     "phone"=> $request->phone,
                     "email"=> $request->email,
-                    "usertype"=> $request->usertype,
+                    "usertype"=> "USER01",
+                    "deleted"=>'0',
                     "password" =>Hash::make('12345678'),
                     "createdate" =>  date("Y-m-d"),
                     "modifydate"=> date("Y-m-d"),
                 ]);
                 
+               
+                
                 foreach($request->regions as $region_code){
                     InternRegion::insert([
-                        "transid"=> "USR" . strtoupper(bin2hex(random_bytes(4))),
+                        "transid"=>  strtoupper(bin2hex(random_bytes(4))),
                         "intern_code"=> $intern_code,
                         "region_code" => $region_code,
                         "deleted"=>'0',
@@ -143,7 +161,7 @@ class RegistrationController extends Controller
                         "modifydate"=> date('Y-m-d'),
                     ]);
                 }
-                
+               
                 foreach($request->districts as $district_code){
                     InternDistrict::insert([
                         "transid"=>  strtoupper(bin2hex(random_bytes(4))),
@@ -153,7 +171,7 @@ class RegistrationController extends Controller
                         "createdate"=> date('Y-m-d'),
                         "modifydate"=> date('Y-m-d'),
                     ]);
-                    
+                }
                     foreach($request->sectors as $sector_code){
                         InternSector::insert([
                             "transid"=>  strtoupper(bin2hex(random_bytes(4))),
@@ -165,6 +183,7 @@ class RegistrationController extends Controller
                         ]);
                     }
                     $cities = explode(",",$request->cities);
+                  
                     foreach($cities as $city){
                         InternCity::insert([
                             "transid"=>  strtoupper(bin2hex(random_bytes(4))),
@@ -176,7 +195,18 @@ class RegistrationController extends Controller
                         ]);
                     }
                     
-                }
+                    foreach($request->job_roles as $role_code){
+                        InternJobRole::insert([
+                            "transid"=>  strtoupper(bin2hex(random_bytes(4))),
+                            "intern_code"=> $intern_code,
+                            "role_code" => $role_code,
+                            "deleted"=>'0',
+                            "createdate"=> date('Y-m-d'),
+                            "modifydate"=> date('Y-m-d'),
+                        ]);
+                    }
+                    
+                
                 
 
                 
@@ -194,7 +224,7 @@ class RegistrationController extends Controller
         } catch (\Exception $e) {
             return response()->json([
                 "ok" => false,
-                "msg" => "Account creation failed. An internal error occured",
+                "msg" =>  $e->getMessage(),
                 "error" => [
                     "msg" => $e->getMessage(),
                     "file" => $e->getFile(),

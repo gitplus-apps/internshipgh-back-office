@@ -10,6 +10,8 @@ use App\Models\Qualification;
 use App\Models\District;
 use App\Models\Sector;
 use App\Models\Region;
+use App\Models\InternshipType;
+use App\Models\JobRole;
 class RouteController extends Controller
 {
     //homepage
@@ -47,7 +49,11 @@ class RouteController extends Controller
         $districts = District::all();
         $regions = Region::all();
         $sectors = Sector::all();
-        return view('registration',compact('programmes','schools','levels','qualifications','districts','regions','sectors'));
+        $internship_type = InternshipType::all();
+        $schools = School::all();
+        $jobroles = JobRole::all();
+        $jobroles = JobRole::all();
+        return view('registration',compact('programmes','schools','levels','qualifications','districts','regions','sectors','internship_type','schools','jobroles'));
     }
     
 }
