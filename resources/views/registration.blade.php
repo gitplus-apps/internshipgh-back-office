@@ -316,7 +316,7 @@
                   <div>
                   <label for="sectors">Preferred Sectors ( Choose Multiple ) </label>
                   <select type="text" name="sectors[]" class="select2" multiple  required>
-                    <option value="" disabled selected>-- select --</option>
+                    
                         @foreach($sectors as $sector)
                             <option value="{{$sector->sector_code}}" >{{$sector->sector_desc}}</option>
                         @endforeach
@@ -326,7 +326,7 @@
                   <div>
                       <label for="regions[]">Preferred Regions ( Select Multiple ) </label>
                       <select type="text" name="regions[]" class="select2" multiple="multiple"  {{--  required--}}>
-                        <option value="" disabled selected>-- select --</option>
+                        
                         @foreach ($regions as $region)
                             <option value="{{$region->code}}">{{$region->description}}</option>
                         @endforeach
@@ -338,14 +338,14 @@
                    
                   <div><label for="districts">Preferred Districts ( Choose Multiple )</label>
                     <select type="text" name="districts[]" class="select2" multiple {{--  required--}}>
-                        <option value="" disabled selected>-- select --</option>
+                      
                        @foreach ($districts as $district)
                             <option value="{{$district->code}}">{{$district->name}}</option>                           
                        @endforeach
                     </select>
                   </div>
                     
-                   <div><label for="">Preferred Cities ( Enter Mulitple ) </label>
+                   <div><label for="">Preferred Cities ( Enter Multiple ) </label>
                     <input type="text" name="cities" {{--  required--}} placeholder="Separate By ` ,` ">
                    
                    </div>
@@ -363,7 +363,7 @@
                     <div>
                         <label for="job_roles">Preferred Job Roles ( Select Multiple )</label>
                         <select name="job_roles[]" id="" class="select2" multiple>
-                            <option value="" disabled selected>-- select --</option>
+                       
                             @foreach ($jobroles as $role)
                                 <option value="{{$role->role_code}}">{{$role->role_desc}}</option>                               
                             @endforeach
