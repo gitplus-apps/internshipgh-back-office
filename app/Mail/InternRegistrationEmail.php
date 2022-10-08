@@ -11,16 +11,16 @@ class InternRegistrationEmail extends Mailable
 {
     use Queueable, SerializesModels;
 
-    public $data;
+    public $user;
     /**
      * Create a new message instance.
      *
      * @return void
      */
      
-    public function __construct(array $data)
+    public function __construct(array $user)
     {
-        $this->data = $data;
+        $this->user = $user;
     }
 
     /**
@@ -30,8 +30,9 @@ class InternRegistrationEmail extends Mailable
      */
     public function build()
     {
-        return $this->from(env("MAIL_FROM_ADDRESS"), "Internship Ghana")
-        ->subject($this->data['subject'])
-        ->view('emails.student_email');
+        return $this->from(env("MAIL_FROM_ADDRESS"), env("APP_NAME", "AC Portal"))
+        ->subject("New Registration")
+        ->view('emails.student_email')
+        ->with($this->user);
     }
 }

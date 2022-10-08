@@ -288,7 +288,7 @@
                                 <td class="logo" style="text-align: center;">
                                     <h1>
                                         <p style="margin: 0; background: #fff">
-                                            <img src="{{ $message->embed(public_path() . '/logo-main-gpa.png') }}"
+                                            <img src="{{ $message->embed(public_path() . '/assets/img/logo.png') }}"
                                                 width="55%">
                                             <br>
                                         </p>
@@ -308,33 +308,26 @@
                                 <td style="padding: 0 2.5em; text-align: center; padding-bottom: 3em;">
                                     <div class="text">
                                         <br>
-                                        {{-- <h5><b>Zinker World</b></h5> --}}
+                                        <h3 style="text-align: center">Hello <b>{{ strtoupper($user["fname"]) }},</b></h3>
                                         <br>
-                                        
-                                        <br>
-                                        
-                                        <br>
-                                        <h4 style="text-align: justify">
-                                            
-                                            {{$data["body"]}}
-                                            <br><br>
-                                           
-
-                                            
-                                        </h4>
+                                        <p style="text-align: left; color: black">
+                                            We are excited to have you join this platform. 
+                                            We link students to the right job environment to acquire the appropriate and relevant skillset needed in their desired field of practice.
+                                            <br>
+                                            <br>
+                                            Signed:
+                                            Mr. Emmanuel Gadasu <i>(C.E.O.)</i>                                            
+                                            Internship Ghana
+                                        </p>
                                     </div>
                                 </td>
-                            </tr>
-
-                            
-
-                        
+                            </tr>                                                
                         </table>
                     </td>
                 </tr>
             </table>
 
-            <table align="center" role="presentation" cellspacing="0" cellpadding="0" border="0" width="100%"
+            {{-- <table align="center" role="presentation" cellspacing="0" cellpadding="0" border="0" width="100%"
                 style="margin: auto; margin-top: 0; margin-bottom:0;">
                 <tr>
                     <td valign="middle" class="bg_light footer email-section">
@@ -385,12 +378,11 @@
                         <p style="padding: 5px;">No longer want to receive these emails? You can <a href="#"
                                 style="">Unsubscribe here</a></p>
                     </td>
-                </tr> --}}
-            </table>
+                </tr>
+            </table> --}}
 
         </div>
     </center>
 </body>
 
 </html>
-Foote

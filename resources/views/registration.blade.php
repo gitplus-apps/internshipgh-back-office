@@ -399,7 +399,7 @@
                     </select>
                    
                     <input type="button" name="previous" class="previous action-button-previous" value="Previous"/>
-                    <input type="submit" name="submit" class="submit action-button" id="submit-btn" value="Submit"/>
+                    <button type="submit" name="submit" class="submit action-button" id="submit_btn" >Sign Up </button>
                 </fieldset>
             
             </form>
@@ -497,18 +497,18 @@
     });
      
      $('.next').click(function(){
-     console.log("hello world")
+    
         $("#msform").validate({
             ignore: ":hidden"
         });
      });
      
-     $(".submit").click(function(){
+     $("#submit_btn").click(function(){
         const registrationForm = document.getElementById('msform');
-        const submitBtn = document.getElementById('submit-btn');
+        const submitBtn = document.getElementById('submit_btn');
         $(registrationForm).submit(function(e){
             e.preventDefault();
-            
+           
             submitBtn.innerHTML= "";
             submitBtn.innerHTML ="Processing...";
             submitBtn.disabled = true;

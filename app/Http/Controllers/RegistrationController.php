@@ -17,6 +17,7 @@ use Illuminate\Support\Facades\Hash;
 use App\Mail\InternRegistrationEmail;
 use Illuminate\Support\Facades\Mail;
 use App\Gitplus\Arkesel as Sms;
+
 class RegistrationController extends Controller
 {
     /**
@@ -47,6 +48,9 @@ class RegistrationController extends Controller
      */
     public function store(Request $request)
     {
+        
+        
+        
         
         $validator = Validator::make(
             $request->all(),
@@ -208,29 +212,36 @@ class RegistrationController extends Controller
                         ]);
                     }
                     
-                    $message = <<<MSG
-                    Hello{$request->fname} {$request->lname},welcome to Internship Ghana.
-                    Here, we link students to the right job environment to acquire the appropriate and relevant skillset needed in their desired field of practice.
-                    MSG;
-                
-                    if (!empty($request->phone)) {
-
-                        $sms = new Sms("InternshipGh", env("ARKESEL_SMS_API_KEY"));
-                        $sms->send($request->phone, $message);
-                    };
-        
-                    Mail::to($request->email)->send(new InternRegistrationEmail([
-                        "fname" => $request->fname,
-                        "lname" => $request->lname,
-                    ]));
+                    
                 
                
             });
 
+            $message = <<<MSG
+            Hello{$request->fname} {$request->lname},welcome to Internship Ghana.
+            Here, we link students to the right job environment to acquire the appropriate and relevant skillset needed in their desired field of practice.
+            MSG;
+        
+            if (!empty($request->phone)) {
+                $sms = new Sms("InternGh", env("ARKESEL_SMS_API_KEY"));
+                $sms->send($request->phone, $message);
+            };
+    
+            Mail::to($request->email)->send(new InternRegistrationEmail([
+               
+                "fname" => $request->fname,
+                "lname" => $request->lname,
+            ]));
+            
+            return response()->json([
+                "ok" => true,
+                "msg" => "Account created successfully",
+            ]);
+                    
             if (!empty($transResult)) {
                 throw new Exception($transResult);
             }
-
+            
             return response()->json([
                 "ok" => true,
                 "msg" => "Account created successfully",
@@ -238,11 +249,10 @@ class RegistrationController extends Controller
         } catch (\Exception $e) {
             return response()->json([
                 "ok" => false,
-                "msg" =>  $e->getMessage(),
+                "msg" =>  "An error occured while adding record, please contact admin",
                 "error" => [
                     "msg" => $e->getMessage(),
-                    "file" => $e->getFile(),
-                    "line" => $e->getLine(),
+                    "fix" => "Please complete all required fields",
                 ]
             ]);
         }
