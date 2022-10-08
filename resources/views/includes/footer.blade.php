@@ -64,7 +64,7 @@
                                 </li>
                                 <li>
                                     <strong>Email:</strong>
-                                    <a href="mailto:info@validtheme.com">info@internship.com.gh</a>
+                                    <a href="mailto:info@internship.com.gh">info@internship.com.gh</a>
                                 </li>
                             </ul>
                         </div>
@@ -109,9 +109,9 @@
 <!-- jQuery Frameworks
 ============================================= -->
 
-<script src="{{asset('assets/js/jquery-1.12.4.min.js')}}"></script>
+{{-- <script src="{{asset('assets/js/jquery-1.12.4.min.js')}}"></script>
 <script src="{{asset('assets/js/popper.min.js')}}"></script>
-<script src="{{asset('assets/js/bootstrap.min.js')}}"></script>
+<script src="{{asset('assets/js/bootstrap.min.js')}}"></script> --}}
 <script src="{{asset('assets/js/equal-height.min.js')}}"></script>
 <script src="{{asset('assets/js/jquery.appear.js')}}"></script>
 <script src="{{asset('assets/js/jquery.easing.min.js')}}"></script>

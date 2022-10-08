@@ -16,10 +16,28 @@ class Intern extends Model
     const UPDATED_AT = 'modifydate';
     
     protected $fillable = [
-        "transid","intern_code","school_code","fname","mname","lname",
-        "branch_desc","source","import","export","deleted","createuser",
+        "transid","intern_type","intern_code","school_code","fname","mname","lname",
+        "whatsapp","prog_code","user_code","gender",
+        "qual_code","level_code","start_date","end_date","experience",
+        "branch_desc","deleted","createuser",
         "createdate","modifyuser","modifydate"
     ];
+    
+    public function user(){
+        return $this->belongsTo(User::class,'user_code','user_code');
+    }
+    
+    public function region(){
+        return $this->hasMany(InternRegion::class,'inern_code','intern_code');
+    }
+    
+    public function district(){
+        return $this->hasMany(InternDistrict::class,'intern_code','intern_code');
+    }
+    
+    public function sectors(){
+        return $this->hasMany(InternSector::class,'intern_code','intern_code');
+    }
     
     
 }

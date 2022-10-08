@@ -471,13 +471,17 @@ input {
 }
 
 .default-padding,
+.default-padding1,
 .default-padding-top,
 .default-padding-bottom,
 .default-padding-mx {
   position: relative;
   z-index: 1;
 }
-
+.default-padding1{
+  padding-top: 70px;
+  padding-bottom:70px;
+}
 .default-padding {
   padding-top: 120px;
   padding-bottom: 120px;

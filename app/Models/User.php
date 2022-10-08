@@ -12,15 +12,22 @@ class User extends Authenticatable
 {
     use HasApiTokens, HasFactory, Notifiable;
 
-    /**
-     * The attributes that are mass assignable.
-     *
-     * @var array<int, string>
-     */
+    protected $table ="tbluser";
+    protected $primaryKey = "transid";
+    
+    public $incrementing = true;
+    const CREATED_AT = 'createdate';
+    const UPDATED_AT = 'modifydate';
+    
     protected $fillable = [
-        'name',
+        'transid',
+        'user_code',
         'email',
+        'phone',
+        'usertype',
         'password',
+        "deleted","createuser",
+        "createdate","modifyuser","modifydate"
     ];
 
     /**
