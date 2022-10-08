@@ -64,7 +64,7 @@
                                 </li>
                                 <li>
                                     <strong>Email:</strong>
-                                    <a href="mailto:info@validtheme.com">info@internship.com.gh</a>
+                                    <a href="mailto:info@internship.com.gh">info@internship.com.gh</a>
                                 </li>
                             </ul>
                         </div>

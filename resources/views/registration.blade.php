@@ -116,84 +116,7 @@
                 margin-bottom: 20px;
             }
             
-            /*progressbar*/
-            #progressbar {
-                margin-bottom: 30px;
-                overflow: hidden;
-                /*CSS counters to number the steps*/
-                counter-reset: step;
-            }
-            
-            #progressbar li {
-                list-style-type: none;
-                color: #FE000B;
-                text-transform: uppercase;
-                font-size: 9px;
-                width: 33.33%;
-                float: left;
-                position: relative;
-                letter-spacing: 1px;
-            }
-            
-            #progressbar li:before {
-                content: counter(step);
-                counter-increment: step;
-                width: 24px;
-                height: 24px;
-                line-height: 26px;
-                display: block;
-                font-size: 12px;
-                color: #333;
-                background: white;
-                border-radius: 25px;
-                margin: 0 auto 10px auto;
-            }
-            
-            /*progressbar connectors*/
-            #progressbar li:after {
-                content: '';
-                width: 100%;
-                height: 2px;
-                background: white;
-                position: absolute;
-                left: -50%;
-                top: 9px;
-                z-index: -1; /*put it behind the numbers*/
-            }
-            
-            #progressbar li:first-child:after {
-                /*connector not needed before the first step*/
-                content: none;
-            }
-            
-            /*marking active/completed steps green*/
-            /*The number of the step and the connector before it = green*/
-            #progressbar li.active:before, #progressbar li.active:after {
-                background: #FE000B;
-                color: white;
-            }
-            
-            
-            /* Not relevant to this form */
-            .dme_link {
-                margin-top: 30px;
-                text-align: center;
-            }
-            .dme_link a {
-                background: #FFF;
-                font-weight: bold;
-                color: #FE000B;
-                border: 0 none;
-                border-radius: 25px;
-                cursor: pointer;
-                padding: 5px 25px;
-                font-size: 12px;
-            }
-            
-            .dme_link a:hover, .dme_link a:focus {
-                background: #C5C5F1;
-                text-decoration: none;
-            }
+          
 
 </style>
 <div class="breadcrumb-area shadow dark bg-fixed text-light" style="background-image: url({{asset('assets/img/services.jpg')}});">
@@ -222,7 +145,7 @@
             <form id="msform" >
                 <!-- fieldsets -->
                 @csrf
-                <fieldset>
+                <fieldset id="personal-details">
                     <h2 class="fs-title">Personal Details</h2>
                     <div>
                         <label for="fname">First Name</label>
@@ -246,9 +169,9 @@
                    </div>
                     
                     
-                    <input type="button" name="next" class="next action-button align-center" value="Next"/>
+                    <button type="button" name="next" id="personal_details" class="next1 action-button align-center" >Next</button>
                 </fieldset>
-                <fieldset>
+                <fieldset >
                     <h2 class="fs-title">Contact Details</h2>
                     <div>
                         <label for="email">Email</label>
@@ -414,12 +337,51 @@
 
 <script>
    
-  
-    
-    //jQuery time
-    var current_fs, next_fs, previous_fs; //fieldsets
+      //jQuery time
+      var current_fs, next_fs, previous_fs; //fieldsets
     var left, opacity, scale; //fieldset properties which we will animate
     var animating; //flag to prevent quick multi-click glitches
+    
+   $("#personal_details").click(function(){
+   
+  
+		var form = $("#msform");
+		form.validate({
+			rules: {
+				"fname": {
+					required: true,
+				
+				},
+				"lname": {
+				    required:true,
+				},
+				"gender":{
+				    required: true,
+				}
+			},
+			messages: {
+				fname: {
+					required: "<span class='text-danger'> First Name is  Required </span>",
+				    
+				},
+				lname: {
+				    required :"<span class='text-danger'> Last Name is Required </span>",
+				},
+				gender :{
+				    required: "<span class='text-danger'> Gender is Required </span>",
+				}
+			}
+		});
+		if (form.valid() == true){
+            current_fs = $(this).parent();
+            next_fs = $(this).parent().next();
+			
+			next_fs.show();
+			current_fs.hide();
+		}
+	});
+    
+ 
     
     $(".next").click(function(){
       if(animating) return false;
@@ -428,11 +390,9 @@
       current_fs = $(this).parent();
       next_fs = $(this).parent().next();
       
-      //activate next step on progressbar using the index of next_fs
-      $("#progressbar li").eq($("fieldset").index(next_fs)).addClass("active");
       
       //show the next fieldset
-      next_fs.show(); 
+     
       //hide the current fieldset with style
       current_fs.animate({opacity: 0}, {
         step: function(now, mx) {
@@ -445,7 +405,7 @@
           opacity = 1 - now;
           current_fs.css({
             'transform': 'scale('+scale+')',
-            'position': 'relative'
+            'position': 'absolute'
           });
           next_fs.css({'left': left, 'opacity': opacity});
         }, 
@@ -457,6 +417,8 @@
         //this comes from the custom easing plugin
         easing: 'easeInOutBack'
       });
+      
+      next_fs.show(); 
     });
     
     
@@ -465,14 +427,13 @@
       if(animating) return false;
       animating = true;
       
-      current_fs = $(this).parent();
       previous_fs = $(this).parent().prev();
+      current_fs = $(this).parent();
       
-      //de-activate current step on progressbar
-    //  $("#progressbar li").eq($("fieldset").index(current_fs)).removeClass("active");
-      
+    
+    
       //show the previous fieldset
-      previous_fs.show(); 
+     
       //hide the current fieldset with style
       current_fs.animate({opacity: 0}, {
         step: function(now, mx) {
@@ -483,8 +444,9 @@
           left = ((1-now) * 50)+"%";
           //3. increase opacity of previous_fs to 1 as it moves in
           opacity = 1 - now;
+          
           current_fs.css({'left': left});
-          previous_fs.css({'transform': 'scale('+scale+')', 'opacity': opacity});
+          previous_fs.css({'transform': 'scale('+scale+')', 'opacity': opacity ,'position':''});
         }, 
         duration: 800, 
         complete: function(){
@@ -494,14 +456,11 @@
         //this comes from the custom easing plugin
         easing: 'easeInOutBack'
       });
+      
+      previous_fs.show(); 
     });
      
-     $('.next').click(function(){
-    
-        $("#msform").validate({
-            ignore: ":hidden"
-        });
-     });
+  
      
      $("#submit_btn").click(function(){
         const registrationForm = document.getElementById('msform');
@@ -509,6 +468,7 @@
         $(registrationForm).submit(function(e){
             e.preventDefault();
            
+            $(registrationForm).validate();
             submitBtn.innerHTML= "";
             submitBtn.innerHTML ="Processing...";
             submitBtn.disabled = true;

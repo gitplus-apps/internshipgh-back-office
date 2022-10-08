@@ -122,7 +122,7 @@ class RegistrationController extends Controller
                 Intern::insert([
                     "transid" => $transid,
                     "intern_code" => $intern_code,
-                    "user_id"=>$user_code,
+                    "user_code"=>$user_code,
                     "email"=> $request->email,
                     "fname" => $request->fname,
                     "lname" => $request->lname,
@@ -144,7 +144,7 @@ class RegistrationController extends Controller
                 ]);
                 
                 User::insert([
-                    "transid"=> $user_transid,
+                    //"transid"=> $user_transid,
                     "user_code" => $user_code,
                     "phone"=> $request->phone,
                     "email"=> $request->email,
@@ -218,7 +218,7 @@ class RegistrationController extends Controller
             });
 
             $message = <<<MSG
-            Hello{$request->fname} {$request->lname},welcome to Internship Ghana.
+            Hello {$request->fname} {$request->lname},welcome to Internship Ghana.
             Here, we link students to the right job environment to acquire the appropriate and relevant skillset needed in their desired field of practice.
             MSG;
         
@@ -249,7 +249,7 @@ class RegistrationController extends Controller
         } catch (\Exception $e) {
             return response()->json([
                 "ok" => false,
-                "msg" =>  "An error occured while adding record, please contact admin",
+                "msg" =>  $e->getMessage(),
                 "error" => [
                     "msg" => $e->getMessage(),
                     "fix" => "Please complete all required fields",

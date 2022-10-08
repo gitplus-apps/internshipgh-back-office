@@ -15,7 +15,7 @@ class User extends Authenticatable
     protected $table ="tbluser";
     protected $primaryKey = "transid";
     
-    public $incrementing = false;
+    public $incrementing = true;
     const CREATED_AT = 'createdate';
     const UPDATED_AT = 'modifydate';
     

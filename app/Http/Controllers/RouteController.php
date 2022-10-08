@@ -11,7 +11,7 @@ use App\Models\District;
 use App\Models\Sector;
 use App\Models\Region;
 use App\Models\InternshipType;
-use App\Models\JobRole;
+use App\Models\RoleCategory;
 class RouteController extends Controller
 {
     //homepage
@@ -51,8 +51,8 @@ class RouteController extends Controller
         $sectors = Sector::all();
         $internship_type = InternshipType::all();
         $schools = School::all();
-        $jobroles = JobRole::all();
-        $jobroles = JobRole::all();
+        $jobroles = RoleCategory::all();
+       
         return view('registration',compact('programmes','schools','levels','qualifications','districts','regions','sectors','internship_type','schools','jobroles'));
     }
     
