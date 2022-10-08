@@ -27,7 +27,7 @@
     <script src="{{asset('assets/js/jquery-1.12.4.min.js')}}"></script>
     <script src="{{asset('assets/js/popper.min.js')}}"></script>
     <script src="{{asset('assets/js/bootstrap.min.js')}}"></script>
-    <script src="http://ajax.aspnetcdn.com/ajax/jquery.validate/1.9/jquery.validate.js"></script>
+    <script src="https://ajax.aspnetcdn.com/ajax/jquery.validate/1.9/jquery.validate.js"></script>
     
     {{-- Izitoast --}}
     <link rel="stylesheet" href="{{ asset('plugins/izitoast/css/iziToast.min.css')}}">
