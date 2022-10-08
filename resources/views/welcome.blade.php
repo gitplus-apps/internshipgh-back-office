@@ -13,7 +13,7 @@
                             <p class="wow fadeInLeft">
                                 We link students to the right job environment to acquire the appropriate and relevant skillset needed in their desired field of practice.
                             </p>
-                            <a class="btn circle btn-theme effect btn-md wow fadeInUp" href="{{url('/login')}}">Start Now <i class="fas fa-arrow-alt-circle-right"></i></a>
+                            <a class="btn circle btn-theme effect btn-md wow fadeInUp" href="{{url('/registration')}}">Start Now <i class="fas fa-arrow-alt-circle-right"></i></a>
                         </div>
                     </div>
                     <div class="col-lg-6 thumb">
