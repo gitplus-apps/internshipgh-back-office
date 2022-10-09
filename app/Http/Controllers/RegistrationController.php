@@ -250,7 +250,7 @@ class RegistrationController extends Controller
         } catch (\Exception $e) {
             return response()->json([
                 "ok" => false,
-                "msg" =>  $e->getMessage(),
+                "msg" =>    "An error occured while adding record, please contact admin",
                 "error" => [
                     "msg" => $e->getMessage(),
                     "fix" => "Please complete all required fields",
