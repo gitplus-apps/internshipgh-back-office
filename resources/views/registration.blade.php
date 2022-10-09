@@ -383,7 +383,7 @@
                           "showMethod": "fadeIn",
                           "hideMethod": "fadeOut"
                         }
-            let toastMsg = new Toastr();
+           
             fetch(`{{config('app.url')}}/api/intern_registration`,{
                 method:'POST',
                 body: formdata,
