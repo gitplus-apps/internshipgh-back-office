@@ -49,17 +49,14 @@ class RegistrationController extends Controller
     public function store(Request $request)
     {
         
-        
-        
-        
         $validator = Validator::make(
             $request->all(),
             [
                 "fname" => ['required', 'string', 'max:255'],
                 "lname" => ['required', 'string', 'max:255'],
                 "gender"=>['required'],
-                "email" => ['required', 'string', 'email', 'max:255', 'unique:tbluser'],
-                "phone" => ['required','unique:tbluser'],
+                "email" => ['required',  'email', 'max:255', 'unique:tbluser,email'],
+                "phone" => ['required','unique:tbluser,phone'],
                 "school_code" => ['required'],
                 "prog_code"=> ['required'],
                 "qual_code"=>  ['required'],
@@ -97,20 +94,28 @@ class RegistrationController extends Controller
         );
 
         if ($validator->fails()) {
-        
             return response()->json([
                 "ok" => false,
-                "msg" => "Account creation failed: " . join(" ", $validator->errors()->all()),
+                "msg" => "Account creation failed. " . join(" ", $validator->errors()->all()),
+                "error" => [
+                    "msg" => "Request validation failed" . join(" ", $validator->errors()->all()),
+                    "fix" => "Please fix all validation errors",
+                ]
             ]);
         }
         
         $checkemail = User::where("email", $request->email)->first();
-        if (!empty($checkemail)) {
+        $checkphone = User::where("phone",$request->phone)->first();
+        
+        if (!empty($checkemail) || !empty($checkphone)) {
             return response()->json([
                 "ok" => false,
-                "msg" => "Account creation failed, email already taken"
+                "msg" => "Account creation failed, email or phone number already taken"
             ]);
         }
+        
+        
+        
         
         try {
             $transResult = DB::transaction(function () use ($request) {
@@ -257,7 +262,7 @@ class RegistrationController extends Controller
                 ]
             ]);
         }
-        
+    
     }
 
     /**

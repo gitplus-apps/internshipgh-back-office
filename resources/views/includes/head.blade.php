@@ -29,22 +29,26 @@
     <script src="{{asset('assets/js/bootstrap.min.js')}}"></script>
     <script src="https://ajax.aspnetcdn.com/ajax/jquery.validate/1.9/jquery.validate.js"></script>
     
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/izitoast/1.4.0/css/iziToast.min.css"
+        integrity="sha512-O03ntXoVqaGUTAeAmvQ2YSzkCvclZEcPQu1eqloPaHfJ5RuNGiS4l+3duaidD801P50J28EHyonCV06CUlTSag=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/izitoast/1.4.0/js/iziToast.min.js"
+        integrity="sha512-Zq9o+E00xhhR/7vJ49mxFNJ0KQw1E1TMWkPTxrWcnpfEFDEXgUiwJHIKit93EW/XxE31HSI5GEOW06G6BF1AtA=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+        
+        
     {{-- Izitoast --}}
     <link rel="stylesheet" href="{{ asset('plugins/izitoast/css/iziToast.min.css')}}">
     <script src="{{ asset('plugins/izitoast/js/iziToast.min.js')}}" type="text/javascript"></script>
       {{-- Select2 --}}
     <link rel="stylesheet" href="{{ asset('plugins/select2/css/select2.css')}}">
     <script src="{{ asset('plugins/select2/js/select2.full.js')}}" type="text/javascript"></script>
-    
-   
+    {{-- toastr --}}
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js"></script>
     <!-- ========== End Stylesheet ========== -->
 
-    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
-    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
-    <!--[if lt IE 9]>
-      <script src="assets/js/html5/html5shiv.min.js"></script>
-      <script src="assets/js/html5/respond.min.js"></script>
-    <![endif]-->
+    
   <script>
     var APP_URL = "{{ config('app.url') }}";
     $(document).ready(function() {

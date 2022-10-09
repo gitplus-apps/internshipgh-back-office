@@ -350,12 +350,78 @@
 <script>
 
     $(".tab").css("display","none");
+    
     $("#tab-1").css("display","block");
+    
+    $("#submit_btn").click(function(){
+        const registrationForm = document.getElementById('msform');
+        const submitBtn = document.getElementById('submit_btn');
+        $(registrationForm).submit(function(e){
+            e.preventDefault();
+           
+            submitBtn.innerHTML= "";
+            submitBtn.innerHTML ="Processing...";
+            submitBtn.disabled = true;
+           
+            let formdata = new FormData(registrationForm);
+            
+            //toastr options for user registration messages
+            toastr.options = {
+                          "closeButton": true,
+                          "debug": false,
+                          "newestOnTop": false,
+                          "progressBar": true,
+                          "positionClass": "toast-top-full-width",
+                          "preventDuplicates": true,
+                          "onclick": null,
+                          "showDuration": "300",
+                          "hideDuration": "1000",
+                          "timeOut": "2000",
+                          "extendedTimeOut": "1000",
+                          "showEasing": "swing",
+                          "hideEasing": "linear",
+                          "showMethod": "fadeIn",
+                          "hideMethod": "fadeOut"
+                        }
+            let toastMsg = new Toastr();
+            fetch(`{{config('app.url')}}/api/intern_registration`,{
+                method:'POST',
+                body: formdata,
+            }).then(function (res){
+                return res.json();
+            }).then(function (data){
+                if(!data.ok){
+                
+                toastr.error(data.msg, '');
+                        
+                   
+                submitBtn.innerHTML = "";
+                submitBtn.innerHTML = "Sign Up"
+                submitBtn.disabled = false;
+              
+                return;
+            }
+            
+            toastr.success(data.msg,'');
+          
+            submitBtn.innerHTML = "";
+            submitBtn.innerHTML = "Sign Up"
+            submitBtn.disabled = false;
+            registrationForm.reset();
+            setTimeout(() => {
+                window.location.href = `{{config('app.url')}}/`;
+            }, 2000)
+                
+                
+            })
+        })
+    })
+    
+    
     
     function run(hideTab, showTab){
         if(hideTab < showTab){
-            // If not press previous button
-          // Validation if press next button
+           
           var currentTab = 0;
           x = $('#tab-'+hideTab);
             
@@ -451,77 +517,18 @@
                     end_date:{
                         required: "<span class='text-danger'> End Date is Required </span>",
                     }
+        			},
+        			submitHandler:function(form){
+        			     return false;
         			}
         		});
-        		console.log(form.valid())
+        		
         		if (form.valid() != true){
                     return false;
         		}
         		    
       
-    $("#submit_btn").click(function(){
-    
-        const registrationForm = document.getElementById('msform')
-        const submitBtn = document.getElementById('submit_btn');
-        
-        $(form).submit(function(e){
-            e.preventDefault();
-           
-            //$(registrationForm).validate();
-            submitBtn.innerHTML= "";
-            submitBtn.innerHTML ="Processing...";
-            submitBtn.css = "background-color: blue;"
-            submitBtn.disabled = true;
-          
-           
-            let formdata = new FormData(registrationForm);
-            
-            fetch(`{{config('app.url')}}/api/intern_registration`,{
-                method:'POST',
-                body: formdata,
-            }).then(function (res){
-                return res.json();
-            }).then(function (data){
-                if(!data.ok){
-                    iziToast.show({
-                  
-                    messageSize: '18',
-                    message: data.msg,
-                    messageColor: 'white', // blue, red, green, yellow
-                    theme: 'light', // dark
-                    backgroundColor: 'red',
-                    position: 'topCenter', // bottomRight, bottomLeft, topRight, topLeft, topCenter, bottomCenter, center
-                    timeout: 10000,
-                });
-      
-                submitBtn.innerHTML = "";
-                submitBtn.innerHTML = "Sign Up"
-                submitBtn.disabled = false;
-                registrationForm.reset();
-                return;
-            }
-            iziToast.show({
-                // title: 'Hey',
-                message: data.msg,
-                messageColor: 'white',
-                messageSize: '18',
-                theme: 'light', // dark
-                backgroundColor: 'green',
-                position: 'topCenter', // bottomRight, bottomLeft, topRight, topLeft, topCenter, bottomCenter, center
-                timeout: 2000,
-            });
-            submitBtn.innerHTML = "";
-            submitBtn.innerHTML = "Sign Up"
-            submitBtn.disabled = false;
-            registrationForm.reset();
-            setTimeout(() => {
-                window.location.href = `{{config('app.url')}}/`;
-            }, 2000)
-                
-                
-            })
-        })
-    })
+
           
         }
                 // Switch tab
@@ -533,6 +540,7 @@
         
     }
     
+   
     
     
 </script>
