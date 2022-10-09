@@ -97,6 +97,7 @@ class RegistrationController extends Controller
         );
 
         if ($validator->fails()) {
+        
             return response()->json([
                 "ok" => false,
                 "msg" => "Account creation failed: " . join(" ", $validator->errors()->all()),
