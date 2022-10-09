@@ -143,9 +143,12 @@
     <div class="row default-padding1 h-100 d-flex align-items-center justify-content-center">
         <div class="col-md-8 ">
             <form id="msform" >
+         
                 <!-- fieldsets -->
+              
+           
                 @csrf
-                <fieldset id="personal-details">
+                <fieldset class="tab" id="tab-1">
                     <h2 class="fs-title">Personal Details</h2>
                     <div>
                         <label for="fname">First Name</label>
@@ -161,40 +164,44 @@
                     </div>
                    <div>
                    <label for="gender">Gender</label>
-                    <select type="text" name="gender" placeholder="Gender" class="form-control"  required>
-                        <option value="" disabled selected>-- select --</option>
+                    <select type="text" name="gender" placeholder="Gender" class=""  >
+                        <option value="" disabled selected >-- select --</option>
                         <option value="Male">Male</option>
                         <option value="Female">Female</option>
                     </select>
                    </div>
                     
                     
-                    <button type="button" name="next" id="personal_details" class="next1 action-button align-center" >Next</button>
+                    <button type="button" name="next" id="personal_details" onclick="run(1, 2);" class="next1 action-button align-center" >Next</button>
                 </fieldset>
-                <fieldset >
+           
+            
+         
+                <fieldset class="tab" id="tab-2" >
                     <h2 class="fs-title">Contact Details</h2>
                     <div>
                         <label for="email">Email</label>
-                        <input type="text" name="email" placeholder="eg. johndoe@gmail.com" {{--  required--}}/>
+                        <input type="email" name="email" class="form-control" placeholder="eg. johndoe@gmail.com"  {{-- required --}}/>
                     </div>
                     <div>
                         <label for="phone">Phone</label>
-                        <input type="text" name="phone" placeholder="eg. 02000000001" {{--  required--}}/>
+                        <input type="text" name="phone" placeholder="eg. 02000000001"  {{-- required --}}/>
                     </div>
                    <div>
                         <label for="whatsapp">WhatsApp Number</label>
-                        <input type="text" name="whatsapp" placeholder="eg. 02000000001" {{--  required--}}/>
+                        <input type="text" name="whatsapp" placeholder="eg. 02000000001"  {{-- required --}}/>
                    </div>
                 
-                    <input type="button" name="previous" class="previous action-button-previous" value="Previous"/>
-                    <input type="button" name="next" class="next action-button" value="Next"/>
+                    <button type="button" name="previous" class="previous action-button-previous" onclick="run(2, 1);" value="Previous">Previous</button>
+                    <button type="button" name="next" class="next action-button"  onclick="run(2, 3);" value="Next">Next</button>
                 </fieldset>
-                <fieldset>
+            
+                <fieldset class="tab" id="tab-3">
                     <h2 class="fs-title">Academic Details</h2>
                   <div>
                   <label for="school_code">Select School</label>
-                    <select type="text" name="school_code"  class="select2" {{--  required--}}>
-                        <option value="" disabled selected>-- select --</option>
+                    <select type="text" name="school_code"  class="select2 basic-select required" {{--  required--}}>
+                        <option value="" disabled >-- select --</option>
                         @foreach ($schools as $school)
                             <option value="{{$school->sch_code}}">{{$school->sch_desc}}</option>
                         @endforeach
@@ -231,10 +238,10 @@
                     
                  
                 
-                    <input type="button" name="previous" class="previous action-button-previous" value="Previous"/>
-                    <input type="button" name="next" class="next action-button" value="Next"/>
+                    <button type="button" name="previous" class="previous action-button-previous" onclick="run(3, 2);" value="Previous">Previous</button>
+                    <button type="button" name="next" class="next action-button" onclick="run(3, 4);" >Next</button>
                 </fieldset>
-                <fieldset>
+                <fieldset class="tab" id="tab-4">
                     <h2 class="fs-title">Internship Details</h2>
                   <div>
                   <label for="sectors">Preferred Sectors ( Choose Multiple ) </label>
@@ -274,10 +281,10 @@
                    </div>
                 
                   
-                    <input type="button" name="previous" class="previous action-button-previous" value="Previous"/>
-                    <input type="button" name="next" class="next action-button" value="Next"/>
+                    <button type="button" name="previous" class="previous action-button-previous"  onclick="run(4, 3);">Previous</button>
+                    <button type="button" name="next" class="next action-button"  onclick="run(4, 5);">Next</button>
                 </fieldset>
-                <fieldset>
+                <fieldset class="tab" id="tab-5">
                     <h2 class="fs-title">Skills / Experience</h2>
                    <div><label for="experience">Experience</label>
                     <input type="text" name="experience" placeholder="Experience"/>
@@ -294,10 +301,11 @@
                     </div>
                 
                     
-                    <input type="button" name="previous" class="previous action-button-previous" value="Previous"/>
-                    <input type="button" name="next" class="next action-button" value="Next"/>
+                    <button type="button" name="previous" class="previous action-button-previous"  onclick="run(5, 4);">Previous</button>
+                    <button type="button" name="next" class="next action-button"  onclick="run(5, 6);">Next</button>
                 </fieldset>
-                <fieldset>
+                
+                <fieldset class="tab" id="tab-6">
                     <h2 class="fs-title">Availability </h2>
                     <div><label for="start_date">Start Date</label>
                         <input type="date" name="start_date" type="date" />
@@ -308,10 +316,11 @@
                    </div>
                    
                    
-                    <input type="button" name="previous" class="previous action-button-previous" value="Previous"/>
-                    <input type="button" name="next" class="next action-button" value="Next"/>
+                   <button type="button" name="previous" class="previous action-button-previous"  onclick="run(6, 5);">Previous</button>
+                   <button type="button" name="next" class="next action-button"  onclick="run(6, 7);">Next</button>
                 </fieldset>
-                <fieldset>
+           
+                <fieldset class="tab" id="tab-7">
                     <h2 class="fs-title">Internship Type</h2>
                     
                     <select class="" name="internship_type" > 
@@ -320,11 +329,14 @@
                            <option value="{{$type->type_code}}">{{$type->type_desc}}</option>
                        @endforeach
                     </select>
-                   
-                    <input type="button" name="previous" class="previous action-button-previous" value="Previous"/>
+                 
+              
+                    <button type="button" name="previous" class="previous action-button-previous"  onclick="run(7,6);" >Previous</button>
+                    
                     <button type="submit" name="submit" class="submit action-button" id="submit_btn" >Sign Up </button>
                 </fieldset>
-            
+         
+          
             </form>
             <!-- link to designify.me code snippets -->
            
@@ -336,143 +348,132 @@
 </div>
 
 <script>
-   
-      //jQuery time
-      var current_fs, next_fs, previous_fs; //fieldsets
-    var left, opacity, scale; //fieldset properties which we will animate
-    var animating; //flag to prevent quick multi-click glitches
+
+    $(".tab").css("display","none");
+    $("#tab-1").css("display","block");
     
-   $("#personal_details").click(function(){
-   
-  
-		var form = $("#msform");
-		form.validate({
-			rules: {
-				"fname": {
-					required: true,
-				
-				},
-				"lname": {
-				    required:true,
-				},
-				"gender":{
-				    required: true,
-				}
-			},
-			messages: {
-				fname: {
-					required: "<span class='text-danger'> First Name is  Required </span>",
-				    
-				},
-				lname: {
-				    required :"<span class='text-danger'> Last Name is Required </span>",
-				},
-				gender :{
-				    required: "<span class='text-danger'> Gender is Required </span>",
-				}
-			}
-		});
-		if (form.valid() == true){
-            current_fs = $(this).parent();
-            next_fs = $(this).parent().next();
-			
-			next_fs.show();
-			current_fs.hide();
-		}
-	});
-    
- 
-    
-    $(".next").click(function(){
-      if(animating) return false;
-      animating = true;
+    function run(hideTab, showTab){
+        if(hideTab < showTab){
+            // If not press previous button
+          // Validation if press next button
+          var currentTab = 0;
+          x = $('#tab-'+hideTab);
+            
+          //valdate tab-1 Personal Details
+        
+            const form = $("#msform");
+        		form.validate({
+                    ignore: ":hidden",
+        			rules: {
+        				"fname": {
+        					required: true,		
+        				},
+        				"lname": {
+        				    required:true,
+        				},
+        				"gender":{
+        				    required: true,
+        				},
+                        "email": {
+                          required: true, 
+                          email: true,
+                      },
+                      "phone":{
+                          required: true,
+                          minlength: 10,
+                          maxlength: 10,
+                      },
+                      "whatsapp":{
+                          required: true,
+                          minlength: 10,
+                          maxlength: 10,
+                      },
+                      "school_code": {
+                         required: true,
+                      },
+                      "prog_code":{
+                        required: true,
+                      },
+                      "cities":{
+                        required : true,
+                      },
+                      "experience": {
+                        required: true,
+                      },
+                      "start_date": {
+                            required:true,
+                      },
+                      "end_date":{
+                            required: true,
+                      },
+                      
+        			},
+        			messages: {
+        				fname: {
+        					required: "<span class='text-danger'> First Name is  Required </span>",
+                            
+        				},
+        				mname: {
+        				    required: "<span class='text-danger'> Middle Name is Required",
+        				},
+        				lname: {
+        				    required :"<span class='text-danger'> Last Name is Required </span>",
+        				},
+        				gender: {
+        				    required: "<span class='text-danger'> Gender is Required </span>",
+        				},
+        				email: {
+                          required: "<span class='text-danger'> Email is  Required </span>",
+                          email: "<span class='text-danger'> Enter a Valid Email Address</span>",
+                      },
+                      phone: {
+                          required :"<span class='text-danger'> Phone Number is Required </span>",
+                          minlength: "<span class='text-danger'> Minimum length is 10 </span>",
+                          maxlength: "<span class='text-danger'> Maximum length is 10 </span>",
+                      },
+                      whatsapp :{
+                          required: "<span class='text-danger'> Whatsapp Number is Required </span>",
+                          minlength: "<span class='text-danger'> Minimum length is 10 </span>",
+                          maxlength: "<span class='text-danger'> Maximum length is 10 </span>",
+                      },
+                      prog_code :{
+                        required: "<span class='text-danger'> School Programme is Required </span>",  
+                    },
+                    cities:{
+                        required: "<span class='text-danger'> Preferred Cities is Required </span>",
+                    },
+                    experience:{
+                        required: "<span class='text-danger'> Experience field is Required </span>",
+                    },
+                    start_date:{
+                        required: "<span class='text-danger'> Start Date is Required </span>",
+                    },
+                    end_date:{
+                        required: "<span class='text-danger'> End Date is Required </span>",
+                    }
+        			}
+        		});
+        		console.log(form.valid())
+        		if (form.valid() != true){
+                    return false;
+        		}
+        		    
       
-      current_fs = $(this).parent();
-      next_fs = $(this).parent().next();
-      
-      
-      //show the next fieldset
-     
-      //hide the current fieldset with style
-      current_fs.animate({opacity: 0}, {
-        step: function(now, mx) {
-          //as the opacity of current_fs reduces to 0 - stored in "now"
-          //1. scale current_fs down to 80%
-          scale = 1 - (1 - now) * 0.2;
-          //2. bring next_fs from the right(50%)
-          left = (now * 50)+"%";
-          //3. increase opacity of next_fs to 1 as it moves in
-          opacity = 1 - now;
-          current_fs.css({
-            'transform': 'scale('+scale+')',
-            'position': 'absolute'
-          });
-          next_fs.css({'left': left, 'opacity': opacity});
-        }, 
-        duration: 800, 
-        complete: function(){
-          current_fs.hide();
-          animating = false;
-        }, 
-        //this comes from the custom easing plugin
-        easing: 'easeInOutBack'
-      });
-      
-      next_fs.show(); 
-    });
+    $("#submit_btn").click(function(){
     
-    
-    
-     $(".previous").click(function(){
-      if(animating) return false;
-      animating = true;
-      
-      previous_fs = $(this).parent().prev();
-      current_fs = $(this).parent();
-      
-    
-    
-      //show the previous fieldset
-     
-      //hide the current fieldset with style
-      current_fs.animate({opacity: 0}, {
-        step: function(now, mx) {
-          //as the opacity of current_fs reduces to 0 - stored in "now"
-          //1. scale previous_fs from 80% to 100%
-          scale = 0.8 + (1 - now) * 0.2;
-          //2. take current_fs to the right(50%) - from 0%
-          left = ((1-now) * 50)+"%";
-          //3. increase opacity of previous_fs to 1 as it moves in
-          opacity = 1 - now;
-          
-          current_fs.css({'left': left});
-          previous_fs.css({'transform': 'scale('+scale+')', 'opacity': opacity ,'position':''});
-        }, 
-        duration: 800, 
-        complete: function(){
-          current_fs.hide();
-          animating = false;
-        }, 
-        //this comes from the custom easing plugin
-        easing: 'easeInOutBack'
-      });
-      
-      previous_fs.show(); 
-    });
-     
-  
-     
-     $("#submit_btn").click(function(){
-        const registrationForm = document.getElementById('msform');
+        const registrationForm = document.getElementById('msform')
         const submitBtn = document.getElementById('submit_btn');
-        $(registrationForm).submit(function(e){
+        
+        $(form).submit(function(e){
             e.preventDefault();
            
-            $(registrationForm).validate();
+            //$(registrationForm).validate();
             submitBtn.innerHTML= "";
             submitBtn.innerHTML ="Processing...";
+            submitBtn.css = "background-color: blue;"
             submitBtn.disabled = true;
-            
+          
+           
             let formdata = new FormData(registrationForm);
             
             fetch(`{{config('app.url')}}/api/intern_registration`,{
@@ -492,10 +493,11 @@
                     position: 'topCenter', // bottomRight, bottomLeft, topRight, topLeft, topCenter, bottomCenter, center
                     timeout: 10000,
                 });
+      
                 submitBtn.innerHTML = "";
                 submitBtn.innerHTML = "Sign Up"
                 submitBtn.disabled = false;
-               
+                registrationForm.reset();
                 return;
             }
             iziToast.show({
@@ -520,24 +522,20 @@
             })
         })
     })
-    
-    
-    //validate form fields
-    function validate(){
-        $('#msform').validate({ // initialize the plugin
-        rules: {
-            fname: {
-                required: true,      
-            },
-            lname: {
-                required: true,
-            },
-            gender:{
-                required:true,
-            }
-            
+          
         }
-    });
+                // Switch tab
+        $("#tab-"+hideTab).css("display", "none");
+        $("#tab-"+showTab).css("display", "block");
+        $("input").css("background", "#fff");
+        
+        
+        
     }
-    </script>
+    
+    
+    
+</script>
+
+
 @endsection

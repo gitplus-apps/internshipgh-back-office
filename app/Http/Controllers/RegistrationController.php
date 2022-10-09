@@ -97,6 +97,7 @@ class RegistrationController extends Controller
         );
 
         if ($validator->fails()) {
+        
             return response()->json([
                 "ok" => false,
                 "msg" => "Account creation failed: " . join(" ", $validator->errors()->all()),
@@ -249,7 +250,7 @@ class RegistrationController extends Controller
         } catch (\Exception $e) {
             return response()->json([
                 "ok" => false,
-                "msg" =>  $e->getMessage(),
+                "msg" =>    "An error occured while adding record, please contact admin",
                 "error" => [
                     "msg" => $e->getMessage(),
                     "fix" => "Please complete all required fields",

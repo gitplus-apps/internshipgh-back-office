@@ -3,7 +3,7 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="Tanda - IT Solutions Template">
+    <meta name="description" content="">
 
     <!-- ========== Page Title ========== -->
     <title>Internship - Ghana</title>
@@ -33,8 +33,7 @@
     <link rel="stylesheet" href="{{ asset('plugins/izitoast/css/iziToast.min.css')}}">
     <script src="{{ asset('plugins/izitoast/js/iziToast.min.js')}}" type="text/javascript"></script>
       {{-- Select2 --}}
-      <link rel="stylesheet" href="{{ asset('plugins/select2/css/select2.css')}}">
-   
+    <link rel="stylesheet" href="{{ asset('plugins/select2/css/select2.css')}}">
     <script src="{{ asset('plugins/select2/js/select2.full.js')}}" type="text/javascript"></script>
     
    
