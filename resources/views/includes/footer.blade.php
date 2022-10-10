@@ -84,7 +84,7 @@
         <div class="container">
             <div class="row">
                 <div class="col-md-6">
-                    <p>Copyright &copy;  {{date('Y')}} Designed by <a href="#">GitPlus</a></p>
+                    <p>Copyright &copy;  {{date('Y')}} Powered by <a href="#">GitPlus</a></p>
                 </div>
                 <div class="col-md-6 text-right link">
                     <ul>
