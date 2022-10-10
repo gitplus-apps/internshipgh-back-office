@@ -34,7 +34,7 @@
                           "hideMethod": "fadeOut"
                         }
            
-            fetch(`{{config('app.url')}}/api/intern_registration`,{
+            fetch(APP_URL+`/api/intern_registration`,{
                 method:'POST',
                 body: formdata,
             }).then(function (res){
@@ -59,7 +59,7 @@
             submitBtn.disabled = false;
             registrationForm.reset();
             setTimeout(() => {
-                window.location.href = `{{config('app.url')}}/`;
+                window.location.href = APP_URL+`/`;
             }, 2000)
                 
                 
