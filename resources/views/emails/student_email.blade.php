@@ -315,9 +315,13 @@
                                             We link students to the right job environment to acquire the appropriate and relevant skillset needed in their desired field of practice.
                                             <br>
                                             <br>
-                                            Signed:
-                                            Mr. Emmanuel Gadasu <i>(C.E.O.)</i>                                            
-                                            Internship Ghana
+                                            <span style="font-weight: 600; ">Internship Ghana Team</span>
+                                            <br>
+                                            Email: <span style="font-weight: 600; "> info@internship.com.gh</span>
+                                            <br>
+                                            WhatsApp : <span style="font-weight: 600; "> +233 5099 69915</span>
+                                            <br>
+                                            Website: <span style="font-weight: 500; "><a href="https://www.internship.com.gh">https://www.internship.com.gh</a></span>
                                         </p>
                                     </div>
                                 </td>
