@@ -205,6 +205,7 @@
            
                 <fieldset class="tab" id="tab-7">
                     <h2 class="fs-title">Internship Type ( 7 / 7 )</h2>
+                    <div>
                     <label for="internship_type">Internship Type<span class="text-danger"> * </span></label>
                     <select class="" name="internship_type" > 
                         <option value="" disabled selected>-- select --</option>
@@ -212,7 +213,7 @@
                            <option value="{{$type->type_code}}">{{$type->type_desc}}</option>
                        @endforeach
                     </select>
-                 
+                </div>
               
                     <button type="button" name="previous" class="previous action-button-previous"  onclick="run(7,6);" >Previous</button>
                     
