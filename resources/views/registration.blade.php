@@ -32,9 +32,9 @@
            
                 @csrf
                 <fieldset class="tab" id="tab-1">
-                    <h2 class="fs-title">Personal Details</h2>
+                    <h2 class="fs-title">Personal Details ( 1 / 7 ) </h2>
                     <div>
-                        <label for="fname">First Name</label>
+                        <label for="fname">First Name <span class="text-danger"> * </span></label>
                         <input type="text" name="fname" class="form-control" placeholder="eg. John" required />
                     </div>
                     <div>
@@ -42,12 +42,12 @@
                         <input type="text" name="mname" class="form-control"  />
                     </div>
                     <div>
-                        <label for="lname">Last Name</label>
+                        <label for="lname">Last Name <span class="text-danger"> * </span></label>
                         <input type="text" name="lname" placeholder="eg. Doe" class="form-control"   required/>
                     </div>
                    <div>
-                   <label for="gender">Gender</label>
-                    <select type="text" name="gender" placeholder="Gender" class=""  >
+                   <label for="gender">Gender <span class="text-danger"> * </span> </label>
+                    <select type="text" name="gender"  class="required"  >
                         <option value="" disabled selected >-- select --</option>
                         <option value="Male">Male</option>
                         <option value="Female">Female</option>
@@ -61,17 +61,17 @@
             
          
                 <fieldset class="tab" id="tab-2" >
-                    <h2 class="fs-title">Contact Details</h2>
+                    <h2 class="fs-title">Contact Details ( 1 / 7 ) </h2>
                     <div>
-                        <label for="email">Email</label>
+                        <label for="email">Email <span class="text-danger"> * </span></label>
                         <input type="email" name="email" class="form-control" placeholder="eg. johndoe@gmail.com"  {{-- required --}}/>
                     </div>
                     <div>
-                        <label for="phone">Phone</label>
+                        <label for="phone">Phone <span class="text-danger"> * </span></label>
                         <input type="text" name="phone" placeholder="eg. 02000000001"  {{-- required --}}/>
                     </div>
                    <div>
-                        <label for="whatsapp">WhatsApp Number</label>
+                        <label for="whatsapp">WhatsApp Number <span class="text-danger"> * </span></label>
                         <input type="text" name="whatsapp" placeholder="eg. 02000000001"  {{-- required --}}/>
                    </div>
                 
@@ -80,11 +80,11 @@
                 </fieldset>
             
                 <fieldset class="tab" id="tab-3">
-                    <h2 class="fs-title">Academic Details</h2>
+                    <h2 class="fs-title">Academic Details ( 3 / 7 ) </h2>
                   <div>
-                  <label for="school_code">Select School</label>
+                  <label for="school_code">Select School <span class="text-danger"> * </span> </label>
                     <select type="text" name="school_code"  class="select2 basic-select required" {{--  required--}}>
-                        <option value="" disabled >-- select --</option>
+                        <option value="" disabled selected >-- select --</option>
                         @foreach ($schools as $school)
                             <option value="{{$school->sch_code}}">{{$school->sch_desc}}</option>
                         @endforeach
@@ -92,7 +92,7 @@
                   </div>
                     
                    <div>
-                        <label for="qual_code">Qualification</label>
+                        <label for="qual_code">Qualification <span class="text-danger"> * </span> </label>
                         <select type="text" name="qual_code" class="select2" {{--  required--}}>
                             <option value="" disabled selected>-- select --</option>
                           @foreach($qualifications as $qualification)
@@ -101,7 +101,7 @@
                         </select>
                    </div>
                    <div>
-                        <label for="prog_code">Select Programme</label>
+                        <label for="prog_code">Select Programme <span class="text-danger"> * </span> </label>
                         <select type="text" class="select2 form-control basic-select " name="prog_code"  {{--  required--}}>
                             <option value="" disabled selected>-- select --</option>
                             @foreach($programmes as $program)
@@ -110,7 +110,7 @@
                         </select>
                    </div>
                     <div>
-                        <label for="level_code">Select Level</label>
+                        <label for="level_code">Select Level <span class="text-danger"> * </span> </label>
                         <select type="text" name="level_code" class="select2" {{-- style="width:100%; height:20px;  margin-bottom:20px;" --}} placeholder="Level" {{--  required--}}>
                             <option value="" disabled selected>-- select --</option>
                             @foreach ($levels as $level)
@@ -125,9 +125,9 @@
                     <button type="button" name="next" class="next action-button" onclick="run(3, 4);" >Next</button>
                 </fieldset>
                 <fieldset class="tab" id="tab-4">
-                    <h2 class="fs-title">Internship Details</h2>
+                    <h2 class="fs-title">Internship Details ( 4 / 7 )</h2>
                   <div>
-                  <label for="sectors">Preferred Sectors ( Choose Multiple ) </label>
+                  <label for="sectors">Preferred Sectors ( Choose Multiple ) <span class="text-danger"> * </span> </label>
                   <select type="text" name="sectors[]" class="select2" multiple  required>
                     
                         @foreach($sectors as $sector)
@@ -137,7 +137,7 @@
                   </div>
                   
                   <div>
-                      <label for="regions[]">Preferred Regions ( Select Multiple ) </label>
+                      <label for="regions[]">Preferred Regions ( Select Multiple ) <span class="text-danger"> * </span> </label>
                       <select type="text" name="regions[]" class="select2" multiple="multiple"  {{--  required--}}>
                         
                         @foreach ($regions as $region)
@@ -149,7 +149,7 @@
                     </select>
                   </div>
                    
-                  <div><label for="districts">Preferred Districts ( Choose Multiple )</label>
+                  <div><label for="districts">Preferred Districts ( Choose Multiple ) <span class="text-danger"> * </span></label>
                     <select type="text" name="districts[]" class="select2" multiple {{--  required--}}>
                       
                        @foreach ($districts as $district)
@@ -158,7 +158,7 @@
                     </select>
                   </div>
                     
-                   <div><label for="">Preferred Cities ( Enter Multiple ) </label>
+                   <div><label for="">Preferred Cities ( Enter Multiple ) <span class="text-danger"> * </span></label>
                     <input type="text" name="cities" {{--  required--}} placeholder="Separate By ` ,` ">
                    
                    </div>
@@ -168,13 +168,13 @@
                     <button type="button" name="next" class="next action-button"  onclick="run(4, 5);">Next</button>
                 </fieldset>
                 <fieldset class="tab" id="tab-5">
-                    <h2 class="fs-title">Skills / Experience</h2>
-                   <div><label for="experience">Experience</label>
-                    <input type="text" name="experience" placeholder="Experience"/>
+                    <h2 class="fs-title"> Experience ( 5 / 7 )</h2>
+                   <div><label for="experience">Work Experience <span class="text-danger"> * </span></label>
+                    <input type="text" name="experience" placeholder=" eg. 2 years"/>
                    
                    </div>
                     <div>
-                        <label for="job_roles">Preferred Job Roles ( Select Multiple )</label>
+                        <label for="job_roles">Preferred Job Roles ( Select Multiple ) <span class="text-danger"> * </span></label>
                         <select name="job_roles[]" id="" class="select2" multiple>
                        
                             @foreach ($jobroles as $role)
@@ -189,12 +189,12 @@
                 </fieldset>
                 
                 <fieldset class="tab" id="tab-6">
-                    <h2 class="fs-title">Availability </h2>
-                    <div><label for="start_date">Start Date</label>
-                        <input type="date" name="start_date" type="date" />
+                    <h2 class="fs-title">Availability ( 6 / 7 )</h2>
+                    <div><label for="start_date">Start Date <span class="text-danger"> * </span></label>
+                        <input type="date" name="start_date" id="start_date" />
                     
                     </div>
-                   <div><label for="end_date">End Date</label>
+                   <div><label for="end_date">End Date <span class="text-danger"> * </span></label>
                     <input type="date" name="end_date" />
                    </div>
                    
@@ -204,8 +204,8 @@
                 </fieldset>
            
                 <fieldset class="tab" id="tab-7">
-                    <h2 class="fs-title">Internship Type</h2>
-                    
+                    <h2 class="fs-title">Internship Type ( 7 / 7 )</h2>
+                    <label for="internship_type">Internship Type<span class="text-danger"> * </span></label>
                     <select class="" name="internship_type" > 
                         <option value="" disabled selected>-- select --</option>
                        @foreach ($internship_type as $type)

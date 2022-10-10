@@ -75,7 +75,7 @@ class RegistrationController extends Controller
                 "email.required" => "Email is required",
                 "email.unique"=> "Email Address already exists",
                 "gender.required"=> "Gender is required",
-                "skills.required"=> "Skills is required",
+                "experience.required"=> "Work Experience is required",
                 "school_code.required"=> "School Name is required",
                 "phone.required" => "Phone number is required",
                 "phone.unique"=> "Phone number already exists",
@@ -85,7 +85,6 @@ class RegistrationController extends Controller
                 "regions" => "Region Field is required",
                 "districts.required"=>  "District Field is required",
                 "cities.required"=>"City  Field is required",
-                "experience.required"=> "Skill Field is required",
                 "job_roles.required"=> "Job Roles Field is required",
                 "start_date.required"=> "Start Date Field is required",
                 "end_date.required"=> "End Date Field is required",
@@ -224,7 +223,7 @@ class RegistrationController extends Controller
             });
 
             $message = <<<MSG
-            Hello {$request->fname} {$request->lname},welcome to Internship Ghana.
+            Hello {$request->fname} {$request->lname}, welcome to Internship Ghana.
             Here, we link students to the right job environment to acquire the appropriate and relevant skillset needed in their desired field of practice.
             MSG;
         
