@@ -2,6 +2,8 @@
 
 namespace App\Http;
 
+use App\Http\Middleware\FilterPaystackIPAddresses;
+use App\Http\Middleware\ValidatePaystackSignature;
 use Illuminate\Foundation\Http\Kernel as HttpKernel;
 
 class Kernel extends HttpKernel
@@ -37,12 +39,14 @@ class Kernel extends HttpKernel
             \Illuminate\View\Middleware\ShareErrorsFromSession::class,
             \App\Http\Middleware\VerifyCsrfToken::class,
             \Illuminate\Routing\Middleware\SubstituteBindings::class,
+            \Inspector\Laravel\Middleware\WebRequestMonitoring::class,
         ],
 
         'api' => [
             // \Laravel\Sanctum\Http\Middleware\EnsureFrontendRequestsAreStateful::class,
             'throttle:api',
             \Illuminate\Routing\Middleware\SubstituteBindings::class,
+            \Inspector\Laravel\Middleware\WebRequestMonitoring::class,
         ],
     ];
 
@@ -63,5 +67,7 @@ class Kernel extends HttpKernel
         'signed' => \Illuminate\Routing\Middleware\ValidateSignature::class,
         'throttle' => \Illuminate\Routing\Middleware\ThrottleRequests::class,
         'verified' => \Illuminate\Auth\Middleware\EnsureEmailIsVerified::class,
+        'paystack.filter.ips' => FilterPaystackIPAddresses::class,
+        'paystack.validate.signature' => ValidatePaystackSignature::class,
     ];
 }

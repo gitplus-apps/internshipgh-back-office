@@ -1,8 +1,8 @@
 <?php
 
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\RouteController;
-use App\Http\Controllers\RegistrationController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -14,18 +14,18 @@ use App\Http\Controllers\RegistrationController;
 |
 */
 
-Route::get('/', [RouteController::class,'homePage']);
-Route::get('/contact',[RouteController::class,'contactUs']);
-Route::get('/about-us', [RouteController::class,'aboutUs']);
+Route::get('/', [RouteController::class, 'homePage']);
+Route::get('/contact', [RouteController::class, 'contactUs']);
+Route::get('/about-us', [RouteController::class, 'aboutUs']);
 
-Route::get('/services',[RouteController::class,'services']
+Route::get('/services', [RouteController::class, 'services']
 );
 
-Route::get('/terms-of-use',[ RouteController::class,'termsOfUse']);
+Route::get('/terms-of-use', [RouteController::class, 'termsOfUse']);
 
-Route::get('/privacy',[RouteController::class,'privacy']);
+Route::get('/privacy', [RouteController::class, 'privacy']);
 
 Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
-Route::get('/registration',[RouteController::class,'registration']);
+Route::get('/registration', [RouteController::class, 'registration']);
