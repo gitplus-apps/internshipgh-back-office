@@ -1,8 +1,10 @@
-
-    $(".tab").css("display","none");
-    
+    //hide all fieldsets tabs
+    $(".tab").css("display","none");    
+    //display the first fieldset tab 
     $("#tab-1").css("display","block");
     
+  
+    //making of post request to registration controller
     $("#submit_btn").click(function(){
         const registrationForm = document.getElementById('msform');
         const submitBtn = document.getElementById('submit_btn');
@@ -68,7 +70,7 @@
     })
     
     
-    
+    //for switching between form fieldsets tabs and also validate form fieldsets in each tab
     function run(hideTab, showTab){
         if(hideTab < showTab){
            
@@ -181,11 +183,39 @@
 
           
         }
-                // Switch tab
+        // Switch tab
         $("#tab-"+hideTab).css("display", "none");
         $("#tab-"+showTab).css("display", "block");
         $("input").css("background", "#fff");
         
+    }
+
+   
+    $('#regions').on("change", function(e) {
         
+        var data = $('#regions').select2("val");
+    
+        getDistricts(data);
+    });
+    
+    function getDistricts(regions){
+        let districtDropDown = document.getElementById("districts");
         
+    if(regions != null){
+        let selectedDistricts = districts.filter((district) => regions.includes(district.region));
+
+        let fragment = new DocumentFragment();
+    
+        
+        selectedDistricts.map(district => {
+            let option = new Option(district.name, district.code);
+            fragment.appendChild(option);
+        });
+    
+        districtDropDown.innerHTML = null;
+        districtDropDown.appendChild(fragment);
+    }else{
+        districtDropDown.innerHTML = null;
+    }
+       
     }

@@ -128,7 +128,7 @@
                     <h2 class="fs-title">Internship Details ( 4 / 7 )</h2>
                   <div>
                   <label for="sectors">Preferred Sectors ( Choose Multiple ) <span class="text-danger"> * </span> </label>
-                  <select type="text" name="sectors[]" class="select2" multiple  required>
+                  <select type="text" name="sectors[]" class="select2 form-control" multiple  required>
                     
                         @foreach($sectors as $sector)
                             <option value="{{$sector->sector_code}}" >{{$sector->sector_desc}}</option>
@@ -138,7 +138,7 @@
                   
                   <div>
                       <label for="regions[]">Preferred Regions ( Select Multiple ) <span class="text-danger"> * </span> </label>
-                      <select type="text" name="regions[]" class="select2" multiple="multiple"  {{--  required--}}>
+                      <select type="text" name="regions[]" id="regions" class="select2 multiple" multiple="multiple"  {{--  required--}}>
                         
                         @foreach ($regions as $region)
                             <option value="{{$region->code}}">{{$region->description}}</option>
@@ -150,11 +150,11 @@
                   </div>
                    
                   <div><label for="districts">Preferred Districts ( Choose Multiple ) <span class="text-danger"> * </span></label>
-                    <select type="text" name="districts[]" class="select2" multiple {{--  required--}}>
+                    <select type="text" name="districts[]" class="select2" multiple id="districts"{{--  required--}} >
                       
-                       @foreach ($districts as $district)
+                {{--        @foreach ($districts as $district)
                             <option value="{{$district->code}}">{{$district->name}}</option>                           
-                       @endforeach
+                       @endforeach --}}
                     </select>
                   </div>
                     
@@ -191,7 +191,7 @@
                 <fieldset class="tab" id="tab-6">
                     <h2 class="fs-title">Availability ( 6 / 7 )</h2>
                     <div><label for="start_date">Start Date <span class="text-danger"> * </span></label>
-                        <input type="date" name="start_date" id="start_date" />
+                        <input type="date" name="start_date" {{-- id="start_date" --}}    />
                     
                     </div>
                    <div><label for="end_date">End Date <span class="text-danger"> * </span></label>
@@ -230,6 +230,11 @@
 </div>
 </div>
 </div>
+<script>
+    let districts = @json($districts)
+  
+</script>
+
 
 <script src="{{asset("assets/js/registration.js")}}">  </script>
 
