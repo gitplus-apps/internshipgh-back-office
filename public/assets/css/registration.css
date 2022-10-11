@@ -36,7 +36,7 @@ body {
 }
 
 /*inputs*/
-#msform input, #msform textarea {
+#msform .input {
     padding: 5px;
     -moz-box-shadow: none !important;
     -webkit-box-shadow: none !important;
@@ -46,11 +46,11 @@ body {
     box-sizing: border-box;
     font-family: montserrat;
     box-shadow: none !important;
- /*    color: #2C3E50; */
+    color: #2C3E50;
     font-size: 13px;
 }
 
-#msform input:focus, #msform textarea:focus {
+#msform .input:focus, #msform textarea:focus {
    
     box-shadow: none !important;
     border: 1px solid #FE000B;
@@ -60,7 +60,16 @@ body {
     -moz-transition: All 0.5s ease-in;
     -o-transition: All 0.5s ease-in;
 }
-
+#msform .multiple {
+   
+    box-shadow: none !important;
+    border: 1px solid #FE000B;
+    outline-width: 0;
+    transition: All 0.5s ease-in;
+    -webkit-transition: All 0.5s ease-in;
+    -moz-transition: All 0.5s ease-in;
+    -o-transition: All 0.5s ease-in;
+}
 /*buttons*/
 #msform .action-button {
     width: 100px;
@@ -73,6 +82,8 @@ body {
     padding: 10px 5px;
     margin: 10px 5px;
 }
+
+
 
 /*  #msform .action-button:hover, #msform .action-button:focus {
     box-shadow: 0 0 0 2px white, 0 0 0 3px #ee0979;

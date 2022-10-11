@@ -26,7 +26,7 @@
                           "positionClass": "toast-top-full-width",
                           "preventDuplicates": true,
                           "onclick": null,
-                          "showDuration": "300",
+                          "showDuration": "500",
                           "hideDuration": "1000",
                           "timeOut": "2000",
                           "extendedTimeOut": "1000",
@@ -161,7 +161,7 @@
                         required: "<span class='text-danger'> Preferred Cities is Required </span>",
                     },
                     experience:{
-                        required: "<span class='text-danger'> Experience field is Required </span>",
+                        required: "<span class='text-danger'> Work Experience field is Required </span>",
                     },
                     start_date:{
                         required: "<span class='text-danger'> Start Date is Required </span>",
