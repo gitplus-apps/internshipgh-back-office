@@ -35,15 +35,15 @@
                     <h2 class="fs-title">Personal Details ( 1 / 7 ) </h2>
                     <div>
                         <label for="fname">First Name <span class="text-danger"> * </span></label>
-                        <input type="text" name="fname" class="form-control" placeholder="eg. John" required />
+                        <input type="text" name="fname" class="input" placeholder="eg. John" required />
                     </div>
                     <div>
                         <label for="mname">Middle Name</label>
-                        <input type="text" name="mname" class="form-control"  />
+                        <input type="text" name="mname" class="input" />
                     </div>
                     <div>
                         <label for="lname">Last Name <span class="text-danger"> * </span></label>
-                        <input type="text" name="lname" placeholder="eg. Doe" class="form-control"   required/>
+                        <input type="text" name="lname" placeholder="eg. Doe" class="input"   required/>
                     </div>
                    <div>
                    <label for="gender">Gender <span class="text-danger"> * </span> </label>
@@ -61,18 +61,18 @@
             
          
                 <fieldset class="tab" id="tab-2" >
-                    <h2 class="fs-title">Contact Details ( 1 / 7 ) </h2>
+                    <h2 class="fs-title">Contact Details ( 2 / 7 ) </h2>
                     <div>
                         <label for="email">Email <span class="text-danger"> * </span></label>
-                        <input type="email" name="email" class="form-control" placeholder="eg. johndoe@gmail.com"  {{-- required --}}/>
+                        <input type="email" name="email" class="input" placeholder="eg. johndoe@gmail.com"  {{-- required --}}/>
                     </div>
                     <div>
                         <label for="phone">Phone <span class="text-danger"> * </span></label>
-                        <input type="text" name="phone" placeholder="eg. 02000000001"  {{-- required --}}/>
+                        <input type="text" name="phone" class="input" placeholder="eg. 02000000001"  {{-- required --}}/>
                     </div>
                    <div>
                         <label for="whatsapp">WhatsApp Number <span class="text-danger"> * </span></label>
-                        <input type="text" name="whatsapp" placeholder="eg. 02000000001"  {{-- required --}}/>
+                        <input type="text" name="whatsapp" class="input" placeholder="eg. 02000000001"  {{-- required --}}/>
                    </div>
                 
                     <button type="button" name="previous" class="previous action-button-previous" onclick="run(2, 1);" value="Previous">Previous</button>
@@ -159,7 +159,7 @@
                   </div>
                     
                    <div><label for="">Preferred Cities ( Enter Multiple ) <span class="text-danger"> * </span></label>
-                    <input type="text" name="cities" {{--  required--}} placeholder="Separate By ` ,` ">
+                    <input type="text" name="cities" {{--  required--}} placeholder="Separate By ` ,` " class="input">
                    
                    </div>
                 
@@ -170,7 +170,7 @@
                 <fieldset class="tab" id="tab-5">
                     <h2 class="fs-title"> Experience ( 5 / 7 )</h2>
                    <div><label for="experience">Work Experience <span class="text-danger"> * </span></label>
-                    <input type="text" name="experience" placeholder=" eg. 2 years"/>
+                    <input type="text" name="experience" placeholder=" eg. 2 years" class="input"/>
                    
                    </div>
                     <div>
@@ -191,11 +191,11 @@
                 <fieldset class="tab" id="tab-6">
                     <h2 class="fs-title">Availability ( 6 / 7 )</h2>
                     <div><label for="start_date">Start Date <span class="text-danger"> * </span></label>
-                        <input type="date" name="start_date" {{-- id="start_date" --}}    />
+                        <input type="date" name="start_date" {{-- id="start_date" --}} class="input"   />
                     
                     </div>
                    <div><label for="end_date">End Date <span class="text-danger"> * </span></label>
-                    <input type="date" name="end_date" />
+                    <input type="date" name="end_date" class="input"/>
                    </div>
                    
                    

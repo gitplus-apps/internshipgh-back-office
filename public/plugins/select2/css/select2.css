@@ -8,7 +8,9 @@
       box-sizing: border-box;
       cursor: pointer;
       display: block;
-      height: 28px;
+      padding:5px;
+      margin-bottom: 10px;
+      height: 40px;
       user-select: none;
       -webkit-user-select: none; }
       .select2-container .select2-selection--single .select2-selection__rendered {
@@ -28,8 +30,8 @@
       cursor: pointer;
       display: block;
       min-height: 32px;
-      user-select: none;
-      -webkit-user-select: none; }
+    /*   user-select: none;
+      -webkit-user-select: none;  */}
       .select2-container .select2-selection--multiple .select2-selection__rendered {
         display: inline-block;
         overflow: hidden;
