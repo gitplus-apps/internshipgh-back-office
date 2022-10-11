@@ -83,7 +83,7 @@
                     <h2 class="fs-title">Academic Details ( 3 / 7 ) </h2>
                   <div>
                   <label for="school_code">Select School <span class="text-danger"> * </span> </label>
-                    <select type="text" name="school_code"  class="select2 basic-select required" {{--  required--}}>
+                    <select type="text" name="school_code"  class="select2  required" {{--  required--}}>
                         <option value="" disabled selected >-- select --</option>
                         @foreach ($schools as $school)
                             <option value="{{$school->sch_code}}">{{$school->sch_desc}}</option>
@@ -128,7 +128,7 @@
                     <h2 class="fs-title">Internship Details ( 4 / 7 )</h2>
                   <div>
                   <label for="sectors">Preferred Sectors ( Choose Multiple ) <span class="text-danger"> * </span> </label>
-                  <select type="text" name="sectors[]" class="select2 form-control" multiple  required>
+                  <select type="text" name="sectors[]" class="select2 form-control multiple" multiple  required>
                     
                         @foreach($sectors as $sector)
                             <option value="{{$sector->sector_code}}" >{{$sector->sector_desc}}</option>

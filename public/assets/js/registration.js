@@ -161,7 +161,7 @@
                         required: "<span class='text-danger'> Preferred Cities is Required </span>",
                     },
                     experience:{
-                        required: "<span class='text-danger'> Experience field is Required </span>",
+                        required: "<span class='text-danger'> Work Experience field is Required </span>",
                     },
                     start_date:{
                         required: "<span class='text-danger'> Start Date is Required </span>",

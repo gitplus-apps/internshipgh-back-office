@@ -60,7 +60,16 @@ body {
     -moz-transition: All 0.5s ease-in;
     -o-transition: All 0.5s ease-in;
 }
-
+#msform .multiple {
+   
+    box-shadow: none !important;
+    border: 1px solid #FE000B;
+    outline-width: 0;
+    transition: All 0.5s ease-in;
+    -webkit-transition: All 0.5s ease-in;
+    -moz-transition: All 0.5s ease-in;
+    -o-transition: All 0.5s ease-in;
+}
 /*buttons*/
 #msform .action-button {
     width: 100px;
