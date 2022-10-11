@@ -5,6 +5,7 @@ namespace App\Http\Middleware;
 use Closure;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Log;
 
 class FilterPaystackIPAddresses
 {
@@ -27,6 +28,10 @@ class FilterPaystackIPAddresses
     {
         // Make sure the IP of the incoming request is a known IP.
         if (!in_array($request->ip(), $this->knownPaystackIpAddresses)) {
+            Log::warning("webhook request came from an invalid ip: " . $request->ip(), [
+                "request" => $request,
+                "ip" => $request->ip(),
+            ]);
             return response()->json(["msg" => "Unauthorized"], 401);
         }
         return $next($request);
