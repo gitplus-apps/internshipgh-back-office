@@ -18,8 +18,7 @@ class ValidatePaystackSignature
     public function handle(Request $request, Closure $next)
     {
         $paystackSignature = $request->header("x-paystack-signature");
-        $requestPayload = $request->getContent();
-        $calculateSignature = hash_hmac("sha256", $requestPayload, env("PAYSTACK_SECRET_KEY"));
+        $calculateSignature = hash_hmac("sha256", $request->getContent(), env("PAYSTACK_SECRET_KEY"));
 
         if (!hash_equals($paystackSignature, $calculateSignature)) {
             return response()->json(["msg" => "Bad request"], 401);
