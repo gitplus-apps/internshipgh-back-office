@@ -67,11 +67,11 @@ class PaystackPaymentController extends Controller
             ]);
         }
 
-        // Make the request to Paystack with a timeout
-        $paystackResponse = Http::withHeaders([
-            "Authorization" => "Bearer " . env("PAYSTACK_SECRET_KEY")
-        ])
-            ->timeout(self::REQUEST_TIMEOUT_SECONDS)
+        $paystackResponse = Http::timeout(self::REQUEST_TIMEOUT_SECONDS)
+            ->withHeaders([
+                "Authorization" => "Bearer " . env("PAYSTACK_SECRET_KEY"),
+                "Content-Type" => "application/json",
+            ])
             ->post(env("PAYSTACK_CHARGE_ENDPOINT"), [
                 "email" => $request->email,
                 "amount" => 100,
@@ -108,10 +108,17 @@ class PaystackPaymentController extends Controller
             ]);
         }
 
+        $jsonResponse = $paystackResponse->json();
+
+        // TODO (Nana): Store reference against intern data
         return response()->json([
             "ok" => true,
             "msg" => "Charge initiated successfully",
-            "data" => $paystackResponse->json("data")["display_text"],
+            "data" => [
+                "displayText" => $jsonResponse["data"]["display_text"],
+                "reference" => $jsonResponse["data"]["reference"],
+                "status" => $jsonResponse["data"]["status"],
+            ]
         ]);
     }
 
@@ -123,10 +130,63 @@ class PaystackPaymentController extends Controller
      */
     public function submitOTP(Request $request): JsonResponse
     {
+        // TODO (Nana): Make sure reference exists somewhere in the system
+        $validator = Validator::make($request->all(), [
+            "otp" => "required|numeric",
+            "reference" => "required"
+        ]);
+
+        if ($validator->fails()) {
+            return response()->json([
+                "ok" => false,
+                "msg" => join(",", $validator->errors()->all()),
+            ]);
+        }
+
+        $paystackResponse = Http::timeout(self::REQUEST_TIMEOUT_SECONDS)
+            ->withHeaders([
+                "Authorization" => "Bearer " . env("PAYSTACK_SECRET_KEY"),
+                "Content-Type" => "application/json",
+            ])->post(env("PAYSTACK_SUBMIT_OTP_ENDPOINT"), [
+                "otp" => $request->otp,
+                "reference" => $request->reference,
+            ]);
+
+
+        if ($paystackResponse->status() !== 200) {
+            Log::error("paystack request to submit OTP returned an non-200 status code\n", [
+                "status_code" => $paystackResponse->status() . PHP_EOL,
+                "paystack_response" => $paystackResponse . PHP_EOL,
+                "request" => $request,
+            ]);
+
+            return response()->json([
+                "ok" => false,
+                "msg" => "Error submitting OTP. An internal error occurred"
+            ]);
+        }
+
+        if ($paystackResponse->json("status") === false) {
+            Log::error("paystack returned status = false: ", [
+                "request" => $request,
+                "paystackResponse" => $paystackResponse
+            ]);
+
+            return response()->json([
+                "ok" => false,
+                "msg" => "An internal error occurred. Payment cannot proceed"
+            ]);
+        }
+
+        $jsonResponse = $paystackResponse->json();
 
         return response()->json([
             "ok" => true,
-            "msg" => "Please make the payment on your device",
+            "msg" => "Request successful",
+            "data" => [
+                "displayText" => $jsonResponse["data"]["display_text"],
+                "reference" => $request->reference,
+            ],
         ]);
     }
 
