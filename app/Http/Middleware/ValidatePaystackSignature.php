@@ -21,7 +21,7 @@ class ValidatePaystackSignature
         $paystackSignature = $request->header("x-paystack-signature");
         Log::info("paystack webhook signature: " . $paystackSignature);
 
-        $calculateSignature = hash_hmac("sha256", $request->getContent(), env("PAYSTACK_SECRET_KEY"));
+        $calculateSignature = hash_hmac("sha512", $request->getContent(), env("PAYSTACK_SECRET_KEY"));
         Log::info("calculated hmac signature: " . $calculateSignature);
 
         if (!hash_equals($paystackSignature, $calculateSignature)) {
