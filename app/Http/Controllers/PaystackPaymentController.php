@@ -213,6 +213,7 @@ class PaystackPaymentController extends Controller
         return response()->json([
             "ok" => true,
             "msg" => "Request successful",
+            "request" => $request->all(),
         ]);
     }
 }
