@@ -33,6 +33,10 @@ class RouteController extends Controller
         return view('services'); 
     }
     
+    public function payment(){
+        return view('payment');
+    }
+    
     public function termsOfUse(){
         return view('terms-of-use');
     }
@@ -55,6 +59,8 @@ class RouteController extends Controller
        
         return view('registration',compact('programmes','schools','levels','qualifications','districts','regions','sectors','internship_type','schools','jobroles'));
     }
+    
+
     
 }
 

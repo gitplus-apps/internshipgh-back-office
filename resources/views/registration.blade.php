@@ -25,12 +25,18 @@
 <div class="container mx-auto">
     <div class="row default-padding1 h-100 d-flex align-items-center justify-content-center">
         <div class="col-md-8 ">
+        
+        
+        
             <form id="msform" >
          
                 <!-- fieldsets -->
-              
+         
+                  
            
                 @csrf
+                <p class="text-center" style="font-size: 16px;">The payment of an amount<strong class="text-danger"> 10 Ghana cedis </strong> is required to complete the registation process</p>
+                
                 <fieldset class="tab" id="tab-1">
                     <h2 class="fs-title">Personal Details ( 1 / 7 ) </h2>
                     <div>
@@ -58,7 +64,7 @@
                     <button type="button" name="next" id="personal_details" onclick="run(1, 2);" class="next1 action-button align-center" >Next</button>
                 </fieldset>
            
-            
+             
          
                 <fieldset class="tab" id="tab-2" >
                     <h2 class="fs-title">Contact Details ( 1 / 7 ) </h2>

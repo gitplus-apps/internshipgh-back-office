@@ -9,6 +9,23 @@ body {
     background: transparent;
 }
 
+#msform .confirm-otp{
+ 
+    height: 200px;
+}
+#msform .confirm-otp input {
+    width: 55px;
+    height: 55px;
+
+    line-height: 50px;
+    text-align: center;
+    font-size: 24px;
+    font-family: 'Raleway', sans-serif;
+    font-weight: 200;
+    
+    margin: 0 2px;
+}
+
 /*form styles*/
 #msform {
   /*   text-align: center;  */
