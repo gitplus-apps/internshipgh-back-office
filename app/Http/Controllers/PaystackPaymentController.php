@@ -202,13 +202,13 @@ class PaystackPaymentController extends Controller
         $payload = $request->json();
 
         // TODO (Nana): Handle other events later, like cancelled or failed. We can use background jobs to handle these later
-        if (strtolower($payload->event) !== "charge.success") {
+        if (strtolower($payload["event"]) !== "charge.success") {
             return response()->json([
                 "ok" => true,
                 "msg" => "Acknowledged",
+                "data" => $payload
             ]);
         }
-
 
         return response()->json([
             "ok" => true,
