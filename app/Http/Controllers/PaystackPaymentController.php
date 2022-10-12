@@ -199,14 +199,12 @@ class PaystackPaymentController extends Controller
      */
     public function handleWebhook(Request $request): JsonResponse
     {
-        $payload = $request->json();
-
         // TODO (Nana): Handle other events later, like cancelled or failed. We can use background jobs to handle these later
-        if (strtolower($payload["event"]) !== "charge.success") {
+        if (strtolower($request->input('event')) !== "charge.success") {
             return response()->json([
                 "ok" => true,
                 "msg" => "Acknowledged",
-                "data" => $payload
+                "data" => $request->getContent(),
             ]);
         }
 
