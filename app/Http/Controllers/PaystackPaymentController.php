@@ -83,10 +83,11 @@ class PaystackPaymentController extends Controller
                 ],
             ]);
 
-        if ($paystackResponse->status() !== 200) {
+        $statusCode = $paystackResponse->status();
+        if ($statusCode < 200 || $statusCode > 299) {
             Log::error("paystack request to initiate a charge returned an non-200 status code\n", [
-                "status_code" => $paystackResponse->status() . PHP_EOL,
-                "paystack_response" => $paystackResponse . PHP_EOL,
+                "status_code" => $statusCode,
+                "paystack_response" => $paystackResponse,
                 "request" => $request,
             ]);
 
@@ -97,7 +98,7 @@ class PaystackPaymentController extends Controller
         }
 
         if ($paystackResponse->json("status") === false) {
-            Log::error("paystack returned status = false: ", [
+            Log::error("intiating charge failed. paystack returned status = false: ", [
                 "request" => $request,
                 "paystackResponse" => $paystackResponse
             ]);
@@ -152,17 +153,29 @@ class PaystackPaymentController extends Controller
                 "reference" => $request->reference,
             ]);
 
-
-        if ($paystackResponse->status() !== 200) {
-            Log::error("paystack request to submit OTP returned an non-200 status code\n", [
-                "status_code" => $paystackResponse->status() . PHP_EOL,
-                "paystack_response" => $paystackResponse . PHP_EOL,
+        $statusCode = $paystackResponse->status();
+        if ($statusCode < 200 || $statusCode > 299) {
+            Log::error("paystack request to submit OTP returned an non-2XX status code\n", [
+                "status_code" => $statusCode,
+                "paystack_response" => $paystackResponse,
                 "request" => $request,
             ]);
 
             return response()->json([
                 "ok" => false,
                 "msg" => "Error submitting OTP. An internal error occurred"
+            ]);
+        }
+
+        if ($paystackResponse->json("status") === false) {
+            Log::error("intiating charge failed. paystack returned status = false: ", [
+                "request" => $request,
+                "paystackResponse" => $paystackResponse
+            ]);
+
+            return response()->json([
+                "ok" => false,
+                "msg" => "An internal error occurred. Payment cannot proceed"
             ]);
         }
 
