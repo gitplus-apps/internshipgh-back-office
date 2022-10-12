@@ -19,10 +19,7 @@ class ValidatePaystackSignature
     public function handle(Request $request, Closure $next)
     {
         $paystackSignature = $request->header("x-paystack-signature");
-        Log::info("paystack webhook signature: " . $paystackSignature);
-
         $calculateSignature = hash_hmac("sha512", $request->getContent(), env("PAYSTACK_SECRET_KEY"));
-        Log::info("calculated hmac signature: " . $calculateSignature);
 
         if (!hash_equals($paystackSignature, $calculateSignature)) {
             Log::debug("webhook hmac signature mismatch", [
@@ -33,6 +30,7 @@ class ValidatePaystackSignature
             return response()->json(["msg" => "Bad request"], 401);
         }
 
+        Log::info("webhook successfully verified");
         return $next($request);
     }
 }
