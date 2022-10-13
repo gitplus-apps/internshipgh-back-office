@@ -17,7 +17,7 @@ class Intern extends Model
     
     protected $fillable = [
         "transid","intern_type","intern_code","school_code","fname","mname","lname",
-        "whatsapp","prog_code","user_code","gender",
+        "whatsapp","prog_code","user_code","gender","paid","payment_reference",
         "qual_code","level_code","start_date","end_date","experience",
         "branch_desc","deleted","createuser",
         "createdate","modifyuser","modifydate"
