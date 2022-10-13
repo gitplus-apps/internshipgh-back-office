@@ -59,8 +59,8 @@
             submitBtn.disabled = false;
             registrationForm.reset();
             setTimeout(() => {
-                window.location.href = APP_URL+`/`;
-            }, 2000)
+                $("#charge_modal").modal('show');
+            }, 1000)
                 
                 
             })
@@ -189,3 +189,154 @@
         
         
     }
+    
+    
+    /* Payment form validation and requests */
+
+    $("#submit_charge").click(function(){
+        const registrationForm = document.getElementById('charge');
+        const submitBtn = document.getElementById('submit_charge');
+        const form = $('#charge')
+        form.validate({
+            ignore: "",
+			rules: {
+			  "email":{
+			    required: true,
+			    email: true,
+			  },
+              "phone":{
+                  required: true,
+                  number:true,
+                  minlength: 10,
+                  maxlength: 10,
+              },
+              "provider":{
+				    required: true,
+				},
+			},
+			messages: {
+                email: {
+                          required: "<span class='text-danger'> Email is  Required </span>",
+                          email: "<span class='text-danger'> Enter a Valid Email Address</span>",
+                      },
+                phone:{
+                        required :"<span class='text-danger'> Phone Number is Required </span>",
+                        number: "<span class='text-danger'> Please enter a valid number. </span>",
+                        minlength: "<span class='text-danger'> Minimum length is 10 </span>",
+                        maxlength: "<span class='text-danger'> Maximum length is 10 </span>",
+                },
+                provider: {
+                    required: "<span class='text-danger'> Network Provider is  Required </span>",
+                }
+			},
+			submitHandler:function(form){
+			     return false;
+			}
+        });
+        
+        if (form.valid() != true){
+                    return false;
+        		}
+        		
+        		
+        		
+        $(registrationForm).submit(function(e){
+            e.preventDefault();
+            //Close the modal when form is submitted 
+            $("#charge_modal").modal('hide');
+            Swal.fire({
+                text: "Processing. Please wait...",
+                showConfirmButton: false,
+                allowEscapeKey: false,
+                allowOutsideClick: false
+            });
+           
+            let formdata = new FormData(registrationForm);
+         
+            
+            //toastr options for user registration messages
+            toastr.options = {
+                          "closeButton": true,
+                          "debug": false,
+                          "newestOnTop": false,
+                          "progressBar": true,
+                          "positionClass": "toast-top-full-width",
+                          "preventDuplicates": true,
+                          "onclick": null,
+                          "showDuration": "400",
+                          "hideDuration": "1000",
+                          "timeOut": "2000",
+                          "extendedTimeOut": "1000",
+                          "showEasing": "swing",
+                          "hideEasing": "linear",
+                          "showMethod": "fadeIn",
+                          "hideMethod": "fadeOut"
+                        }
+           
+            fetch(APP_URL+`/api/payments/charge`,{
+                method:'POST',
+                body: formdata,
+            }).then(function (res){
+                return res.json();
+            }).then(function (data){
+                if(!data.ok){
+              
+                Swal.fire({
+                  
+                  text: data.msg,
+                  icon: 'error',
+                  showCloseButton: false,
+                  showCancelButton: false,
+                  focusConfirm: false,
+                  showCancelButton: false,
+                  confirmButtonColor: '#FE000B',
+                  confirmButtonText: ' Okay  '
+                })   
+                   
+                submitBtn.innerHTML = "";
+                submitBtn.innerHTML = "Submit";
+                submitBtn.disabled = false;
+              
+                return;
+            }
+        
+           
+            if(data['data']['status'] == 'pay_offline'){
+              
+                Swal.fire({
+                      title: data.msg,
+                      text: data['data']['displayText'],
+                      icon: 'success',
+                      showCloseButton: false,
+                      showCancelButton: false,
+                      focusConfirm: false,
+                      showCancelButton: false,
+                      allowEscapeKey: false,
+                      allowOutsideClick: false,
+                      confirmButtonColor: '#FE000B',
+                      confirmButtonText: '<i class="fa fa-thumbs-up"></i> Okay  '
+                    })
+                //toastr.success(data['data']['displayText'],'');
+              
+                submitBtn.innerHTML = "";
+                submitBtn.innerHTML = "Submit"
+                submitBtn.disabled = false;
+                registrationForm.reset();
+                return;
+            }
+            
+            toastr.success(data.displayText,'');
+              
+              submitBtn.innerHTML = "";
+              submitBtn.innerHTML = "Submit"
+              submitBtn.disabled = false;
+              registrationForm.reset();
+
+            /* setTimeout(() => {
+                window.location.href = APP_URL+`/`;
+            }, 2000) */
+                
+                
+            })
+        })
+    })

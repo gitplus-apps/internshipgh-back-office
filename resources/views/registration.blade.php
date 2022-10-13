@@ -237,6 +237,60 @@
 </div>
 </div>
 
+<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#charge_modal">
+    Launch demo modal
+  </button>
+  
+  <!-- Charge Modal -->
+  <div class="msform">
+    <form id="charge" >
+  <div class="modal fade" id="charge_modal" tabindex="-1" role="dialog" a<form id="charge" >ria-labelledby="exampleModalLabel" aria-hidden="true" data-backdrop="static" data-keyboard="false" >
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+      
+        <div class="modal-header">
+            <h2 class="fs-title">Payment Details  </h2>
+ 
+        </div>
+        <div class="modal-body">
+            
+                @csrf
+                {{-- payment Details --}}
+               
+                    {{-- <fieldset class="tab" id="tab-1"> --}}
+                    
+                        <div>
+                            <label for="fname">Email<span class="text-danger"> * </span></label>
+                            <input type="text" name="email" class="form-control" placeholder="eg. johndoe@gmail.com" required />
+                        </div>
+                        <div>
+                            <label for="mname">Phone<span class="text-danger"> * </span></label>
+                            <input type="text" name="phone" class="form-control"  placeholder="eg. 0200000000" required/>
+                        </div>
+                   
+                       <div>
+                       <label for="provider">Network Provider <span class="text-danger"> * </span> </label>
+                        <select type="text" name="provider"  class=""  >
+                       
+                            <option value="mtn">Mtn</option>
+                            <option value="vod">Vodafone</option>
+                            <option value="tgo">AirtelTigo</option>
+                        </select>
+                       </div>
+                        
+                        
+            </div>
+               
+        <div class="">
+            <button style="float:right;" type="submit" name="next" id="submit_charge" class="next1 action-button align-center" >Submit</button>
+      
+        </div>
+      </div>
+    </div>
+    </div>
+</form>
+  </div>
+
 <script src="{{asset("assets/js/registration.js")}}">  </script>
 
 
