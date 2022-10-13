@@ -13,10 +13,14 @@
         $(registrationForm).submit(function(e){
             e.preventDefault();
            
-            submitBtn.innerHTML= "";
-            submitBtn.innerHTML ="Processing...";
-            submitBtn.disabled = true;
-           
+            Swal.fire({
+                text: "Processing. Please wait...",
+                showConfirmButton: false,
+                allowEscapeKey: false,
+                allowOutsideClick: false
+            });
+            
+            
             let formdata = new FormData(registrationForm);
             
             //toastr options for user registration messages
@@ -45,7 +49,7 @@
                 return res.json();
             }).then(function (data){
                 if(!data.ok){
-                
+                Swal.close();
                 toastr.error(data.msg, '');
                         
                    
@@ -55,12 +59,10 @@
               
                 return;
             }
-            
+            Swal.close();
             toastr.success(data.msg,'');
           
-            submitBtn.innerHTML = "";
-            submitBtn.innerHTML = "Sign Up"
-            submitBtn.disabled = false;
+            
             registrationForm.reset();
             $("#charge_modal").modal('show');
             
