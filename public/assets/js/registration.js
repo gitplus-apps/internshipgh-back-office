@@ -281,6 +281,7 @@
             }).then(function (data){
                 if(!data.ok){
               
+                $("#charge_modal").modal('modal');
                 Swal.fire({
                   
                   text: data.msg,
