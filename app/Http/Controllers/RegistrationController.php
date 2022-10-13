@@ -134,6 +134,7 @@ class RegistrationController extends Controller
                     "mname" => $request->mname,
                     "gender"=>$request->gender,
                     "phone" => $request->phone,
+                    "paid"=> 0,
                     "whatsapp"=> $request->whatsapp,
                     "intern_type"=> $request->internship_type,
                     "school_code"=>$request->school_code,
