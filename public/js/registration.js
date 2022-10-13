@@ -5,6 +5,8 @@
     //display the first fieldset tab 
     $("#tab-1").css("display","block");
     
+   
+   
   
     //making of post request to registration controller
     $("#submit_btn").click(function(){
@@ -32,7 +34,7 @@
                           "positionClass": "toast-top-full-width",
                           "preventDuplicates": true,
                           "onclick": null,
-                          "showDuration": "500",
+                          "showDuration": "600",
                           "hideDuration": "1000",
                           "timeOut": "2000",
                           "extendedTimeOut": "1000",
@@ -53,9 +55,7 @@
                 toastr.error(data.msg, '');
                         
                    
-                submitBtn.innerHTML = "";
-                submitBtn.innerHTML = "Sign Up"
-                submitBtn.disabled = false;
+                
               
                 return;
             }
@@ -64,7 +64,17 @@
           
             
             registrationForm.reset();
-            $("#charge_modal").modal('show');
+            
+            if(amount > 0){
+            console.log("hello world")
+                $("#charge_modal").modal('show');
+                return;
+            }
+            
+            setTimeout(function() {
+                // window.open(data.data.paymentUrl, "_blank");
+                window.location.href = APP_URL+`/`;
+            }, 2000);
             
                 
                 

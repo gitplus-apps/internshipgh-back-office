@@ -35,7 +35,7 @@
                   
            
                 @csrf
-                <p class="text-center" style="font-size: 20px;"><span class="text-danger">Notice : An amount of Ghc10 is required as payment to complete the registration process.</span</p>
+                <p class="text-center" style="font-size: 20px;"><span class="text-danger">Notice : An amount of Ghc {{$amount}} is required as payment to complete the registration process.</span</p>
                 
                 <fieldset class="tab" id="tab-1">
                     <h2 class="fs-title">Personal Details ( 1 / 7 ) </h2>
@@ -70,11 +70,11 @@
                     <h2 class="fs-title">Contact Details ( 2 / 7 ) </h2>
                     <div>
                         <label for="email">Email <span class="text-danger"> * </span></label>
-                        <input type="email" name="email" class="input" placeholder="eg. johndoe@gmail.com"  {{-- required --}}/>
+                        <input type="email" name="email" id="intern_email" class="input" placeholder="eg. johndoe@gmail.com"  {{-- required --}}/>
                     </div>
                     <div>
                         <label for="phone">Phone <span class="text-danger"> * </span></label>
-                        <input type="text" name="phone" class="input" placeholder="eg. 02000000001"  {{-- required --}}/>
+                        <input type="text" name="phone" id="intern_phone" class="input" placeholder="eg. 02000000001"  {{-- required --}}/>
                     </div>
                    <div>
                         <label for="whatsapp">WhatsApp Number <span class="text-danger"> * </span></label>
@@ -242,10 +242,7 @@
 </div>
 </div>
 </div>
-<script>
-    let districts = @json($districts)
-  
-</script>
+
 
 
 {{-- <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#otp_modal">
@@ -346,8 +343,11 @@
 </form>
   </div>
 
-
-<script src="{{asset("assets/js/registration.js")}}">  </script>
+  <script>
+    let districts = @json($districts);
+    let amount = `{{$amount}}`;
+</script>
+<script src="{{asset("js/registration.js")}}">  </script>
 
 
 @endsection

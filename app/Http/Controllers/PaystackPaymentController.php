@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Validator;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Validation\Rule;
 
 class PaystackPaymentController extends Controller
@@ -20,7 +21,16 @@ class PaystackPaymentController extends Controller
     private $validMobileMoneyProviders = [
         "mtn", "vod", "tgo",
     ];
-
+    
+    private $qual_code =[
+        "certificate"=>"1001",
+        "diploma"=>"1002",
+        "degree"=>"1003",
+        "post_grad_diploma"=>"1004",
+        "masters"=>"1005",
+        "doctorate"=>"1006"
+    ];
+    
     /**
      * Makes a request to Paystack to make a charge on the supplied phone number.
      *
@@ -66,6 +76,10 @@ class PaystackPaymentController extends Controller
                 "msg" => "An internal error occurred",
             ]);
         }
+        //Will change and be sent from applcation instead of calling from database
+        //Get the amount to be paid for the registration process
+        $value = DB::table('tblqual')->select('amount')->where('qual_code',$this->qual_code["degree"])->first();
+        
 
         $paystackResponse = Http::timeout(self::REQUEST_TIMEOUT_SECONDS)
             ->withHeaders([
@@ -74,7 +88,7 @@ class PaystackPaymentController extends Controller
             ])
             ->post(env("PAYSTACK_CHARGE_ENDPOINT"), [
                 "email" => $request->email,
-                "amount" => 100,
+                "amount" => $value->amount * 100,
                 "currency" => "GHS",
                 "reference" => $reference,
                 "mobile_money" => [
