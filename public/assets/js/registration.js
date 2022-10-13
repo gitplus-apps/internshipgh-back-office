@@ -4,7 +4,7 @@
     $("#tab-1").css("display","block");
     
     $("#submit_btn").click(function(){
-        const registrationForm = document.getElementById('msform');
+        const registrationForm = document.getElementById('intern_registration');
         const submitBtn = document.getElementById('submit_btn');
         $(registrationForm).submit(function(e){
             e.preventDefault();
@@ -77,7 +77,7 @@
             
           //valdate tab-1 Personal Details
         
-            const form = $("#msform");
+            const form = $("#intern_registration");
         		form.validate({
                     ignore: ":hidden",
         			rules: {

@@ -9,11 +9,11 @@ body {
     background: transparent;
 }
 
-#msform .confirm-otp{
+.msform .confirm-otp{
  
-    height: 200px;
+    
 }
-#msform .confirm-otp input {
+.msform .confirm-otp input {
     width: 55px;
     height: 55px;
 
@@ -27,13 +27,13 @@ body {
 }
 
 /*form styles*/
-#msform {
+.msform {
   /*   text-align: center;  */
     position: relative;
     margin-top: 0px;
 }
 
-#msform fieldset {
+.msform fieldset {
     background: white;
     border: 0 none;
     border-radius: 15px;
@@ -48,12 +48,12 @@ body {
 }
 
 /*Hide all except first fieldset*/
-#msform fieldset:not(:first-of-type) {
+.msform fieldset:not(:first-of-type) {
     display: none;
 }
 
 /*inputs*/
-#msform input, #msform textarea {
+.msform input, .msform textarea {
     padding: 5px;
     -moz-box-shadow: none !important;
     -webkit-box-shadow: none !important;
@@ -67,7 +67,7 @@ body {
     font-size: 13px;
 }
 
-#msform input:focus, #msform textarea:focus {
+.msform input:focus, .msform textarea:focus {
    
     box-shadow: none !important;
     border: 1px solid #FE000B;
@@ -79,7 +79,7 @@ body {
 }
 
 /*buttons*/
-#msform .action-button {
+.msform .action-button {
     width: 100px;
     background: #FE000B;
     font-weight: bold;
@@ -91,11 +91,11 @@ body {
     margin: 10px 5px;
 }
 
-/*  #msform .action-button:hover, #msform .action-button:focus {
+/*  .msform .action-button:hover, .msform .action-button:focus {
     box-shadow: 0 0 0 2px white, 0 0 0 3px #ee0979;
 } */
 
-#msform .action-button-previous {
+.msform .action-button-previous {
     width: 100px;
     background: gray;
     font-weight: bold;

@@ -28,7 +28,7 @@
         
         
         
-            <form id="msform" >
+            <form class="msform" id="intern_registration" >
          
                 <!-- fieldsets -->
          
@@ -67,7 +67,7 @@
              
          
                 <fieldset class="tab" id="tab-2" >
-                    <h2 class="fs-title">Contact Details ( 1 / 7 ) </h2>
+                    <h2 class="fs-title">Contact Details ( 2 / 7 ) </h2>
                     <div>
                         <label for="email">Email <span class="text-danger"> * </span></label>
                         <input type="email" name="email" class="form-control" placeholder="eg. johndoe@gmail.com"  {{-- required --}}/>
