@@ -87,7 +87,7 @@ class PaystackPaymentController extends Controller
         if ($statusCode < 200 || $statusCode > 299) {
             Log::error("paystack request to initiate a charge returned an non-200 status code\n", [
                 "status_code" => $statusCode,
-                "paystack_response" => $paystackResponse,
+                "paystackResponse" => $paystackResponse->body(),
                 "request" => $request,
             ]);
 
@@ -100,7 +100,7 @@ class PaystackPaymentController extends Controller
         if ($paystackResponse->json("status") === false) {
             Log::error("intiating charge failed. paystack returned status = false: ", [
                 "request" => $request,
-                "paystackResponse" => $paystackResponse
+                "paystackResponse" => $paystackResponse->body()
             ]);
 
             return response()->json([
@@ -157,7 +157,7 @@ class PaystackPaymentController extends Controller
         if ($statusCode < 200 || $statusCode > 299) {
             Log::error("paystack request to submit OTP returned an non-2XX status code\n", [
                 "status_code" => $statusCode,
-                "paystack_response" => $paystackResponse,
+                "paystackResponse" => $paystackResponse->body(),
                 "request" => $request,
             ]);
 
@@ -170,7 +170,7 @@ class PaystackPaymentController extends Controller
         if ($paystackResponse->json("status") === false) {
             Log::error("intiating charge failed. paystack returned status = false: ", [
                 "request" => $request,
-                "paystackResponse" => $paystackResponse
+                "paystackResponse" => $paystackResponse->body(),
             ]);
 
             return response()->json([
@@ -182,7 +182,7 @@ class PaystackPaymentController extends Controller
         if ($paystackResponse->json("status") === false) {
             Log::error("paystack returned status = false: ", [
                 "request" => $request,
-                "paystackResponse" => $paystackResponse
+                "paystackResponse" => $paystackResponse->body(),
             ]);
 
             return response()->json([
