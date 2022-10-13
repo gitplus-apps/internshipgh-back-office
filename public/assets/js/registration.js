@@ -1,4 +1,4 @@
-
+    var reference='';
     $(".tab").css("display","none");
     
     $("#tab-1").css("display","block");
@@ -58,9 +58,8 @@
             submitBtn.innerHTML = "Sign Up"
             submitBtn.disabled = false;
             registrationForm.reset();
-            setTimeout(() => {
-                $("#charge_modal").modal('show');
-            }, 1000)
+            $("#charge_modal").modal('show');
+            
                 
                 
             })
@@ -192,9 +191,9 @@
     
     
     /* Payment form validation and requests */
-
+    //Initiate payment request
     $("#submit_charge").click(function(){
-        const registrationForm = document.getElementById('charge');
+        const chargeForm = document.getElementById('charge');
         const submitBtn = document.getElementById('submit_charge');
         const form = $('#charge')
         form.validate({
@@ -240,7 +239,7 @@
         		
         		
         		
-        $(registrationForm).submit(function(e){
+        $(chargeForm).submit(function(e){
             e.preventDefault();
             //Close the modal when form is submitted 
             $("#charge_modal").modal('hide');
@@ -251,7 +250,7 @@
                 allowOutsideClick: false
             });
            
-            let formdata = new FormData(registrationForm);
+            let formdata = new FormData(chargeForm);
          
             
             //toastr options for user registration messages
@@ -281,7 +280,7 @@
             }).then(function (data){
                 if(!data.ok){
               
-                $("#charge_modal").modal('modal');
+               
                 Swal.fire({
                   
                   text: data.msg,
@@ -290,48 +289,154 @@
                   showCancelButton: false,
                   focusConfirm: false,
                   showCancelButton: false,
+                  allowEscapeKey: false,
+                  allowOutsideClick: false,
                   confirmButtonColor: '#FE000B',
                   confirmButtonText: ' Okay  '
-                })   
+                }).then((result) => {
                    
-                submitBtn.innerHTML = "";
-                submitBtn.innerHTML = "Submit";
-                submitBtn.disabled = false;
+                    if (result.isConfirmed) {
+                        $("#charge_modal").modal('show');
+                    }
+                  })   
+              
+                return;
+            }
+           
+            if(data['data']['status'] == "pay_offline"){
+                Swal.fire({
+                   title: data.msg,
+                    text: data['data']['displayText'],
+                    icon: 'success',
+                    showCloseButton: false,
+                    showCancelButton: false,
+                    focusConfirm: false,
+                    showCancelButton: false,
+                    allowEscapeKey: false,
+                    allowOutsideClick: false,
+                    confirmButtonColor: '#FE000B',
+                    confirmButtonText: ' Okay  '
+                  }).then((result) => {
+                   
+                    if (result.isConfirmed) {
+                        window.location.href = APP_URL+`/`;
+                    }
+                  });
+                return;
+            }
+           
+            
+            Swal.close();
+            $("#otp_modal").modal('show');
+           
+             reference = data['data']['reference']
+             
+              chargeForm.reset();
+                
+            })
+        })
+    })
+
+
+/* Payment form validation and requests */
+    //Verify Otp
+    $("#verify_otp").click(function(){
+        const otpForm = document.getElementById('verify');
+        const submitBtn = document.getElementById('verify_otp');
+       // const form = $('#verify')
+      
+        		
+        $(otpForm).submit(function(e){
+        
+            e.preventDefault();
+            
+            const otpField = document.getElementById('otp') 
+            otpField.value = document.getElementById('digit-1').value + document.getElementById('digit-2').value + document.getElementById('digit-3').value + document.getElementById('digit-4').value + document.getElementById('digit-5').value + document.getElementById('digit-6').value
+        	
+        	const refField = document.getElementById('charge-ref');
+        	refField.value = reference;
+     	   
+            
+            //Close the modal when form is submitted 
+            $("#otp_modal").modal('hide');
+            Swal.fire({
+                text: "Processing. Please wait...",
+                showConfirmButton: false,
+                allowEscapeKey: false,
+                allowOutsideClick: false
+            });
+           
+            let formdata = new FormData(otpForm);
+         
+            
+            //toastr options for user registration messages
+            toastr.options = {
+                          "closeButton": true,
+                          "debug": false,
+                          "newestOnTop": false,
+                          "progressBar": true,
+                          "positionClass": "toast-top-full-width",
+                          "preventDuplicates": true,
+                          "onclick": null,
+                          "showDuration": "400",
+                          "hideDuration": "1000",
+                          "timeOut": "2000",
+                          "extendedTimeOut": "1000",
+                          "showEasing": "swing",
+                          "hideEasing": "linear",
+                          "showMethod": "fadeIn",
+                          "hideMethod": "fadeOut"
+                        }
+           
+            fetch(APP_URL+`/api/payments/submit_otp`,{
+                method:'POST',
+                body: formdata,
+            }).then(function (res){
+                return res.json();
+            }).then(function (data){
+                if(!data.ok){
+              
+                
+                Swal.fire({
+                  
+                  text: data.msg,
+                  icon: 'error',
+                  showCloseButton: false,
+                  showCancelButton: false,
+                  focusConfirm: false,
+                  allowEscapeKey: false,
+                  allowOutsideClick: false,
+                  showCancelButton: false,
+                  confirmButtonColor: '#FE000B',
+                  confirmButtonText: ' Okay  '
+                }).then((result) => {
+                    
+                    if (result.isConfirmed) {
+                        $("#otp_modal").modal('show');
+                    }
+                  })
+          
               
                 return;
             }
         
            
-            if(data['data']['status'] == 'pay_offline'){
-              
-                Swal.fire({
-                      title: data.msg,
-                      text: data['data']['displayText'],
-                      icon: 'success',
-                      showCloseButton: false,
-                      showCancelButton: false,
-                      focusConfirm: false,
-                      showCancelButton: false,
-                      allowEscapeKey: false,
-                      allowOutsideClick: false,
-                      confirmButtonColor: '#FE000B',
-                      confirmButtonText: '<i class="fa fa-thumbs-up"></i> Okay  '
-                    })
-                //toastr.success(data['data']['displayText'],'');
-              
-                submitBtn.innerHTML = "";
-                submitBtn.innerHTML = "Submit"
-                submitBtn.disabled = false;
-                registrationForm.reset();
-                return;
-            }
             
-            toastr.success(data.displayText,'');
-              
-              submitBtn.innerHTML = "";
-              submitBtn.innerHTML = "Submit"
-              submitBtn.disabled = false;
-              registrationForm.reset();
+            
+            Swal.fire({
+                title: data.msg,
+                 text: data['data']['displayText'],
+                 icon: 'success',
+                 showCloseButton: false,
+                 showCancelButton: false,
+                 focusConfirm: false,
+                 showCancelButton: false,
+                 allowEscapeKey: false,
+                 allowOutsideClick: false,
+                 confirmButtonColor: '#FE000B',
+                 confirmButtonText: ' Okay  '
+               });
+              otpForm.reset();
 
             /* setTimeout(() => {
                 window.location.href = APP_URL+`/`;

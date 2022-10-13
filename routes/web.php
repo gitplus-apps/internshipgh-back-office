@@ -30,4 +30,4 @@ Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 Route::get('/registration', [RouteController::class, 'registration']);
-Route::get('/payment',[RouteController::class,'payment']);
+

@@ -35,7 +35,7 @@
                   
            
                 @csrf
-                <p class="text-center" style="font-size: 16px;">The payment of an amount<strong class="text-danger"> 10 Ghana cedis </strong> is required to complete the registation process</p>
+                <p class="text-center" style="font-size: 20px;"><span class="text-danger">Notice : An amount of Ghc10 is required as payment to complete the registration process.</span</p>
                 
                 <fieldset class="tab" id="tab-1">
                     <h2 class="fs-title">Personal Details ( 1 / 7 ) </h2>
@@ -134,7 +134,7 @@
                     <h2 class="fs-title">Internship Details ( 4 / 7 )</h2>
                   <div>
                   <label for="sectors">Preferred Sectors ( Choose Multiple ) <span class="text-danger"> * </span> </label>
-                  <select type="text" name="sectors[]" class="select2" multiple  required>
+                  <select type="text" name="sectors[]" class="select2 multiple " multiple  required>
                     
                         @foreach($sectors as $sector)
                             <option value="{{$sector->sector_code}}" >{{$sector->sector_desc}}</option>
@@ -144,7 +144,7 @@
                   
                   <div>
                       <label for="regions[]">Preferred Regions ( Select Multiple ) <span class="text-danger"> * </span> </label>
-                      <select type="text" name="regions[]" class="select2" multiple="multiple"  {{--  required--}}>
+                      <select type="text" name="regions[]" class="select2 multiple" multiple="multiple"  {{--  required--}}>
                         
                         @foreach ($regions as $region)
                             <option value="{{$region->code}}">{{$region->description}}</option>
@@ -156,7 +156,7 @@
                   </div>
                    
                   <div><label for="districts">Preferred Districts ( Choose Multiple ) <span class="text-danger"> * </span></label>
-                    <select type="text" name="districts[]" class="select2" multiple {{--  required--}}>
+                    <select type="text" name="districts[]" class="select2 multiple" multiple {{--  required--}}>
                       
                        @foreach ($districts as $district)
                             <option value="{{$district->code}}">{{$district->name}}</option>                           
@@ -181,7 +181,7 @@
                    </div>
                     <div>
                         <label for="job_roles">Preferred Job Roles ( Select Multiple ) <span class="text-danger"> * </span></label>
-                        <select name="job_roles[]" id="" class="select2" multiple>
+                        <select name="job_roles[]" id="" class="select2 mulitple" multiple>
                        
                             @foreach ($jobroles as $role)
                                 <option value="{{$role->role_code}}">{{$role->role_desc}}</option>                               
@@ -237,14 +237,14 @@
 </div>
 </div>
 
-{{-- <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#charge_modal">
+{{-- <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#otp_modal">
     Launch demo modal
   </button> --}}
   
   <!-- Charge Modal -->
   <div class="msform">
     <form id="charge" >
-  <div class="modal fade" id="charge_modal" tabindex="-1" role="dialog" a<form id="charge" >ria-labelledby="exampleModalLabel" aria-hidden="true" data-backdrop="static" data-keyboard="false" >
+  <div class="modal fade" id="charge_modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" data-backdrop="static" data-keyboard="false" >
     <div class="modal-dialog" role="document">
       <div class="modal-content">
       
@@ -256,8 +256,7 @@
             
                 @csrf
                 {{-- payment Details --}}
-               
-                    {{-- <fieldset class="tab" id="tab-1"> --}}
+            
                     
                         <div>
                             <label for="fname">Email<span class="text-danger"> * </span></label>
@@ -290,6 +289,52 @@
     </div>
 </form>
   </div>
+
+
+{{-- verify otp modal --}}
+<div class="msform">
+    <form id="verify" >
+    @csrf
+  <div class="modal fade" id="otp_modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" data-backdrop="static" data-keyboard="false" >
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+      
+        <div class="modal-header">
+            <h2 class="fs-title">Verify OTP  </h2>
+ 
+        </div>
+        <div class="modal-body">
+               
+                        <h5 class="">Please enter the one time password sent to your number to verify 
+                           
+                             </h5>
+                             <input type="hidden" name="reference" id="charge-ref">
+                             <input type="hidden" name="otp" id="otp">
+                        <div class="mt-4 text-center">
+                            <input type="text" id="digit-1" name="digit-1" data-next="digit-2" required minlength="1" maxlength="1" />
+                            <input type="text" id="digit-2" name="digit-2" data-next="digit-3" data-previous="digit-1" required minlength="1" maxlength="1"/>
+                            <input type="text" id="digit-3" name="digit-3" data-next="digit-4" data-previous="digit-2" required minlength="1" maxlength="1"/>
+                            <span class="splitter">&ndash;</span>
+                            <input type="text" id="digit-4" name="digit-4" data-next="digit-5" data-previous="digit-3" required minlength="1" maxlength="1"/>
+                            <input type="text" id="digit-5" name="digit-5" data-next="digit-6" data-previous="digit-4" required minlength="1" maxlength="1"/>
+                            <input type="text" id="digit-6" name="digit-6" data-previous="digit-5" required minlength="1" maxlength="1"/>
+                        </div>
+                        
+                    
+              
+                        
+        </div>
+               
+        <div class="">
+            
+            <button type="submit" name="next" id="verify_otp" class="next1 action-button align-center mt-3" style="float:right;">Verify</button>
+        </div>
+      </div>
+    </div>
+    </div>
+</form>
+  </div>
+
 
 <script src="{{asset("assets/js/registration.js")}}">  </script>
 
