@@ -237,9 +237,9 @@
 </div>
 </div>
 
-<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#charge_modal">
+{{-- <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#charge_modal">
     Launch demo modal
-  </button>
+  </button> --}}
   
   <!-- Charge Modal -->
   <div class="msform">
