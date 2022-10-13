@@ -41,15 +41,15 @@
                     <h2 class="fs-title">Personal Details ( 1 / 7 ) </h2>
                     <div>
                         <label for="fname">First Name <span class="text-danger"> * </span></label>
-                        <input type="text" name="fname" class="form-control" placeholder="eg. John" required />
+                        <input type="text" name="fname" class="input" placeholder="eg. John" required />
                     </div>
                     <div>
                         <label for="mname">Middle Name</label>
-                        <input type="text" name="mname" class="form-control"  />
+                        <input type="text" name="mname" class="input" />
                     </div>
                     <div>
                         <label for="lname">Last Name <span class="text-danger"> * </span></label>
-                        <input type="text" name="lname" placeholder="eg. Doe" class="form-control"   required/>
+                        <input type="text" name="lname" placeholder="eg. Doe" class="input"   required/>
                     </div>
                    <div>
                    <label for="gender">Gender <span class="text-danger"> * </span> </label>
@@ -70,15 +70,15 @@
                     <h2 class="fs-title">Contact Details ( 2 / 7 ) </h2>
                     <div>
                         <label for="email">Email <span class="text-danger"> * </span></label>
-                        <input type="email" name="email" class="form-control" placeholder="eg. johndoe@gmail.com"  {{-- required --}}/>
+                        <input type="email" name="email" class="input" placeholder="eg. johndoe@gmail.com"  {{-- required --}}/>
                     </div>
                     <div>
                         <label for="phone">Phone <span class="text-danger"> * </span></label>
-                        <input type="text" name="phone" placeholder="eg. 02000000001"  {{-- required --}}/>
+                        <input type="text" name="phone" class="input" placeholder="eg. 02000000001"  {{-- required --}}/>
                     </div>
                    <div>
                         <label for="whatsapp">WhatsApp Number <span class="text-danger"> * </span></label>
-                        <input type="text" name="whatsapp" placeholder="eg. 02000000001"  {{-- required --}}/>
+                        <input type="text" name="whatsapp" class="input" placeholder="eg. 02000000001"  {{-- required --}}/>
                    </div>
                 
                     <button type="button" name="previous" class="previous action-button-previous" onclick="run(2, 1);" value="Previous">Previous</button>
@@ -89,7 +89,7 @@
                     <h2 class="fs-title">Academic Details ( 3 / 7 ) </h2>
                   <div>
                   <label for="school_code">Select School <span class="text-danger"> * </span> </label>
-                    <select type="text" name="school_code"  class="select2 basic-select required" {{--  required--}}>
+                    <select type="text" name="school_code"  class="select2  required" {{--  required--}}>
                         <option value="" disabled selected >-- select --</option>
                         @foreach ($schools as $school)
                             <option value="{{$school->sch_code}}">{{$school->sch_desc}}</option>
@@ -134,7 +134,9 @@
                     <h2 class="fs-title">Internship Details ( 4 / 7 )</h2>
                   <div>
                   <label for="sectors">Preferred Sectors ( Choose Multiple ) <span class="text-danger"> * </span> </label>
-                  <select type="text" name="sectors[]" class="select2 multiple " multiple  required>
+
+                  <select type="text" name="sectors[]" class="select2 form-control multiple" multiple  required>
+
                     
                         @foreach($sectors as $sector)
                             <option value="{{$sector->sector_code}}" >{{$sector->sector_desc}}</option>
@@ -144,7 +146,9 @@
                   
                   <div>
                       <label for="regions[]">Preferred Regions ( Select Multiple ) <span class="text-danger"> * </span> </label>
-                      <select type="text" name="regions[]" class="select2 multiple" multiple="multiple"  {{--  required--}}>
+
+                      <select type="text" name="regions[]" id="regions" class="select2 multiple" multiple="multiple"  {{--  required--}}>
+
                         
                         @foreach ($regions as $region)
                             <option value="{{$region->code}}">{{$region->description}}</option>
@@ -156,16 +160,18 @@
                   </div>
                    
                   <div><label for="districts">Preferred Districts ( Choose Multiple ) <span class="text-danger"> * </span></label>
-                    <select type="text" name="districts[]" class="select2 multiple" multiple {{--  required--}}>
+
+                    <select type="text" name="districts[]" class="select2" multiple id="districts"{{--  required--}} >
+
                       
-                       @foreach ($districts as $district)
+                {{--        @foreach ($districts as $district)
                             <option value="{{$district->code}}">{{$district->name}}</option>                           
-                       @endforeach
+                       @endforeach --}}
                     </select>
                   </div>
                     
                    <div><label for="">Preferred Cities ( Enter Multiple ) <span class="text-danger"> * </span></label>
-                    <input type="text" name="cities" {{--  required--}} placeholder="Separate By ` ,` ">
+                    <input type="text" name="cities" {{--  required--}} placeholder="Separate By ` ,` " class="input">
                    
                    </div>
                 
@@ -176,7 +182,7 @@
                 <fieldset class="tab" id="tab-5">
                     <h2 class="fs-title"> Experience ( 5 / 7 )</h2>
                    <div><label for="experience">Work Experience <span class="text-danger"> * </span></label>
-                    <input type="text" name="experience" placeholder=" eg. 2 years"/>
+                    <input type="text" name="experience" placeholder=" eg. 2 years" class="input"/>
                    
                    </div>
                     <div>
@@ -197,11 +203,11 @@
                 <fieldset class="tab" id="tab-6">
                     <h2 class="fs-title">Availability ( 6 / 7 )</h2>
                     <div><label for="start_date">Start Date <span class="text-danger"> * </span></label>
-                        <input type="date" name="start_date" id="start_date" />
+                        <input type="date" name="start_date" {{-- id="start_date" --}} class="input"   />
                     
                     </div>
                    <div><label for="end_date">End Date <span class="text-danger"> * </span></label>
-                    <input type="date" name="end_date" />
+                    <input type="date" name="end_date" class="input"/>
                    </div>
                    
                    
@@ -236,6 +242,11 @@
 </div>
 </div>
 </div>
+<script>
+    let districts = @json($districts)
+  
+</script>
+
 
 {{-- <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#otp_modal">
     Launch demo modal
