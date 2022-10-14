@@ -150,13 +150,14 @@ class PaystackPaymentController extends Controller
                     "intern_code" => $intern->intern_code,
                     "payment_reference" => $reference,
                     "charged_date" => gmdate("Y-m-d H:i:s"),
+                    "deleted" => "0",
                     "createdate" => gmdate("Y-m-d H:i:s"),
                     "createuser" => $intern->intern_code,
                 ]);
             });
 
         } catch (\Throwable $e) {
-           Log::error("error updating intern's payment reference: " . $e->getMessage(), [
+           Log::error("error updating intern's payment reference or inserting payment record: " . $e->getMessage(), [
                 "intern" => $intern->toArray(),
                 "request" => $request->all(),
            ]);
