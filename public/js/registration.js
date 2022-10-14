@@ -5,6 +5,8 @@
     //display the first fieldset tab 
     $("#tab-1").css("display","block");
     
+   var intern_email;
+   var intern_phone;
    
    
   
@@ -14,7 +16,7 @@
         const submitBtn = document.getElementById('submit_btn');
         $(registrationForm).submit(function(e){
             e.preventDefault();
-           
+          
             Swal.fire({
                 text: "Processing. Please wait...",
                 showConfirmButton: false,
@@ -62,7 +64,8 @@
             Swal.close();
             toastr.success(data.msg,'');
           
-            
+            intern_email = document.getElementById("intern_email").value;
+            intern_phone = document.getElementById("intern_phone").value;
             registrationForm.reset();
             
             if(amount > 0){
@@ -235,6 +238,33 @@
     
     /* Payment form validation and requests */
     //Initiate payment request
+    
+    //set the email to the mail used in registration when checked
+    let toggle_payment_email = document.getElementById('payment_email_checkbox')
+    let payment_email = document.getElementById('payment_email');
+    $(toggle_payment_email).click(function (){
+       
+        if(toggle_payment_email.checked) {
+            payment_email.value =intern_email
+        } else {
+            payment_email.value = "";
+        }
+        
+    })
+    
+    let toggle_payment_phone = document.getElementById('payment_phone_checkbox');
+    let payment_phone = document.getElementById('payment_phone');
+    $(toggle_payment_phone).click(function (){
+       
+        if(toggle_payment_phone.checked) {
+            payment_phone.value = intern_phone
+        } else {
+            payment_phone.value = "";
+        }
+        
+    })
+    
+    
     $("#submit_charge").click(function(){
         const chargeForm = document.getElementById('charge');
         const submitBtn = document.getElementById('submit_charge');

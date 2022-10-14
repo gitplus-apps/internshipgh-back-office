@@ -245,9 +245,6 @@
 
 
 
-<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#charge_modal">
-    Launch demo modal
-  </button>
   
   <!-- Charge Modal -->
   <div class="msform">
@@ -268,19 +265,19 @@
                     
                         <div>
                             <label for="fname">Email<span class="text-danger"> * </span></label>
-                            <input type="text" name="email" class="form-control" placeholder="eg. johndoe@gmail.com" required />
+                            <input type="text" name="email" class="form-control" placeholder="eg. johndoe@gmail.com" required id="payment_email" />
                             <div class="form-check form-inline">
                                 <label class="form-check-label" style="font-size: 14px; color:#0e2b3d;">
-                                <input class="form-check-input" type="checkbox" id="payment_email"  >
+                                <input class="form-check-input" type="checkbox" id="payment_email_checkbox"  >
                                 Use Email used in registration </label>
                             </div>
                         </div>
                         <div>
                             <label for="mname">Phone<span class="text-danger"> * </span></label>
-                            <input type="text" name="phone" class="form-control"  placeholder="eg. 0200000000" required/>
+                            <input type="text" name="phone" class="form-control"  placeholder="eg. 0200000000" required id="payment_phone"/>
                             <div class="form-check form-inline">
                                 <label class="form-check-label" style="font-size: 14px; color:#0e2b3d;">
-                                <input class="form-check-input" type="checkbox" id="payment_phone"  >
+                                <input class="form-check-input" type="checkbox" id="payment_phone_checkbox"  >
                                 Use Phone Number used in registration </label>
                             </div>
                         </div>
