@@ -1,7 +1,7 @@
 @extends('layout.main')
 
 @section('page-content')
-<link rel="stylesheet" href="{{asset("assets/css/registration.css")}}">
+<link rel="stylesheet" href="{{asset("css/registration.css")}}">
 <div class="breadcrumb-area shadow dark bg-fixed text-light" style="background-image: url({{asset('assets/img/services.jpg')}});">
     <div class="container">
         <div class="row align-center">
