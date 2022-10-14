@@ -6,7 +6,7 @@
     $("#tab-1").css("display","block");
     
     let payment_email = document.getElementById('payment_email');
-    payment_email.textContent ="bernarddormon31@gmail.com";
+    
     
     
     
