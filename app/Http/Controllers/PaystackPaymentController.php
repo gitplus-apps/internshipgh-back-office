@@ -107,7 +107,7 @@ class PaystackPaymentController extends Controller
                 "reference" => $reference,
                 "mobile_money" => [
                     "phone" => App::environment("production") ? $request->phone : env("PAYSTACK_TEST_NUMBER"),
-                    "provider" => App::environment("producction") ? $request->provider : env("PAYSTACK_TEST_NUMBER"),
+                    "provider" => App::environment("producction") ? $request->provider : env("PAYSTACK_TEST_PROVIDER"),
                 ],
             ]);
 
