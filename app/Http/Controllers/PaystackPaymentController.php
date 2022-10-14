@@ -78,6 +78,9 @@ class PaystackPaymentController extends Controller
             ]);
         }
 
+        // At this point we can be sure we have only one intern. So we get the intern from the collection.
+        $intern = $intern->first();
+
         try {
             // Generating random_bytes can throw an exception. We need to handle it.
             $reference = bin2hex(random_bytes(8));
@@ -91,8 +94,6 @@ class PaystackPaymentController extends Controller
                 "msg" => "An internal error occurred",
             ]);
         }
-
-        $intern = $intern->first();
 
         $paystackResponse = Http::timeout(self::REQUEST_TIMEOUT_SECONDS)
             ->withHeaders([
