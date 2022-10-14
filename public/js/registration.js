@@ -470,8 +470,7 @@
                 if(!data.ok){
               
                 
-                Swal.fire({
-                  
+                Swal.fire({ 
                   text: data.msg,
                   icon: 'error',
                   showCloseButton: false,
@@ -495,7 +494,7 @@
         
            
             
-            
+            otpForm.reset();
             Swal.fire({
                 title: data.msg,
                  text: data['data']['displayText'],
@@ -508,12 +507,17 @@
                  allowOutsideClick: false,
                  confirmButtonColor: '#FE000B',
                  confirmButtonText: ' Okay  '
-               });
-              otpForm.reset();
+               }).then((result) => {
+                    
+                if (result.isConfirmed) {
+                   //redirect to home screen 
+                    window.location.href = APP_URL+`/`;
+                    
+                }
+              })
+              
 
-            /* setTimeout(() => {
-                window.location.href = APP_URL+`/`;
-            }, 2000) */
+             
                 
                 
             })
