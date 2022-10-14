@@ -242,7 +242,12 @@
     //set the email to the mail used in registration when checked
     let toggle_payment_email = document.getElementById('payment_email_checkbox')
     let payment_email = document.getElementById('payment_email');
+    
+    
     $(toggle_payment_email).click(function (){
+        console.log(intern_email)
+        console.log("========intern email========")
+        console.log(intern_phone)
        
         if(toggle_payment_email.checked) {
             payment_email.value =intern_email
@@ -470,8 +475,7 @@
                 if(!data.ok){
               
                 
-                Swal.fire({
-                  
+                Swal.fire({ 
                   text: data.msg,
                   icon: 'error',
                   showCloseButton: false,
@@ -495,7 +499,7 @@
         
            
             
-            
+            otpForm.reset();
             Swal.fire({
                 title: data.msg,
                  text: data['data']['displayText'],
@@ -508,12 +512,17 @@
                  allowOutsideClick: false,
                  confirmButtonColor: '#FE000B',
                  confirmButtonText: ' Okay  '
-               });
-              otpForm.reset();
+               }).then((result) => {
+                    
+                if (result.isConfirmed) {
+                   //redirect to home screen 
+                    window.location.href = APP_URL+`/`;
+                    
+                }
+              })
+              
 
-            /* setTimeout(() => {
-                window.location.href = APP_URL+`/`;
-            }, 2000) */
+             
                 
                 
             })

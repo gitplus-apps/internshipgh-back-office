@@ -10,7 +10,7 @@ body {
 }
 
 
-.msform .confirm-otp input {
+.msform #otp_modal input {
     width: 55px;
     height: 55px;
 
