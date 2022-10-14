@@ -8,36 +8,44 @@ use Illuminate\Database\Eloquent\Model;
 class Intern extends Model
 {
     use HasFactory;
-    
-    protected $table = "tblintern";
-    protected $primaryKey = "transid";
-    public $incrementing = false;
+
     const CREATED_AT = 'createdate';
     const UPDATED_AT = 'modifydate';
-    
+    public $incrementing = false;
+    protected $table = "tblintern";
+    protected $primaryKey = "transid";
     protected $fillable = [
-        "transid","intern_type","intern_code","school_code","fname","mname","lname",
-        "whatsapp","prog_code","user_code","gender","paid","payment_reference",
-        "qual_code","level_code","start_date","end_date","experience",
-        "branch_desc","deleted","createuser",
-        "createdate","modifyuser","modifydate"
+        "transid", "intern_type", "intern_code", "school_code", "fname", "mname", "lname",
+        "whatsapp", "prog_code", "user_code", "gender", "paid", "payment_reference",
+        "qual_code", "level_code", "start_date", "end_date", "experience",
+        "branch_desc", "deleted", "createuser",
+        "createdate", "modifyuser", "modifydate"
     ];
-    
-    public function user(){
-        return $this->belongsTo(User::class,'user_code','user_code');
+
+    public function user()
+    {
+        return $this->belongsTo(User::class, 'user_code', 'user_code');
     }
-    
-    public function region(){
-        return $this->hasMany(InternRegion::class,'inern_code','intern_code');
+
+    public function region()
+    {
+        return $this->hasMany(InternRegion::class, 'inern_code', 'intern_code');
     }
-    
-    public function district(){
-        return $this->hasMany(InternDistrict::class,'intern_code','intern_code');
+
+    public function district()
+    {
+        return $this->hasMany(InternDistrict::class, 'intern_code', 'intern_code');
     }
-    
-    public function sectors(){
-        return $this->hasMany(InternSector::class,'intern_code','intern_code');
+
+    public function sectors()
+    {
+        return $this->hasMany(InternSector::class, 'intern_code', 'intern_code');
     }
-    
-    
+
+    public function qualification()
+    {
+        return $this->hasOne(Qualification::class, 'qual_code', 'qual_code');
+    }
+
+
 }

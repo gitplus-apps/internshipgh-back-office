@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Intern;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Http;
@@ -21,16 +22,16 @@ class PaystackPaymentController extends Controller
     private $validMobileMoneyProviders = [
         "mtn", "vod", "tgo",
     ];
-    
-    private $qual_code =[
-        "certificate"=>"1001",
-        "diploma"=>"1002",
-        "degree"=>"1003",
-        "post_grad_diploma"=>"1004",
-        "masters"=>"1005",
-        "doctorate"=>"1006"
+
+    private $qual_code = [
+        "certificate" => "1001",
+        "diploma" => "1002",
+        "degree" => "1003",
+        "post_grad_diploma" => "1004",
+        "masters" => "1005",
+        "doctorate" => "1006"
     ];
-    
+
     /**
      * Makes a request to Paystack to make a charge on the supplied phone number.
      *
@@ -40,9 +41,7 @@ class PaystackPaymentController extends Controller
     public function initiateCharge(Request $request): JsonResponse
     {
         $validator = Validator::make($request->all(), [
-            // TODO (Nana): Add an exists validation rule to the email and phone.
-            // They must exist in the database before we proceed to charge.
-            "email" => "required|email",
+            "email" => "required|email|exists:tblintern,email",
             "phone" => "required|digits:10",
             "provider" => [
                 "required",
@@ -53,7 +52,8 @@ class PaystackPaymentController extends Controller
                 "expected provider to be one of '%s' but got '%s'",
                 join(",", $this->validMobileMoneyProviders),
                 $request->provider
-            )
+            ),
+            "email.exists" => "No intern registered with this email: " . $request->email,
         ]);
 
         if ($validator->fails()) {
@@ -61,6 +61,21 @@ class PaystackPaymentController extends Controller
                 "ok" => false,
                 "msg" => "Invalid request: " . join(",", $validator->errors()->all()),
             ], 400);
+        }
+
+        $intern = Intern::where("email", $request->email)->where("deleted", "0");
+
+        // If the email should ever belong to more than one intern, then we have an error.
+        if ($intern->count() !== 1) {
+            Log::error("the following email: '{$request->email}' belongs to more than one intern", [
+                "interns" => $intern->get(),
+                "request" => $request->all(),
+            ]);
+
+            return response()->json([
+                "ok" => false,
+                "msg" => "Cannot process payment. Kindly let us know if this continues. Send email to info@internship.com.gh"
+            ]);
         }
 
         try {
@@ -76,10 +91,6 @@ class PaystackPaymentController extends Controller
                 "msg" => "An internal error occurred",
             ]);
         }
-        //Will change and be sent from applcation instead of calling from database
-        //Get the amount to be paid for the registration process
-        $value = DB::table('tblqual')->select('amount')->where('qual_code',$this->qual_code["degree"])->first();
-        
 
         $paystackResponse = Http::timeout(self::REQUEST_TIMEOUT_SECONDS)
             ->withHeaders([
@@ -88,7 +99,7 @@ class PaystackPaymentController extends Controller
             ])
             ->post(env("PAYSTACK_CHARGE_ENDPOINT"), [
                 "email" => $request->email,
-                "amount" => $value->amount * 100,
+                "amount" => (float)$intern->qualification->amount * 100,
                 "currency" => "GHS",
                 "reference" => $reference,
                 "mobile_money" => [
@@ -123,9 +134,17 @@ class PaystackPaymentController extends Controller
             ]);
         }
 
-        $jsonResponse = $paystackResponse->json();
+        try {
+            $intern->payment_reference = $reference;
+            $intern->saveOrFail();
+        } catch (\Throwable $e) {
+           Log::error("error updating intern's payment reference: " . $e->getMessage(), [
+                "intern" => $intern->get()->toArray(),
+                "request" => $request->all(),
+           ]);
+        }
 
-        // TODO (Nana): Store reference against intern data
+        $jsonResponse = $paystackResponse->json();
         return response()->json([
             "ok" => true,
             "msg" => "Charge initiated successfully",
