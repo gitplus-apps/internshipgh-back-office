@@ -180,17 +180,18 @@ class PaystackPaymentController extends Controller
      */
     public function submitOTP(Request $request): JsonResponse
     {
-        // TODO (Nana): Make sure reference exists somewhere in the system
         $validator = Validator::make($request->all(), [
             "otp" => "required|numeric",
-            "reference" => "required"
+            "reference" => "required|exists:tblintern,payment_reference",
+        ], [
+            "reference.exists" => "Unknown reference",
         ]);
 
         if ($validator->fails()) {
             return response()->json([
                 "ok" => false,
                 "msg" => join(",", $validator->errors()->all()),
-            ]);
+            ], 400);
         }
 
         $paystackResponse = Http::timeout(self::REQUEST_TIMEOUT_SECONDS)
@@ -213,31 +214,19 @@ class PaystackPaymentController extends Controller
             return response()->json([
                 "ok" => false,
                 "msg" => "Error submitting OTP. An internal error occurred"
-            ]);
+            ], 500);
         }
 
         if ($paystackResponse->json("status") === false) {
-            Log::error("intiating charge failed. paystack returned status = false: ", [
-                "request" => $request,
+            Log::error("submitting paystack otp failed: paystack returned status = false", [
+                "request" => $request->all(),
                 "paystackResponse" => $paystackResponse->body(),
             ]);
 
             return response()->json([
                 "ok" => false,
                 "msg" => "An internal error occurred. Payment cannot proceed"
-            ]);
-        }
-
-        if ($paystackResponse->json("status") === false) {
-            Log::error("paystack returned status = false: ", [
-                "request" => $request,
-                "paystackResponse" => $paystackResponse->body(),
-            ]);
-
-            return response()->json([
-                "ok" => false,
-                "msg" => "An internal error occurred. Payment cannot proceed"
-            ]);
+            ], 500);
         }
 
         $jsonResponse = $paystackResponse->json();
