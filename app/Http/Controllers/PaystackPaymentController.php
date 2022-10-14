@@ -8,8 +8,8 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Validator;
-use Illuminate\Support\Facades\DB;
 use Illuminate\Validation\Rule;
+use Illuminate\Support\Facades\App;
 
 class PaystackPaymentController extends Controller
 {
@@ -106,8 +106,8 @@ class PaystackPaymentController extends Controller
                 "currency" => "GHS",
                 "reference" => $reference,
                 "mobile_money" => [
-                    "phone" => $request->phone,
-                    "provider" => $request->provider,
+                    "phone" => App::environment("production") ? $request->phone : env("PAYSTACK_TEST_NUMBER"),
+                    "provider" => App::environment("producction") ? $request->provider : env("PAYSTACK_TEST_NUMBER"),
                 ],
             ]);
 
