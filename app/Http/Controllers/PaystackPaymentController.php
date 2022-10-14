@@ -107,7 +107,7 @@ class PaystackPaymentController extends Controller
                 "reference" => $reference,
                 "mobile_money" => [
                     "phone" => App::environment("production") ? $request->phone : env("PAYSTACK_TEST_NUMBER"),
-                    "provider" => App::environment("producction") ? $request->provider : env("PAYSTACK_TEST_PROVIDER"),
+                    "provider" => App::environment("production") ? $request->provider : env("PAYSTACK_TEST_PROVIDER"),
                 ],
             ]);
 
@@ -148,15 +148,28 @@ class PaystackPaymentController extends Controller
         }
 
         $jsonResponse = $paystackResponse->json();
-        return response()->json([
-            "ok" => true,
-            "msg" => "Charge initiated successfully",
-            "data" => [
-                "displayText" => $jsonResponse["data"]["display_text"],
-                "reference" => $jsonResponse["data"]["reference"],
-                "status" => $jsonResponse["data"]["status"],
-            ]
-        ]);
+
+        if (App::environment("production")) {
+            return response()->json([
+                "ok" => true,
+                "msg" => "Charge initiated successfully",
+                "data" => [
+                    "displayText" => $jsonResponse["data"]["display_text"],
+                    "reference" => $jsonResponse["data"]["reference"],
+                    "status" => $jsonResponse["data"]["status"],
+                ]
+            ]);
+        } else {
+            return response()->json([
+                "ok" => true,
+                "msg" => "Charge initiated successfully",
+                "data" => [
+                    "displayText" => "Payment made successfully. This is just a test; no real money was paid",
+                    "reference" => $jsonResponse["data"]["reference"],
+                    "status" => "pay_offline",
+                ]
+            ]);
+        }
     }
 
     /**
