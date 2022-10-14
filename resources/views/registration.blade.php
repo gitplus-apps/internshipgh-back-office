@@ -1,7 +1,7 @@
 @extends('layout.main')
 
 @section('page-content')
-<link rel="stylesheet" href="{{asset("assets/css/registration.css")}}">
+<link rel="stylesheet" href="{{asset("css/registration.css")}}">
 <div class="breadcrumb-area shadow dark bg-fixed text-light" style="background-image: url({{asset('assets/img/services.jpg')}});">
     <div class="container">
         <div class="row align-center">
@@ -35,7 +35,7 @@
                   
            
                 @csrf
-                <p class="text-center" style="font-size: 20px;"><span class="text-danger">Notice : An amount of Ghc10 is required as payment to complete the registration process.</span</p>
+                <p class="text-center" style="font-size: 20px;"><span class="text-danger">Notice : An amount of Ghc {{$amount}} is required as payment to complete the registration process.</span</p>
                 
                 <fieldset class="tab" id="tab-1">
                     <h2 class="fs-title">Personal Details ( 1 / 7 ) </h2>
@@ -70,11 +70,11 @@
                     <h2 class="fs-title">Contact Details ( 2 / 7 ) </h2>
                     <div>
                         <label for="email">Email <span class="text-danger"> * </span></label>
-                        <input type="email" name="email" class="input" placeholder="eg. johndoe@gmail.com"  {{-- required --}}/>
+                        <input type="email" name="email" id="intern_email" class="input" placeholder="eg. johndoe@gmail.com"  {{-- required --}}/>
                     </div>
                     <div>
                         <label for="phone">Phone <span class="text-danger"> * </span></label>
-                        <input type="text" name="phone" class="input" placeholder="eg. 02000000001"  {{-- required --}}/>
+                        <input type="text" name="phone" id="intern_phone" class="input" placeholder="eg. 02000000001"  {{-- required --}}/>
                     </div>
                    <div>
                         <label for="whatsapp">WhatsApp Number <span class="text-danger"> * </span></label>
@@ -242,15 +242,9 @@
 </div>
 </div>
 </div>
-<script>
-    let districts = @json($districts)
-  
-</script>
 
 
-{{-- <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#otp_modal">
-    Launch demo modal
-  </button> --}}
+
   
   <!-- Charge Modal -->
   <div class="msform">
@@ -271,11 +265,21 @@
                     
                         <div>
                             <label for="fname">Email<span class="text-danger"> * </span></label>
-                            <input type="text" name="email" class="form-control" placeholder="eg. johndoe@gmail.com" required />
+                            <input type="text" name="email" class="form-control" placeholder="eg. johndoe@gmail.com" required id="payment_email" />
+                            <div class="form-check form-inline">
+                                <label class="form-check-label" style="font-size: 14px; color:#0e2b3d;">
+                                <input class="form-check-input" type="checkbox" id="payment_email_checkbox"  >
+                                Use Email used in registration </label>
+                            </div>
                         </div>
                         <div>
                             <label for="mname">Phone<span class="text-danger"> * </span></label>
-                            <input type="text" name="phone" class="form-control"  placeholder="eg. 0200000000" required/>
+                            <input type="text" name="phone" class="form-control"  placeholder="eg. 0200000000" required id="payment_phone"/>
+                            <div class="form-check form-inline">
+                                <label class="form-check-label" style="font-size: 14px; color:#0e2b3d;">
+                                <input class="form-check-input" type="checkbox" id="payment_phone_checkbox"  >
+                                Use Phone Number used in registration </label>
+                            </div>
                         </div>
                    
                        <div>
@@ -346,8 +350,11 @@
 </form>
   </div>
 
-
-<script src="{{asset("assets/js/registration.js")}}">  </script>
+  <script>
+    let districts = @json($districts);
+    let amount = `{{$amount}}`;
+</script>
+<script src="{{asset("js/registration.js")}}">  </script>
 
 
 @endsection

@@ -12,8 +12,19 @@ use App\Models\Sector;
 use App\Models\Region;
 use App\Models\InternshipType;
 use App\Models\RoleCategory;
+use Illuminate\Support\Facades\DB;
 class RouteController extends Controller
 {
+    private $qual_code =[
+        "certificate"=>"1001",
+        "diploma"=>"1002",
+        "degree"=>"1003",
+        "post_grad_diploma"=>"1004",
+        "masters"=>"1005",
+        "doctorate"=>"1006"
+    ];
+    
+    
     //homepage
     public function homePage(){
     
@@ -56,8 +67,11 @@ class RouteController extends Controller
         $internship_type = InternshipType::all();
         $schools = School::all();
         $jobroles = RoleCategory::all();
-       
-        return view('registration',compact('programmes','schools','levels','qualifications','districts','regions','sectors','internship_type','schools','jobroles'));
+       //Get the amount to be paid for the registration process
+       $value = DB::table('tblqual')->select('amount')->where('qual_code',$this->qual_code["degree"])->first();
+       $amount = $value->amount;
+    
+        return view('registration',compact('programmes','schools','levels','qualifications','districts','regions','sectors','internship_type','schools','jobroles', 'amount'));
     }
     
 
