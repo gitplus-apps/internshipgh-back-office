@@ -68,7 +68,7 @@ class PaystackPaymentController extends Controller
         // If the email should ever belong to more than one intern, then we have an error.
         if ($intern->count() !== 1) {
             Log::error("the following email: '{$request->email}' belongs to more than one intern", [
-                "interns" => $intern->get(),
+                "interns" => $intern->get()->toArray(),
                 "request" => $request->all(),
             ]);
 
