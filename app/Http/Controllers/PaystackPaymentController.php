@@ -53,7 +53,7 @@ class PaystackPaymentController extends Controller
                 join(",", $this->validMobileMoneyProviders),
                 $request->provider
             ),
-            "email.exists" => "No intern registered with this email: " . $request->email,
+            "email.exists" => "No record found with this email: {$request->email}",
         ]);
 
         if ($validator->fails()) {
@@ -63,12 +63,12 @@ class PaystackPaymentController extends Controller
             ], 400);
         }
 
-        $intern = Intern::where("email", $request->email)->where("deleted", "0");
+        $intern = Intern::where("email", $request->email)->where("deleted", "0")->get();
 
         // If the email should ever belong to more than one intern, then we have an error.
         if ($intern->count() !== 1) {
             Log::error("the following email: '{$request->email}' belongs to more than one intern", [
-                "interns" => $intern->get()->toArray(),
+                "interns" => $intern->toArray(),
                 "request" => $request->all(),
             ]);
 
@@ -91,6 +91,8 @@ class PaystackPaymentController extends Controller
                 "msg" => "An internal error occurred",
             ]);
         }
+
+        $intern = $intern->first();
 
         $paystackResponse = Http::timeout(self::REQUEST_TIMEOUT_SECONDS)
             ->withHeaders([
@@ -136,10 +138,10 @@ class PaystackPaymentController extends Controller
 
         try {
             $intern->payment_reference = $reference;
-            $intern->saveOrFail();
+            $intern->save();
         } catch (\Throwable $e) {
            Log::error("error updating intern's payment reference: " . $e->getMessage(), [
-                "intern" => $intern->get()->toArray(),
+                "intern" => $intern->toArray(),
                 "request" => $request->all(),
            ]);
         }
