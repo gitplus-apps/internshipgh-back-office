@@ -47,5 +47,8 @@ class Intern extends Model
         return $this->hasOne(Qualification::class, 'qual_code', 'qual_code');
     }
 
-
+    public function payment()
+    {
+        return $this->hasOne(Payment::class, "intern_code", "intern_code");
+    }
 }

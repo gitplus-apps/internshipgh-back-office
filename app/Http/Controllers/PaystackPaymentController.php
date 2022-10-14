@@ -3,8 +3,11 @@
 namespace App\Http\Controllers;
 
 use App\Models\Intern;
+use App\Models\Payment;
+use Carbon\Carbon;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Validator;
@@ -138,8 +141,18 @@ class PaystackPaymentController extends Controller
         }
 
         try {
-            $intern->payment_reference = $reference;
-            $intern->save();
+            DB::transaction(function() use ($intern, $reference) {
+                $intern->payment_reference = $reference;
+                $intern->save();
+
+                Payment::create([
+                   "transid" => bin2hex(random_bytes(8)),
+                    "intern_code" => $intern->intern_code,
+                    "payment_reference" => $reference,
+                    "charged_date" => gmdate("Y-m-d H:i:s"),
+                ]);
+            });
+
         } catch (\Throwable $e) {
            Log::error("error updating intern's payment reference: " . $e->getMessage(), [
                 "intern" => $intern->toArray(),
@@ -259,10 +272,76 @@ class PaystackPaymentController extends Controller
             ]);
         }
 
+        $reference = $request->input("data.reference");
+
+        $intern = Intern::where("payment_reference", $reference)->get();
+        if ($intern->count() === 0) {
+            Log::error("webhook request came with unknown reference: {$reference}", [
+                "request" => $request->all(),
+            ]);
+
+            // Although there is an error here, we need to return a '200 OK' status code.
+            // If we return an error code, Paystack will retry the request again for 72hrs
+            // expecting a 200 OK status code. There is no need for them to retry if the
+            // reference does not exist in our db.
+            return response()->json([
+                "ok" => false,
+                "msg" => "Unknown reference",
+            ], 200);
+        }
+
+        if ($intern->count() > 1) {
+            Log::error("webhook request came with a reference that belongs to more than one intern: {$reference}", [
+                "reference" => $reference,
+                "request" => $request->all(),
+            ]);
+
+            // Again we need to send a 200 OK for the same reasons as stated above
+            return response()->json([
+                "ok" => "false",
+                "msg" => "Invalid reference",
+            ], 200);
+        }
+
+        $payment = Payment::where("payment_reference", $reference)->get();
+        if ($payment->count() === 0) {
+            Log::error("reference from webhook request was not found in payment table: {$reference}", [
+                "request" => $request->all(),
+                "intern" => $intern->toArray(),
+            ]);
+
+            // We are returning 200 here for the same reasons stated above.
+            return response()->json([
+                "ok" => false,
+                "msg" => "Invalid reference"
+            ], 200);
+        }
+
+        if ($payment->count() > 1) {
+            Log::error("webhook request came with a reference that has two records in the payment table", [
+                "reference" => $reference,
+                "request" => $request->all(),
+            ]);
+
+            // Again we need to send a 200 OK for the same reasons as stated above
+            return response()->json([
+                "ok" => "false",
+                "msg" => "Invalid reference",
+            ], 200);
+        }
+
+        DB::transaction(function() use ($intern, $payment) {
+            $intern->update(["paid" => "1"]);
+            $payment->update([
+               "paid_date" => gmdate("Y-m-d H:i:s"),
+            ]);
+        });
+
+        // TODO (Nana): Send SMS and email via a job
+
         return response()->json([
             "ok" => true,
             "msg" => "Request successful",
-            "request" => $request->all(),
-        ]);
+        ], 200);
     }
 }
