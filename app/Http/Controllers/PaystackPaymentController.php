@@ -75,7 +75,7 @@ class PaystackPaymentController extends Controller
             return response()->json([
                 "ok" => false,
                 "msg" => "Cannot process payment. Kindly let us know if this continues. Send email to info@internship.com.gh"
-            ]);
+            ], 500);
         }
 
         // At this point we can be sure we have only one intern. So we get the intern from the collection.
@@ -92,7 +92,7 @@ class PaystackPaymentController extends Controller
             return response()->json([
                 "ok" => false,
                 "msg" => "An internal error occurred",
-            ]);
+            ], 500);
         }
 
         $paystackResponse = Http::timeout(self::REQUEST_TIMEOUT_SECONDS)
@@ -122,7 +122,7 @@ class PaystackPaymentController extends Controller
             return response()->json([
                 "ok" => false,
                 "msg" => "Error initiating payment. An internal error occurred"
-            ]);
+            ], 500);
         }
 
         if ($paystackResponse->json("status") === false) {
@@ -134,7 +134,7 @@ class PaystackPaymentController extends Controller
             return response()->json([
                 "ok" => false,
                 "msg" => "An internal error occurred. Payment cannot proceed"
-            ]);
+            ], 500);
         }
 
         try {
