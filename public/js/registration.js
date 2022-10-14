@@ -69,7 +69,7 @@
             registrationForm.reset();
             
             if(amount > 0){
-            console.log("hello world")
+           
                 $("#charge_modal").modal('show');
                 return;
             }
