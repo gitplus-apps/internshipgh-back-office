@@ -150,6 +150,8 @@ class PaystackPaymentController extends Controller
                     "intern_code" => $intern->intern_code,
                     "payment_reference" => $reference,
                     "charged_date" => gmdate("Y-m-d H:i:s"),
+                    "createdate" => gmdate("Y-m-d H:i:s"),
+                    "createuser" => $intern->intern_code,
                 ]);
             });
 
