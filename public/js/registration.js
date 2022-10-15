@@ -394,7 +394,7 @@
 
 /* Payment form validation and requests */
     //Verify Otp
-    $("#verify_otp").click(function(){
+   /*  $("#verify_otp").click(function(){ */
         const otpForm = document.getElementById('verify');
         const submitBtn = document.getElementById('verify_otp');
        // const form = $('#verify')
@@ -503,5 +503,5 @@
                 
             })
         })
-    })
+   /*  }) */
 
