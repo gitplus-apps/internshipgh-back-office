@@ -55,7 +55,7 @@ class RegistrationController extends Controller
                 "fname" => ['required', 'string', 'max:255'],
                 "lname" => ['required', 'string', 'max:255'],
                 "gender"=>['required'],
-                "email" => ['required',  'email', 'max:255', 'unique:tbluser,email'],
+                "email" => ['required','email', 'max:255', 'unique:tbluser,email'],
                 "phone" => ['required','unique:tbluser,phone'],
                 "school_code" => ['required'],
                 "prog_code"=> ['required'],
@@ -229,7 +229,7 @@ class RegistrationController extends Controller
             MSG;
         
             if (!empty($request->phone)) {
-                $sms = new Sms("InternGh", env("ARKESEL_SMS_API_KEY"));
+                $sms = new Sms(env("ARKESEL_SMS_SENDER_ID"), env("ARKESEL_SMS_API_KEY"));
                 $sms->send($request->phone, $message);
             };
     

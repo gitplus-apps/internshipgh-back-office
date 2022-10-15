@@ -5,6 +5,11 @@
     //display the first fieldset tab 
     $("#tab-1").css("display","block");
     
+    let payment_email = document.getElementById('payment_email');
+    
+    
+    
+    
    var intern_email;
    var intern_phone;
    
@@ -13,7 +18,6 @@
     //making of post request to registration controller
     $("#submit_btn").click(function(){
         const registrationForm = document.getElementById('intern_registration');
-        const submitBtn = document.getElementById('submit_btn');
         $(registrationForm).submit(function(e){
             e.preventDefault();
           
@@ -26,6 +30,7 @@
             
             
             let formdata = new FormData(registrationForm);
+           
             
             //toastr options for user registration messages
             toastr.options = {
@@ -55,9 +60,6 @@
                 if(!data.ok){
                 Swal.close();
                 toastr.error(data.msg, '');
-                        
-                   
-                
               
                 return;
             }
@@ -69,7 +71,7 @@
             registrationForm.reset();
             
             if(amount > 0){
-           
+                payment_email.textContent = intern_email;
                 $("#charge_modal").modal('show');
                 return;
             }
@@ -239,24 +241,6 @@
     /* Payment form validation and requests */
     //Initiate payment request
     
-    //set the email to the mail used in registration when checked
-    let toggle_payment_email = document.getElementById('payment_email_checkbox')
-    let payment_email = document.getElementById('payment_email');
-    
-    
-    $(toggle_payment_email).click(function (){
-        console.log(intern_email)
-        console.log("========intern email========")
-        console.log(intern_phone)
-       
-        if(toggle_payment_email.checked) {
-            payment_email.value =intern_email
-        } else {
-            payment_email.value = "";
-        }
-        
-    })
-    
     let toggle_payment_phone = document.getElementById('payment_phone_checkbox');
     let payment_phone = document.getElementById('payment_phone');
     $(toggle_payment_phone).click(function (){
@@ -277,10 +261,6 @@
         form.validate({
             ignore: "",
 			rules: {
-			  "email":{
-			    required: true,
-			    email: true,
-			  },
               "phone":{
                   required: true,
                   number:true,
@@ -329,7 +309,7 @@
             });
            
             let formdata = new FormData(chargeForm);
-         
+            formdata.append("email",intern_email)
             
             //toastr options for user registration messages
             toastr.options = {
