@@ -18,7 +18,8 @@ class Payment extends Model
 
     protected $fillable = [
         "transid", "intern_code", "payment_reference",
-        "charged_date", "paid_date", "meta_data",
+        "charged_date", "paid_date", "meta_data", "deleted",
+        "createuser", "createdate", "modifyuser", "modifydate",
     ];
 
     public function intern()
