@@ -305,8 +305,8 @@
             });
            
             let formdata = new FormData(chargeForm);
-            //formdata.append("email",intern_email)
-            formdata.append("email","bernarddormon31@gmail.com")
+            formdata.append("email",intern_email)
+          
             //toastr options for user registration messages
             toastr.options = {
                           "closeButton": true,
@@ -384,8 +384,8 @@
             $("#otp_modal").modal('show');
            
              reference = data['data']['reference']
-             
-              chargeForm.reset();
+             intern_email ="";
+             form.reset();
                 
             })
        
