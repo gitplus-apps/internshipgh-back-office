@@ -254,9 +254,9 @@
     })
     
     
-    $("#submit_charge").click(function(){
+    $("#charge").submit(function(e){
         const chargeForm = document.getElementById('charge');
-        const submitBtn = document.getElementById('submit_charge');
+        e.preventDefault();
         const form = $('#charge')
         form.validate({
             ignore: "",
@@ -295,10 +295,6 @@
                     return false;
         		}
         		
-        		
-        		
-        $(chargeForm).submit(function(e){
-            e.preventDefault();
             //Close the modal when form is submitted 
             $("#charge_modal").modal('hide');
             Swal.fire({
@@ -309,8 +305,8 @@
             });
            
             let formdata = new FormData(chargeForm);
-            formdata.append("email",intern_email)
-            
+            //formdata.append("email",intern_email)
+            formdata.append("email","bernarddormon31@gmail.com")
             //toastr options for user registration messages
             toastr.options = {
                           "closeButton": true,
@@ -392,7 +388,7 @@
               chargeForm.reset();
                 
             })
-        })
+       
     })
 
 
