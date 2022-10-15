@@ -16,7 +16,7 @@
    
   
     //making of post request to registration controller
-    $("#submit_btn").click(function(){
+    
         const registrationForm = document.getElementById('intern_registration');
         $(registrationForm).submit(function(e){
             e.preventDefault();
@@ -84,7 +84,7 @@
                 
                 
             })
-        })
+
     })
     
     
