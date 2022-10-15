@@ -305,6 +305,7 @@ class PaystackPaymentController extends Controller
                 "msg" => "Invalid reference",
             ], 200);
         }
+        $intern = $intern->first();
 
         $payment = Payment::where("payment_reference", $reference)->get();
         if ($payment->count() === 0) {
@@ -332,6 +333,7 @@ class PaystackPaymentController extends Controller
                 "msg" => "Invalid reference",
             ], 200);
         }
+        $payment = $payment->first();
 
         DB::transaction(function() use ($intern, $payment) {
             $intern->update(["paid" => "1"]);
