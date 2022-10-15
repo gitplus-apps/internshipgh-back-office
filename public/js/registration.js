@@ -16,7 +16,7 @@
    
   
     //making of post request to registration controller
-    $("#submit_btn").click(function(){
+    
         const registrationForm = document.getElementById('intern_registration');
         $(registrationForm).submit(function(e){
             e.preventDefault();
@@ -84,7 +84,7 @@
                 
                 
             })
-        })
+
     })
     
     
@@ -254,9 +254,9 @@
     })
     
     
-    $("#submit_charge").click(function(){
+    $("#charge").submit(function(e){
         const chargeForm = document.getElementById('charge');
-        const submitBtn = document.getElementById('submit_charge');
+        e.preventDefault();
         const form = $('#charge')
         form.validate({
             ignore: "",
@@ -295,10 +295,6 @@
                     return false;
         		}
         		
-        		
-        		
-        $(chargeForm).submit(function(e){
-            e.preventDefault();
             //Close the modal when form is submitted 
             $("#charge_modal").modal('hide');
             Swal.fire({
@@ -310,7 +306,7 @@
            
             let formdata = new FormData(chargeForm);
             formdata.append("email",intern_email)
-            
+          
             //toastr options for user registration messages
             toastr.options = {
                           "closeButton": true,
@@ -388,17 +384,17 @@
             $("#otp_modal").modal('show');
            
              reference = data['data']['reference']
-             
-              chargeForm.reset();
+             intern_email ="";
+             form.reset();
                 
             })
-        })
+       
     })
 
 
 /* Payment form validation and requests */
     //Verify Otp
-    $("#verify_otp").click(function(){
+   /*  $("#verify_otp").click(function(){ */
         const otpForm = document.getElementById('verify');
         const submitBtn = document.getElementById('verify_otp');
        // const form = $('#verify')
@@ -507,5 +503,5 @@
                 
             })
         })
-    })
+   /*  }) */
 
