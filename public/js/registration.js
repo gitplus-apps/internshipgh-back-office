@@ -30,7 +30,8 @@
             
             
             let formdata = new FormData(registrationForm);
-            formdata.append("email",intern_email)
+           
+            
             //toastr options for user registration messages
             toastr.options = {
                           "closeButton": true,
@@ -240,23 +241,6 @@
     /* Payment form validation and requests */
     //Initiate payment request
     
-    //set the email to the mail used in registration when checked
-    
-    
-    
-   /*  $(toggle_payment_email).click(function (){
-        console.log(intern_email)
-        console.log("========intern email========")
-        console.log(intern_phone)
-       
-        if(toggle_payment_email.checked) {
-            payment_email.value =intern_email
-        } else {
-            payment_email.value = "";
-        }
-        
-    }) */
-    
     let toggle_payment_phone = document.getElementById('payment_phone_checkbox');
     let payment_phone = document.getElementById('payment_phone');
     $(toggle_payment_phone).click(function (){
@@ -277,10 +261,6 @@
         form.validate({
             ignore: "",
 			rules: {
-			  "email":{
-			    required: true,
-			    email: true,
-			  },
               "phone":{
                   required: true,
                   number:true,
@@ -329,7 +309,7 @@
             });
            
             let formdata = new FormData(chargeForm);
-         
+            formdata.append("email",intern_email)
             
             //toastr options for user registration messages
             toastr.options = {

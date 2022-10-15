@@ -55,7 +55,7 @@ class RegistrationController extends Controller
                 "fname" => ['required', 'string', 'max:255'],
                 "lname" => ['required', 'string', 'max:255'],
                 "gender"=>['required'],
-                "email" => ['required',  'email', 'max:255', 'unique:tbluser,email'],
+                "email" => ['required','email', 'max:255', 'unique:tbluser,email'],
                 "phone" => ['required','unique:tbluser,phone'],
                 "school_code" => ['required'],
                 "prog_code"=> ['required'],
