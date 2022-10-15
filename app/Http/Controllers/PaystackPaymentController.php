@@ -335,10 +335,11 @@ class PaystackPaymentController extends Controller
         }
         $payment = $payment->first();
 
-        DB::transaction(function() use ($intern, $payment) {
+        DB::transaction(function() use ($intern, $payment, $request) {
             $intern->update(["paid" => "1"]);
             $payment->update([
                "paid_date" => gmdate("Y-m-d H:i:s"),
+                "meta_data" => $request->getContent(),
             ]);
         });
 
