@@ -229,7 +229,7 @@ class RegistrationController extends Controller
             MSG;
         
             if (!empty($request->phone)) {
-                $sms = new Sms("InternGh", env("ARKESEL_SMS_API_KEY"));
+                $sms = new Sms(env("ARKESEL_SMS_SENDER_ID"), env("ARKESEL_SMS_API_KEY"));
                 $sms->send($request->phone, $message);
             };
     
