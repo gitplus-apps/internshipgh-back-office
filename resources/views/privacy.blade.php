@@ -2,7 +2,7 @@
 
 @section('page-content')
 
-<div class="breadcrumb-area shadow dark bg-fixed text-light" style="background-image: url(assets/img/2440x1578.png);">
+<div class="breadcrumb-area shadow dark bg-fixed text-light" style="background-image: url({{asset('assets/img/privacy-policy.jpg')}});">
     <div class="container">
         <div class="row align-center">
             <div class="col-lg-6">
