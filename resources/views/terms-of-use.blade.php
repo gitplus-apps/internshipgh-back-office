@@ -2,7 +2,7 @@
 
 @section('page-content')
 
-<div class="breadcrumb-area shadow dark bg-fixed text-light" style="background-image: url({{asset('assets/img/terms-and-conditions.jpg)')}}';">
+<div class="breadcrumb-area shadow dark bg-fixed text-light" style="background-image: url({{asset('assets/img/terms-and-conditions.jpg')}}">
     <div class="container">
         <div class="row align-center">
             <div class="col-lg-6">
