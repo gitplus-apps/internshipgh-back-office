@@ -2,9 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Jobs\AcknowledgePayment;
 use App\Models\Intern;
 use App\Models\Payment;
-use Carbon\Carbon;
+use App\Notifications\PaymentMade;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -109,8 +110,8 @@ class PaystackPaymentController extends Controller
                 "currency" => "GHS",
                 "reference" => $reference,
                 "mobile_money" => [
-                    "phone" => App::environment("production") ? $request->phone : env("PAYSTACK_TEST_NUMBER"),
-                    "provider" => App::environment("production") ? $request->provider : env("PAYSTACK_TEST_PROVIDER"),
+                    "phone" => App::environment("production") ? $request->phone : env("PAYSTACK_TEST_NUMBER", "0551234987"),
+                    "provider" => App::environment("production") ? $request->provider : env("PAYSTACK_TEST_PROVIDER", "mtn"),
                 ],
             ]);
 
@@ -286,7 +287,8 @@ class PaystackPaymentController extends Controller
             // Although there is an error here, we need to return a '200 OK' status code.
             // If we return an error code, Paystack will retry the request again for 72hrs
             // expecting a 200 OK status code. There is no need for them to retry if the
-            // reference does not exist in our db.
+            // reference does not exist.
+            // See: https://paystack.com/docs/payments/webhooks#create-a-webhook-url
             return response()->json([
                 "ok" => false,
                 "msg" => "Unknown reference",
@@ -343,7 +345,7 @@ class PaystackPaymentController extends Controller
             ]);
         });
 
-        // TODO (Nana): Send SMS and email via a job
+        AcknowledgePayment::dispatch($intern);
 
         return response()->json([
             "ok" => true,
