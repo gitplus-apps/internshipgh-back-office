@@ -48,7 +48,7 @@ class RegistrationController extends Controller
      */
     public function store(Request $request)
     {
-        
+
         $validator = Validator::make(
             $request->all(),
             [
@@ -102,28 +102,28 @@ class RegistrationController extends Controller
                 ]
             ]);
         }
-        
+
         $checkemail = User::where("email", $request->email)->first();
         $checkphone = User::where("phone",$request->phone)->first();
-        
+
         if (!empty($checkemail) || !empty($checkphone)) {
             return response()->json([
                 "ok" => false,
                 "msg" => "Account creation failed, email or phone number already taken"
             ]);
         }
-        
-        
-        
-        
+
+
+
+
         try {
             $transResult = DB::transaction(function () use ($request) {
-            
+
                 $transid = strtoupper(bin2hex(random_bytes(4)));
                 $intern_code = 'INT' . $transid;
                 $user_transid = strtoupper(bin2hex(random_bytes(4)));
                 $user_code = "USR" . $user_transid;
-                
+
                 Intern::insert([
                     "transid" => $transid,
                     "intern_code" => $intern_code,
@@ -148,7 +148,7 @@ class RegistrationController extends Controller
                     "createdate" =>  date("Y-m-d"),
                     "modifydate"=> date("Y-m-d"),
                 ]);
-                
+
                 User::insert([
                     //"transid"=> $user_transid,
                     "user_code" => $user_code,
@@ -160,9 +160,9 @@ class RegistrationController extends Controller
                     "createdate" =>  date("Y-m-d"),
                     "modifydate"=> date("Y-m-d"),
                 ]);
-                
-               
-                
+
+
+
                 foreach($request->regions as $region_code){
                     InternRegion::insert([
                         "transid"=>  strtoupper(bin2hex(random_bytes(4))),
@@ -173,7 +173,7 @@ class RegistrationController extends Controller
                         "modifydate"=> date('Y-m-d'),
                     ]);
                 }
-               
+
                 foreach($request->districts as $district_code){
                     InternDistrict::insert([
                         "transid"=>  strtoupper(bin2hex(random_bytes(4))),
@@ -195,7 +195,7 @@ class RegistrationController extends Controller
                         ]);
                     }
                     $cities = explode(",",$request->cities);
-                  
+
                     foreach($cities as $city){
                         InternCity::insert([
                             "transid"=>  strtoupper(bin2hex(random_bytes(4))),
@@ -206,7 +206,7 @@ class RegistrationController extends Controller
                             "modifydate"=> date('Y-m-d'),
                         ]);
                     }
-                    
+
                     foreach($request->job_roles as $role_code){
                         InternJobRole::insert([
                             "transid"=>  strtoupper(bin2hex(random_bytes(4))),
@@ -217,37 +217,37 @@ class RegistrationController extends Controller
                             "modifydate"=> date('Y-m-d'),
                         ]);
                     }
-                    
-                    
-                
-               
+
+
+
+
             });
 
             $message = <<<MSG
             Hello {$request->fname} {$request->lname}, welcome to Internship Ghana.
             Here, we link students to the right job environment to acquire the appropriate and relevant skillset needed in their desired field of practice.
             MSG;
-        
+
             if (!empty($request->phone)) {
-                $sms = new Sms("InternGh", env("ARKESEL_SMS_API_KEY"));
+                $sms = new Sms(env("ARKESEL_SMS_SENDER_ID", "InternGh"), env("ARKESEL_SMS_API_KEY"));
                 $sms->send($request->phone, $message);
             };
-    
+
             Mail::to($request->email)->send(new InternRegistrationEmail([
-               
+
                 "fname" => $request->fname,
                 "lname" => $request->lname,
             ]));
-            
+
             return response()->json([
                 "ok" => true,
                 "msg" => "Account created successfully",
             ]);
-                    
+
             if (!empty($transResult)) {
                 throw new Exception($transResult);
             }
-            
+
             return response()->json([
                 "ok" => true,
                 "msg" => "Account created successfully",
@@ -262,7 +262,7 @@ class RegistrationController extends Controller
                 ]
             ]);
         }
-    
+
     }
 
     /**
