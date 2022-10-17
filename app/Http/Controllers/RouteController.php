@@ -69,7 +69,7 @@ class RouteController extends Controller
         $jobroles = RoleCategory::all();
       
     
-        return view('registration',compact('programmes','schools','levels','qualifications','districts','regions','sectors','internship_type','schools','jobroles', 'amount'));
+        return view('registration',compact('programmes','schools','levels','qualifications','districts','regions','sectors','internship_type','schools','jobroles'));
     }
     
 
