@@ -9,11 +9,29 @@
     
     
     
-    
    var intern_email;
    var intern_phone;
    
    
+   $('#qualification').on("change", function(e) {
+        
+    let selected_qualification = $('#qualification').select2("val");
+    getPrice(selected_qualification);
+    
+});
+
+    function getPrice(qualification){
+        
+     let result =   qualifications.find(qual => qual.qual_code  == qualification)
+        let amount = result.amount;
+        let prog_desc = result.qual_desc;
+        
+        let amount_para =document.getElementById('amount'); 
+        amount_para.innerHTML = "<span class='text-danger'>Notice : An amount of Ghc "+amount+" is required as payment to complete the registration process for the "+prog_desc+" Level.</span>";
+        
+    
+    }
+
   
     //making of post request to registration controller
     
