@@ -35,7 +35,10 @@
                   
            
                 @csrf
-                <p class="text-center" style="font-size: 20px;"><span class="text-danger">Notice : An amount of Ghc {{$amount}} is required as payment to complete the registration process.</span</p>
+                <div class="mb-4">
+                    <p class="text-center " id="amount" style="font-size: 20px; "></p>
+                </div>
+                
                 
                 <fieldset class="tab" id="tab-1">
                     <h2 class="fs-title">Personal Details ( 1 / 7 ) </h2>
@@ -99,7 +102,7 @@
                     
                    <div>
                         <label for="qual_code">Qualification <span class="text-danger"> * </span> </label>
-                        <select type="text" name="qual_code" class="select2" {{--  required--}}>
+                        <select type="text" name="qual_code" class="select2" {{--  required--}} id="qualification">
                             <option value="" disabled selected>-- select --</option>
                           @foreach($qualifications as $qualification)
                              <option value="{{$qualification->qual_code}}">{{$qualification->qual_desc}}</option>
@@ -355,7 +358,7 @@
 
   <script>
     let districts = @json($districts);
-    let amount = `{{$amount}}`;
+    let qualifications = @json($qualifications);
 </script>
 <script src="{{asset("js/registration.js")}}">  </script>
 
