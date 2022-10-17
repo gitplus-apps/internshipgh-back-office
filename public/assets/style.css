@@ -7619,5 +7619,6 @@ footer.bg-dark .footer-bottom a {
   height: 100%;
   z-index: 999999;
   background: url("img/preloader.gif") center no-repeat #ffffff;
+  background-size: 60px 60px;
   text-align: center;
 }
