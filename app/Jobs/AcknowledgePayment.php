@@ -56,15 +56,15 @@ class AcknowledgePayment implements ShouldQueue, ShouldBeUnique
             );
 
             $msg = <<<MSG
-            Hi, %s. We acknowledge receipt of your payment on Internship Ghana.
-            Here is your reference number for this payment. If you have any issue
-            with this payment, you can contact us with your reference number.
+            Hello %s. We acknowledge receipt of your payment on Internship Ghana.
+            Here is your reference number for this payment.
+            If you have any issue with this payment, you can contact us with your reference number.
             Reference Number: %s
             MSG;
 
             $msg = sprintf(
                 $msg,
-                strtoupper("{$this->intern->fname} {$this->intern->lname}"),
+                ucfirst($this->intern->fname) . " " . ucfirst($this->intern->lname),
                 $this->intern->payment_reference
             );
 
