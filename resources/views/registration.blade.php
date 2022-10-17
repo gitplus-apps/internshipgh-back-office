@@ -35,7 +35,10 @@
                   
            
                 @csrf
-                <p class="text-center " id="amount" style="font-size: 20px; "></p>
+                <div class="mb-4">
+                    <p class="text-center " id="amount" style="font-size: 20px; "></p>
+                </div>
+                
                 
                 <fieldset class="tab" id="tab-1">
                     <h2 class="fs-title">Personal Details ( 1 / 7 ) </h2>
