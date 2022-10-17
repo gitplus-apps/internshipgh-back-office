@@ -67,9 +67,7 @@ class RouteController extends Controller
         $internship_type = InternshipType::all();
         $schools = School::all();
         $jobroles = RoleCategory::all();
-       //Get the amount to be paid for the registration process
-       $value = DB::table('tblqual')->select('amount')->where('qual_code',$this->qual_code["degree"])->first();
-       $amount = $value->amount;
+      
     
         return view('registration',compact('programmes','schools','levels','qualifications','districts','regions','sectors','internship_type','schools','jobroles', 'amount'));
     }
