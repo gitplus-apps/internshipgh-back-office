@@ -57,9 +57,9 @@ class AcknowledgePayment implements ShouldQueue, ShouldBeUnique
 
             $msg = <<<MSG
             Hello %s. We acknowledge receipt of your payment on Internship Ghana.
-            Here is your reference number for this payment.
-            If you have any issue with this payment, you can contact us with your reference number.
-            Reference Number: %s
+            Reference number for this payment: %s
+
+            Contact us with your reference number if you have any issue.
             MSG;
 
             $msg = sprintf(
