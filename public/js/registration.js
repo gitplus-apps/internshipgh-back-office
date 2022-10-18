@@ -33,7 +33,41 @@
     }
 
   
+    //sort programs based on institution selected 
+    
+    $('#institution').on("change", function(e) {
+        
+        let sch_code = $('#institution').select2("val");
+    
+        getPrograms(sch_code);
+    });
+    
+    function getPrograms(sch_code){
+        let programDropDown = document.getElementById("programmes");
+        
+    if(sch_code != null){
+        
+        let programs = programmes.filter((prg) => prg.sch_code == sch_code);
+
+        let fragment = new DocumentFragment();
+    
+        
+        programs.map(program => {
+            let option = new Option(program.prog_desc, program.prog_code);
+            fragment.appendChild(option);
+        });
+    
+        programDropDown.innerHTML = null;
+        programDropDown.appendChild(fragment);
+    }else{
+        programDropDown.innerHTML = null;
+    }
+
+    }
+    
+    
     //making of post request to registration controller
+    
     
         const registrationForm = document.getElementById('intern_registration');
         $(registrationForm).submit(function(e){

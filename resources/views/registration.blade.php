@@ -92,7 +92,7 @@
                     <h2 class="fs-title">Academic Details ( 3 / 7 ) </h2>
                   <div>
                   <label for="school_code">Select School <span class="text-danger"> * </span> </label>
-                    <select type="text" name="school_code"  class="select2  required" {{--  required--}}>
+                    <select type="text" name="school_code"  class="select2  required" id="institution" {{--  required--}}>
                         <option value="" disabled selected >-- select --</option>
                         @foreach ($schools as $school)
                             <option value="{{$school->sch_code}}">{{$school->sch_desc}}</option>
@@ -111,11 +111,11 @@
                    </div>
                    <div>
                         <label for="prog_code">Select Programme <span class="text-danger"> * </span> </label>
-                        <select type="text" class="select2 form-control basic-select " name="prog_code"  {{--  required--}}>
+                        <select type="text" class="select2 form-control basic-select " name="prog_code"  id="programmes"{{--  required--}}>
                             <option value="" disabled selected>-- select --</option>
-                            @foreach($programmes as $program)
+                           {{--  @foreach($programmes as $program)
                                 <option value="{{$program->prog_code}}">{{$program->prog_desc}}</option>
-                            @endforeach
+                            @endforeach --}}
                         </select>
                    </div>
                     <div>
@@ -359,6 +359,7 @@
   <script>
     let districts = @json($districts);
     let qualifications = @json($qualifications);
+    let programmes = @json($programmes);
 </script>
 <script src="{{asset("js/registration.js")}}">  </script>
 
