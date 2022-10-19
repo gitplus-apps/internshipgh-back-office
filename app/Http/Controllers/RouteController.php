@@ -15,14 +15,7 @@ use App\Models\RoleCategory;
 use Illuminate\Support\Facades\DB;
 class RouteController extends Controller
 {
-    private $qual_code =[
-        "certificate"=>"1001",
-        "diploma"=>"1002",
-        "degree"=>"1003",
-        "post_grad_diploma"=>"1004",
-        "masters"=>"1005",
-        "doctorate"=>"1006"
-    ];
+   
     
     
     //homepage
