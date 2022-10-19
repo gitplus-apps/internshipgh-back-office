@@ -360,6 +360,7 @@
     let districts = @json($districts);
     let qualifications = @json($qualifications);
     let programmes = @json($programmes);
+    
 </script>
 <script src="{{asset("js/registration.js")}}">  </script>
 

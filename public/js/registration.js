@@ -4,7 +4,6 @@
     $(".tab").css("display","none");    
     //display the first fieldset tab 
     $("#tab-1").css("display","block");
-    
     let payment_email = document.getElementById('payment_email');
     
     
@@ -122,11 +121,11 @@
             intern_phone = document.getElementById("intern_phone").value;
             registrationForm.reset();
             
-            if(amount > 0){
+           
                 payment_email.textContent = intern_email;
                 $("#charge_modal").modal('show');
                 return;
-            }
+       
             
             setTimeout(function() {
                 // window.open(data.data.paymentUrl, "_blank");
