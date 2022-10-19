@@ -27,14 +27,7 @@ class PaystackPaymentController extends Controller
         "mtn", "vod", "tgo",
     ];
 
-    private $qual_code = [
-        "certificate" => "1001",
-        "diploma" => "1002",
-        "degree" => "1003",
-        "post_grad_diploma" => "1004",
-        "masters" => "1005",
-        "doctorate" => "1006"
-    ];
+  
 
     /**
      * Makes a request to Paystack to make a charge on the supplied phone number.
