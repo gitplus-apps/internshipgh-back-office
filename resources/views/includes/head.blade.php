@@ -38,15 +38,15 @@
         
         
     {{-- Izitoast --}}
-    <link rel="stylesheet" href="{{ asset('plugins/izitoast/css/iziToast.min.css')}}">
-    <script src="{{ asset('plugins/izitoast/js/iziToast.min.js')}}" type="text/javascript"></script>
+    {{-- <link rel="stylesheet" href="{{ asset('plugins/izitoast/css/iziToast.min.css')}}">
+    <script src="{{ asset('plugins/izitoast/js/iziToast.min.js')}}" type="text/javascript"></script> --}}
       {{-- Select2 --}}
     <link rel="stylesheet" href="{{ asset('plugins/select2/css/select2.css')}}">
     <script src="{{ asset('plugins/select2/js/select2.full.js')}}" type="text/javascript"></script>
     {{-- toastr --}}
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js"></script>
-    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <!-- ========== End Stylesheet ========== -->
 
     
