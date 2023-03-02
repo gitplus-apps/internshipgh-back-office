@@ -5,7 +5,7 @@
 
   
     
-        @yield('page-content')
+        @yield('content')
         
       
   
