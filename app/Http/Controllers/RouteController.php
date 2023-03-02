@@ -16,37 +16,8 @@ use Illuminate\Support\Facades\DB;
 class RouteController extends Controller
 {
    
-    
-    
-    //homepage
-    public function homePage(){
-    
-        return view('welcome');
-    }
-    
-    //contact us
-    public function contactUs(){
-        return view('contact');
-    }
-    
-    public function aboutUs(){
-        return view('about-us');
-    }
-    
-    public function services(){
-        return view('services'); 
-    }
-    
-    public function payment(){
-        return view('payment');
-    }
-    
-    public function termsOfUse(){
-        return view('terms-of-use');
-    }
-    
-    public function privacy(){
-        return view('privacy');
+    public function dashboard(){
+        return view('dashboard');
     }
     
     public function registration(){
