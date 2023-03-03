@@ -15,8 +15,11 @@ use Illuminate\Support\Facades\Log;
 |
 */
 
-Route::get('/', [RouteController::class, 'dashboard']);
-Route::get('/home', [RouteController::class, 'dashboard'])->name('home');
+Route::group(['middleware' => ['auth','intern.profile'] ], function(){
+    Route::get('/', [RouteController::class, 'dashboard']);
+    Route::get('/home', [RouteController::class, 'dashboard'])->name('home');
+    Route::get('/add/profile', [RouteController::class, 'setProfile'])->name('profile')->withoutMiddleware('intern.profile');
+});
 
 
 Auth::routes();

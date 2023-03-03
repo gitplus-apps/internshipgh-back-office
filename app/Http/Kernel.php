@@ -2,6 +2,7 @@
 
 namespace App\Http;
 
+use App\Http\Middleware\CheckInternDetails;
 use App\Http\Middleware\FilterPaystackIPAddresses;
 use App\Http\Middleware\ValidatePaystackSignature;
 use Illuminate\Foundation\Http\Kernel as HttpKernel;
@@ -69,5 +70,6 @@ class Kernel extends HttpKernel
         'verified' => \Illuminate\Auth\Middleware\EnsureEmailIsVerified::class,
         'paystack.filter.ips' => FilterPaystackIPAddresses::class,
         'paystack.validate.signature' => ValidatePaystackSignature::class,
+        'intern.profile'=> CheckInternDetails::class,
     ];
 }

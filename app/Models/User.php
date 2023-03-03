@@ -24,6 +24,7 @@ class User extends Authenticatable
         'user_code',
         'email',
         'phone',
+        'username',
         'usertype',
         'password',
         "deleted","createuser",
@@ -48,4 +49,8 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+    
+    public function intern(){
+        return $this->hasOne(Intern::class,'user_code','user_code');
+    }
 }
