@@ -36,6 +36,9 @@ class RouteController extends Controller
         return view('registration',compact('programmes','schools','levels','qualifications','districts','regions','sectors','internship_type','schools','jobroles'));
     }
     
+    public function setProfile(){
+        return view('modules.intern.setProfile');
+    }
 
     
 }

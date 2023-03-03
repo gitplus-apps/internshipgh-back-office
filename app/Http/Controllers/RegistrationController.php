@@ -146,7 +146,7 @@ class RegistrationController extends Controller
                     "experience"=> $request->experience,
                     "deleted" =>  '0',
                     "createdate" =>  date("Y-m-d"),
-                    "modifydate"=> date("Y-m-d"),
+             
                 ]);
 
                 User::insert([

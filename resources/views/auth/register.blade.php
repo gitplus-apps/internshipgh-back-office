@@ -27,33 +27,58 @@
     <div class="col-lg-10 col-md-9 col-xl-7 mx-auto">
     <div class="text-center mb-12">
     <a class="d-inline-block" href="#">
-        <img src="{{asset('assets/img/logos/logo')}}" class="h-12" alt="...">
+        <img src="{{asset('assets/img/logos/logo.png')}}" class="h-12"  width="200" height="90" alt="...">
         
     </a>
     <h1 class="ls-tight font-bolder mt-6">Create your account</h1>
     <p class="mt-2">It's free and easy</p>
     </div>
-    <form>
+    <form method="POST" action="{{ route('register') }}">
+        @csrf
         <div class="mb-5">
-            <label class="form-label" for="name">Name</label>
-            <input type="text" class="form-control" id="name" placeholder="Enter your name">
+            <label class="form-label" for="name">User Name</label>
+            <input type="text" class="form-control" id="name" placeholder="Enter your name" required name="name" value="{{ old('name')}}">
+            <div class="mt-1">
+                  @error('name')
+                    <p class="text-danger">{{$message}}</p>
+                @enderror
+            </div>
         </div>
         <div class="mb-5">
             <label class="form-label" for="email">Email address</label> 
-            <input type="email" class="form-control" id="email" placeholder="Your email address">
+            <input type="email" class="form-control" id="email" placeholder="Your email address" name="email" required value="{{old('email')}}">
+            <div class="mt-1">
+              @error('email')
+                    <p class="text-danger">{{$message}}</p>
+                @enderror
+            </div>
         </div>
         <div class="mb-5">
             <label class="form-label" for="password">Password</label> 
-            <input type="password" class="form-control" id="password" placeholder="Password" autocomplete="current-password">
+            <input type="password" class="form-control" id="password" placeholder="Password" name="password" autocomplete="current-password" required>
+            <div class="mt-1">
+                  @error('password')
+                    <p class="text-danger">{{$message}}</p>
+                @enderror
+            </div>
+        </div>
+         <div class="mb-5">
+            <label class="form-label" for="password">Confirm Password</label> 
+            <input type="password" class="form-control" id="password" placeholder="Confirm Password" name="password_confirmation" autocomplete="current-password" required>
+            <div class="mt-1">
+                  @error('password')
+                    <p class="text-danger">{{$message}}</p>
+                @enderror
+            </div>
         </div>
         <div class="mb-5">
             <div class="form-check">
-                <input class="form-check-input" type="checkbox" name="check_example" id="check-remind-me"> <label class="form-check-label font-semibold text-muted" for="check-remind-me">By creating an account means you agree to the Terms and Conditions, and our Privacy Policy
+                <input class="form-check-input" type="checkbox" name="check_example" id="check-remind-me" required> <label class="form-check-label font-semibold text-muted" for="check-remind-me">By creating an account means you agree to the Terms and Conditions, and our Privacy Policy
                 </label>
             </div>
         </div>
         <div>
-            <a href="#" class="btn btn-primary w-full">Register</a>
+            <button type="submit" class="btn btn-primary w-full">Register</button>
         </div>
     </form>
     <div class="py-5 text-center">
@@ -77,7 +102,7 @@
     </div>
     </div>
     <div class="my-6">
-    <small>Already have an account?</small> <a href="{{route('login')}}" class="text-warning text-sm font-semibold">Sign in</a></div></div></div></div></div></div></div>
+    <small>Already have an account?</small> <a href="{{route('login')}}" class="text-danger text-sm font-semibold">Sign in</a></div></div></div></div></div></div></div>
     <script src="{{asset('assets/js/main.js')}}"></script>
 </body>
 <!-- Mirrored from clever-dashboard.webpixels.work/pages/authentication/side-login.html by HTTrack Website Copier/3.x [XR&CO'2014], Sun, 20 Nov 2022 07:07:35 GMT -->

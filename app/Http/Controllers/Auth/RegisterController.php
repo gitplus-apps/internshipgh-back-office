@@ -64,10 +64,17 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
+        $transid = strtoupper(bin2hex(random_bytes(4)));
+   
+        $user_code = "USR" . $transid;
+    
         return User::create([
-            'name' => $data['name'],
+            'username' => $data['name'],
             'email' => $data['email'],
+            'user_code'=> $user_code,
+            "createdate" =>  date("Y-m-d"),
             'password' => Hash::make($data['password']),
+            "usertype"=> "USER01",
         ]);
     }
 }
