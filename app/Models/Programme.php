@@ -17,7 +17,7 @@ class Programme extends Model
     const UPDATED_AT = 'modifydate';
     
     protected $fillable = [
-        "transid","prog_code","prog_desc","deleted","createuser",
+        "transid","prog_code","prog_desc","sch_code","deleted","createuser",
         "createdate","modifyuser","modifydate"
     ];
     
