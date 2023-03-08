@@ -20,10 +20,19 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
 
+/* Mobile api routes start */
 Route::get('/schools', [MobileRegistrationController::class, 'schools']);
 Route::get('/qualifications', [MobileRegistrationController::class, 'qualifications']);
 Route::get('/levels', [MobileRegistrationController::class, 'levels']);
 Route::get('/programs', [MobileRegistrationController::class, 'programs']);
+Route::get('/regions', [MobileRegistrationController::class, 'regions']);
+Route::get('/sectors', [MobileRegistrationController::class, 'sectors']);
+Route::get('/districts', [MobileRegistrationController::class, 'districts']);
+Route::get('/roles', [MobileRegistrationController::class, 'jobRoles']);
+Route::get('/types', [MobileRegistrationController::class, 'internshipType']);
+
+/* Mobile api routes end */
+
 
 Route::post('intern_registration', [RegistrationController::class, 'store']);
 
