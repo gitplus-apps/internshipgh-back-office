@@ -83,81 +83,20 @@
                                 </ul>
                             </div>
                         </li>
-                        <li class="nav-item"><a class="nav-link" href="#sidebar-user" data-bs-toggle="collapse"
-                                role="button" aria-expanded="false" aria-controls="sidebar-user"><i
-                                    class="bi bi-people"></i> User</a>
-                            <div class="collapse" id="sidebar-user">
-                                <ul class="nav nav-sm flex-column">
-                                    <li class="nav-item"><a href="pages/user/profile.html" class="nav-link">Profile</a>
-                                    </li>
-                                    <li class="nav-item"><a href="pages/user/table-view.html" class="nav-link">Table
-                                            View</a></li>
-                                    <li class="nav-item"><a href="pages/user/permissions.html"
-                                            class="nav-link">Permissions</a></li>
-                                </ul>
-                            </div>
-                        </li>
-                        <li class="nav-item"><a class="nav-link" href="#sidebar-settings" data-bs-toggle="collapse"
-                                role="button" aria-expanded="false" aria-controls="sidebar-settings"><i
-                                    class="bi bi-gear"></i> Settings</a>
-                            <div class="collapse" id="sidebar-settings">
-                                <ul class="nav nav-sm flex-column">
-                                    <li class="nav-item"><a href="pages/settings/general.html"
-                                            class="nav-link">General</a></li>
-                                    <li class="nav-item"><a href="pages/settings/security.html"
-                                            class="nav-link">Security</a></li>
-                                    <li class="nav-item"><a href="pages/settings/team.html" class="nav-link">Team</a>
-                                    </li>
-                                    <li class="nav-item"><a href="pages/settings/billing.html"
-                                            class="nav-link">Billing</a></li>
-                                    <li class="nav-item"><a href="pages/settings/notifications.html"
-                                            class="nav-link">Notifications</a></li>
-                                </ul>
-                            </div>
-                        </li>
-                        <li class="nav-item"><a class="nav-link" href="#sidebar-authentication"
-                                data-bs-toggle="collapse" role="button" aria-expanded="false"
-                                aria-controls="sidebar-authentication"><i class="bi bi-person-bounding-box"></i>
-                                Authentication</a>
-                            <div class="collapse" id="sidebar-authentication">
-                                <ul class="nav nav-sm flex-column">
-                                    <li class="nav-item"><a href="pages/authentication/basic-login.html"
-                                            class="nav-link">Basic Login</a></li>
-                                    <li class="nav-item"><a href="pages/authentication/basic-register.html"
-                                            class="nav-link">Basic Register</a></li>
-                                    <li class="nav-item"><a href="pages/authentication/basic-recover.html"
-                                            class="nav-link">Basic Recover</a></li>
-                                    <li class="nav-item"><a href="pages/authentication/side-login.html"
-                                            class="nav-link">Side Login</a></li>
-                                    <li class="nav-item"><a href="pages/authentication/side-register.html"
-                                            class="nav-link">Side Register</a></li>
-                                    <li class="nav-item"><a href="pages/authentication/side-recover.html"
-                                            class="nav-link">Side Recover</a></li>
-                                </ul>
-                            </div>
-                        </li>
+                        
+                        
+                        
                     </ul>
                     <hr class="navbar-divider my-4 opacity-70">
-                    <ul class="navbar-nav">
-                        <li><span
-                                class="nav-link text-xs font-semibold text-uppercase text-muted ls-wide">Resources</span>
-                        </li>
-                        <li class="nav-item"><a class="nav-link py-2" href="docs/index.html"><i
-                                    class="bi bi-code-square"></i> Documentation</a></li>
-                        <li class="nav-item"><a class="nav-link py-2 d-flex align-items-center"
-                                href="https://webpixels.io/themes/clever-admin-dashboard-template/releases"
-                                target="_blank"><i class="bi bi-journals"></i> <span>Changelog</span> <span
-                                    class="badge badge-sm bg-soft-success text-success rounded-pill ms-auto">v1.0.0</span></a>
-                        </li>
-                    </ul>
+                    
                     <div class="mt-auto"></div>
                     <div class="my-4 px-lg-6 position-relative">
                         <div class="dropup w-full"><button
                                 class="btn-primary d-flex w-full py-3 ps-3 pe-4 align-items-center shadow shadow-3-hover rounded-3"
                                 type="button" data-bs-toggle="dropdown" aria-expanded="false"><span class="me-3"><img
-                                        alt="..." src="img/people/img-profile.jpg"
+                                        alt="..." src="{{asset('assets/img/people/img-profile.jpg')}}"
                                         class="avatar avatar-sm rounded-circle"> </span><span
-                                    class="flex-fill text-start text-sm font-semibold">Tahlia Mooney </span><span><i
+                                    class="flex-fill text-start text-sm font-semibold">{{auth()->user()->username}}</span><span><i
                                         class="bi bi-chevron-expand text-white text-opacity-70"></i></span></button>
                             <div class="dropdown-menu dropdown-menu-end w-full">
                                 <div class="dropdown-header"><span class="d-block text-sm text-muted mb-1">Signed in
