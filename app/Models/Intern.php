@@ -26,7 +26,15 @@ class Intern extends Model
     {
         return $this->belongsTo(User::class, 'user_code', 'user_code');
     }
-
+    
+    public function school(){
+        return $this->belongsTo(School::class, 'school_code', 'sch_code');
+    }
+    
+    public function level(){
+        return $this->belongsTo(Level::class, 'level_code', 'level_code');
+    }
+    
     public function region()
     {
         return $this->hasMany(InternRegion::class, 'inern_code', 'intern_code');

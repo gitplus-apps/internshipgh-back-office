@@ -31,6 +31,7 @@ Route::get('/districts', [MobileRegistrationController::class, 'districts']);
 Route::get('/roles', [MobileRegistrationController::class, 'jobRoles']);
 Route::get('/types', [MobileRegistrationController::class, 'internshipType']);
 
+Route::post('registration', [MobileRegistrationController::class, 'registration']);
 /* Mobile api routes end */
 
 
