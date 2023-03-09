@@ -80,7 +80,7 @@ class LoginController extends Controller
                 "qualification"=> optional($authenticatedUser->intern)->qualification->qual_desc,
                 "phone" => $authenticatedUser->phone,
                 "whatapp_number"=> optional($authenticatedUser->intern)->whatsapp,
-                
+                "intern_code"=> $authenticatedUser->intern->intern_code,  
             ];
             
             return response()->json([
