@@ -288,7 +288,7 @@
                                 <td class="logo" style="text-align: center;">
                                     <h1>
                                         <p style="margin: 0; background: #fff">
-                                            <img src="{{ $message->embed(public_path() . '/assets/img/logo.png') }}"
+                                            <img src="{{ $message->embed(public_path() . '/assets/img/logos/logo.png') }}"
                                                 width="55%">
                                             <br>
                                         </p>

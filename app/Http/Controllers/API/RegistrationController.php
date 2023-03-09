@@ -11,6 +11,7 @@ use App\Http\Resources\Mobile\LevelResource;
 use App\Http\Resources\Mobile\ProgrammeResource;
 use App\Http\Resources\Mobile\UserResource;
 use App\Http\Resources\mobile\UserResource as MobileUserResource;
+use App\Jobs\SendOnBoardingNotifications;
 use App\Models\District;
 use App\Models\InternshipType;
 use App\Models\Qualification;
@@ -32,6 +33,9 @@ use App\Models\User;
 use App\Models\InternJobRole;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Http\JsonResponse;
+use Carbon\Carbon;
+
+
 
 class RegistrationController extends Controller
 {
@@ -118,7 +122,7 @@ class RegistrationController extends Controller
         ]);
     }
 
-    public function registration(Request $request)
+    public function registration(Request $request): JsonResponse
     {
 
         $validator = Validator::make(
@@ -174,7 +178,7 @@ class RegistrationController extends Controller
                 "ok" => false,
                 "msg" => "Account creation failed. " . join(" ,", $validator->errors()->all()),
                 "error" => [
-                    "msg" => "Request validation failed" . join(" ,", $validator->errors()->all()),
+                    "msg" => "Request validation failed. " . join(" ,", $validator->errors()->all()),
                     "fix" => "Please fix all validation errors",
                 ]
             ]);
@@ -293,37 +297,15 @@ class RegistrationController extends Controller
                             "modifydate"=> date('Y-m-d'),
                         ]);
                     }
-
-
-
-
-         
-
-            $message = <<<MSG
-            Hello {$request->fname} {$request->lname}, welcome to Internship Ghana.
-            Here, we link students to the right job environment to acquire the appropriate and relevant skillset needed in their desired field of practice.
-            MSG;
-
-            // if (!empty($request->phone)) {
-            //     $sms = new Sms(env("ARKESEL_SMS_SENDER_ID", "InternGh"), env("ARKESEL_SMS_API_KEY"));
-            //     $sms->send($request->phone, $message);
-            // };
-
-            // Mail::to($request->email)->send(new InternRegistrationEmail([
-
-            //     "fname" => $request->fname,
-            //     "lname" => $request->lname,
-            // ]));
-            
           
-
+            
             
             $payload = [
                 "fname"=> $request->fname,
                 "mname"=> $request->mname,
                 "lname"=> $request->lname,
                 "school_code"=> $request->school_code,
-                "school_name"=> $user->intern->school->sch_desc,
+                "school_name"=> optional($user->intern)->school->sch_desc,
                 "level" => $user->intern->level->level_desc,
                 "user_code"=> $user->user_code,
                 "email"=> $user->email,
@@ -332,6 +314,8 @@ class RegistrationController extends Controller
                 "whatapp_number"=> $user->intern->whatsapp,
                 
             ];
+            
+            SendOnBoardingNotifications::dispatch($user)->delay(Carbon::now()->addSeconds(10));
             
             DB::commit();
             
