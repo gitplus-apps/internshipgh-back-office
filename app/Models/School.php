@@ -16,7 +16,7 @@ class School extends Model
     const UPDATED_AT = 'modifydate';
     
     protected $fillable = [
-        "transid","school_code","branch_code","branch_desc","source","import","export","deleted","createuser",
+        "transid","sch_code","sch_desc","sch_type","sch_website","sch_bio","sch_phone","deleted","createuser",
         "createdate","modifyuser","modifydate"
     ];
 }
