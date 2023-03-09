@@ -13,7 +13,7 @@ class Intern extends Model
     const UPDATED_AT = 'modifydate';
     public $incrementing = false;
     protected $table = "tblintern";
-    protected $primaryKey = "transid";
+    protected $primaryKey = "intern_code";
     protected $fillable = [
         "transid", "intern_type", "intern_code", "school_code", "fname", "mname", "lname",
         "whatsapp", "prog_code", "user_code", "gender", "paid", "payment_reference",
@@ -37,7 +37,7 @@ class Intern extends Model
     
     public function region()
     {
-        return $this->hasMany(InternRegion::class, 'inern_code', 'intern_code');
+        return $this->hasMany(InternRegion::class, 'intern_code', 'intern_code');
     }
 
     public function district()
@@ -47,7 +47,7 @@ class Intern extends Model
 
     public function sectors()
     {
-        return $this->hasMany(InternSector::class, 'intern_code', 'intern_code');
+        return $this->belongsToMany(Sector::class,"tblintern_sector","intern_code","sector_code");
     }
 
     public function qualification()
@@ -58,5 +58,13 @@ class Intern extends Model
     public function payment()
     {
         return $this->hasOne(Payment::class, "intern_code", "intern_code");
+    }
+    
+    public function type(){
+        return $this->belongsTo(InternshipType::class, "intern_type","type_code");
+    }
+    
+    public function program(){
+        return $this->belongsTo(Programme::class,"prog_code","prog_code");
     }
 }

@@ -6,6 +6,7 @@ use App\Http\Controllers\RegistrationController;
 use App\Http\Controllers\PaystackPaymentController;
 use App\Http\Controllers\API\RegistrationController as MobileRegistrationController;
 use App\Http\Controllers\API\LoginController as MobileLoginController;
+use App\Http\Controllers\Admin\InternController as AdminInternController;
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -48,3 +49,11 @@ Route::prefix("payments")->group(function () {
             "paystack.validate.signature",
         ]);
 });
+
+
+
+/* Admin Api routes start*/
+    Route::prefix("admin")->group(function(){
+        Route::get('interns', [AdminInternController::class, 'interns']); 
+    });
+/* Admin Api routes end */

@@ -11,7 +11,7 @@ class InternSector extends Model
     
     protected $table = "tblintern_sector";
     
-    protected $primaryKey = "transid";
+    protected $primaryKey = "sector_code";
     public $incrementing = false;
     const CREATED_AT = 'createdate';
     const UPDATED_AT = 'modifydate';
