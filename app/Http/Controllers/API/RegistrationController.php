@@ -141,6 +141,8 @@ class RegistrationController extends Controller
                 "job_roles"=>['required'],
                 "internship_type"=>['required'],
                 "password"=> ['required'],
+                "regions"=> ['required'],
+                "cities"=> ['required']
             ],
             [
                 "fname.required" => "First name is required",
@@ -163,15 +165,16 @@ class RegistrationController extends Controller
                 "end_date.required"=> "End Date Field is required",
                 "internship_type.required"=> "Internship Type Field is required",
                 "password.required"=> "Password Field is required",
+                "cities.required"=> "Cities Field is required",
             ]
         );
 
         if ($validator->fails()) {
             return response()->json([
                 "ok" => false,
-                "msg" => "Account creation failed. " . join(" ", $validator->errors()->all()),
+                "msg" => "Account creation failed. " . join(" ,", $validator->errors()->all()),
                 "error" => [
-                    "msg" => "Request validation failed" . join(" ", $validator->errors()->all()),
+                    "msg" => "Request validation failed" . join(" ,", $validator->errors()->all()),
                     "fix" => "Please fix all validation errors",
                 ]
             ]);
@@ -223,7 +226,7 @@ class RegistrationController extends Controller
              
                 ]);
 
-                $user = User::insert([
+                $user = User::create([
                    
                     "user_code" => $user_code,
                     "phone"=> $request->phone,
@@ -312,7 +315,7 @@ class RegistrationController extends Controller
             //     "lname" => $request->lname,
             // ]));
             
-            
+          
 
             
             $payload = [
