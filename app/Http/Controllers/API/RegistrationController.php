@@ -306,12 +306,12 @@ class RegistrationController extends Controller
                 "lname"=> $request->lname,
                 "school_code"=> $request->school_code,
                 "school_name"=> optional($user->intern)->school->sch_desc,
-                "level" => $user->intern->level->level_desc,
+                "level" => optional($user->intern)->level->level_desc,
                 "user_code"=> $user->user_code,
                 "email"=> $user->email,
-                "qualification"=> $user->intern->qualification->qual_desc,
+                "qualification"=> optional($user->intern)->qualification->qual_desc,
                 "phone" => $user->phone,
-                "whatapp_number"=> $user->intern->whatsapp,
+                "whatapp_number"=> optional($user->intern)->whatsapp,
                 
             ];
             

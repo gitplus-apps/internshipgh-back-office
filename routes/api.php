@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\RegistrationController;
 use App\Http\Controllers\PaystackPaymentController;
 use App\Http\Controllers\API\RegistrationController as MobileRegistrationController;
+use App\Http\Controllers\API\LoginController as MobileLoginController;
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -32,6 +33,7 @@ Route::get('/roles', [MobileRegistrationController::class, 'jobRoles']);
 Route::get('/types', [MobileRegistrationController::class, 'internshipType']);
 
 Route::post('registration', [MobileRegistrationController::class, 'registration']);
+Route::post('login', [MobileLoginController::class, 'login']);
 /* Mobile api routes end */
 
 
