@@ -137,16 +137,7 @@ class RegistrationController extends Controller
                 "prog_code"=> ['required'],
                 "qual_code"=>  ['required'],
                 "level_code" => ['required'],
-                "sectors" =>['required'],
-                "districts"=> ['required'],
-                "experience"=> ['required'],
-                "start_date"=> ['required'],
-                "end_date"=> ['required'],
-                "job_roles"=>['required'],
-                "internship_type"=>['required'],
-                "password"=> ['required'],
-                "regions"=> ['required'],
-                "cities"=> ['required']
+                "password"=> ['required']
             ],
             [
                 "fname.required" => "First name is required",
@@ -184,16 +175,6 @@ class RegistrationController extends Controller
             ]);
         }
 
-        $checkemail = User::where("email", $request->email)->first();
-        $checkphone = User::where("phone",$request->phone)->first();
-
-        if (!empty($checkemail) || !empty($checkphone)) {
-            return response()->json([
-                "ok" => false,
-                "msg" => "Account creation failed, email or phone number already taken"
-            ]);
-        }
-
 
 
 
@@ -216,15 +197,10 @@ class RegistrationController extends Controller
                     "gender"=>$request->gender,
                     "phone" => $request->phone,
                     "paid"=> 0,
-                    "whatsapp"=> $request->whatsapp,
-                    "intern_type"=> $request->internship_type,
                     "school_code"=>$request->school_code,
                     "prog_code"=> $request->prog_code,
                     "qual_code"=>$request->qual_code,
                     "level_code"=> $request->level_code,
-                    "start_date"=> $request->start_date,
-                    "end_date"=> $request->end_date,
-                    "experience"=> $request->experience,
                     "deleted" =>  '0',
                     "createdate" =>  date("Y-m-d"),
              
@@ -243,60 +219,60 @@ class RegistrationController extends Controller
                 ]);
                 
                 
-                foreach($request->regions as $region_code){
-                    InternRegion::insert([
-                        "transid"=>  strtoupper(bin2hex(random_bytes(4))),
-                        "intern_code"=> $intern_code,
-                        "region_code" => $region_code,
-                        "deleted"=>'0',
-                        "createdate"=> date('Y-m-d'),
-                        "modifydate"=> date('Y-m-d'),
-                    ]);
-                }
+                // foreach($request->regions as $region_code){
+                //     InternRegion::insert([
+                //         "transid"=>  strtoupper(bin2hex(random_bytes(4))),
+                //         "intern_code"=> $intern_code,
+                //         "region_code" => $region_code,
+                //         "deleted"=>'0',
+                //         "createdate"=> date('Y-m-d'),
+                //         "modifydate"=> date('Y-m-d'),
+                //     ]);
+                // }
 
-                foreach($request->districts as $district_code){
-                    InternDistrict::insert([
-                        "transid"=>  strtoupper(bin2hex(random_bytes(4))),
-                        "intern_code"=> $intern_code,
-                        "district_code" => $district_code,
-                        "deleted"=>'0',
-                        "createdate"=> date('Y-m-d'),
-                        "modifydate"=> date('Y-m-d'),
-                    ]);
-                }
-                    foreach($request->sectors as $sector_code){
-                        InternSector::insert([
-                            "transid"=>  strtoupper(bin2hex(random_bytes(4))),
-                            "intern_code"=> $intern_code,
-                            "sector_code" => $sector_code,
-                            "deleted"=>'0',
-                            "createdate"=> date('Y-m-d'),
-                            "modifydate"=> date('Y-m-d'),
-                        ]);
-                    }
+                // foreach($request->districts as $district_code){
+                //     InternDistrict::insert([
+                //         "transid"=>  strtoupper(bin2hex(random_bytes(4))),
+                //         "intern_code"=> $intern_code,
+                //         "district_code" => $district_code,
+                //         "deleted"=>'0',
+                //         "createdate"=> date('Y-m-d'),
+                //         "modifydate"=> date('Y-m-d'),
+                //     ]);
+                // }
+                //     foreach($request->sectors as $sector_code){
+                //         InternSector::insert([
+                //             "transid"=>  strtoupper(bin2hex(random_bytes(4))),
+                //             "intern_code"=> $intern_code,
+                //             "sector_code" => $sector_code,
+                //             "deleted"=>'0',
+                //             "createdate"=> date('Y-m-d'),
+                //             "modifydate"=> date('Y-m-d'),
+                //         ]);
+                //     }
                     
 
-                    foreach($request->cities as $city){
-                        InternCity::insert([
-                            "transid"=>  strtoupper(bin2hex(random_bytes(4))),
-                            "intern_code"=> $intern_code,
-                            "city_desc" => strtoupper($city),
-                            "deleted"=>'0',
-                            "createdate"=> date('Y-m-d'),
-                            "modifydate"=> date('Y-m-d'),
-                        ]);
-                    }
+                //     foreach($request->cities as $city){
+                //         InternCity::insert([
+                //             "transid"=>  strtoupper(bin2hex(random_bytes(4))),
+                //             "intern_code"=> $intern_code,
+                //             "city_desc" => strtoupper($city),
+                //             "deleted"=>'0',
+                //             "createdate"=> date('Y-m-d'),
+                //             "modifydate"=> date('Y-m-d'),
+                //         ]);
+                //     }
 
-                    foreach($request->job_roles as $role_code){
-                        InternJobRole::insert([
-                            "transid"=>  strtoupper(bin2hex(random_bytes(4))),
-                            "intern_code"=> $intern_code,
-                            "role_code" => $role_code,
-                            "deleted"=>'0',
-                            "createdate"=> date('Y-m-d'),
-                            "modifydate"=> date('Y-m-d'),
-                        ]);
-                    }
+                //     foreach($request->job_roles as $role_code){
+                //         InternJobRole::insert([
+                //             "transid"=>  strtoupper(bin2hex(random_bytes(4))),
+                //             "intern_code"=> $intern_code,
+                //             "role_code" => $role_code,
+                //             "deleted"=>'0',
+                //             "createdate"=> date('Y-m-d'),
+                //             "modifydate"=> date('Y-m-d'),
+                //         ]);
+                //     }
           
             
             
