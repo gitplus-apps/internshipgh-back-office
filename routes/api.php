@@ -34,6 +34,7 @@ Route::get('/roles', [MobileRegistrationController::class, 'jobRoles']);
 Route::get('/types', [MobileRegistrationController::class, 'internshipType']);
 
 Route::post('registration', [MobileRegistrationController::class, 'registration']);
+Route::post('/update/registration',[MobileRegistrationController::class, 'updateRegistration']);
 Route::post('login', [MobileLoginController::class, 'login']);
 /* Mobile api routes end */
 
