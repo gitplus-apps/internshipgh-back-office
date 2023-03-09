@@ -215,66 +215,9 @@ class RegistrationController extends Controller
                     "deleted"=>'0',
                     "password" =>Hash::make($request->password),
                     "createdate" =>  date("Y-m-d"),
-                    "modifydate"=> date("Y-m-d"),
+                   
                 ]);
                 
-                
-                // foreach($request->regions as $region_code){
-                //     InternRegion::insert([
-                //         "transid"=>  strtoupper(bin2hex(random_bytes(4))),
-                //         "intern_code"=> $intern_code,
-                //         "region_code" => $region_code,
-                //         "deleted"=>'0',
-                //         "createdate"=> date('Y-m-d'),
-                //         "modifydate"=> date('Y-m-d'),
-                //     ]);
-                // }
-
-                // foreach($request->districts as $district_code){
-                //     InternDistrict::insert([
-                //         "transid"=>  strtoupper(bin2hex(random_bytes(4))),
-                //         "intern_code"=> $intern_code,
-                //         "district_code" => $district_code,
-                //         "deleted"=>'0',
-                //         "createdate"=> date('Y-m-d'),
-                //         "modifydate"=> date('Y-m-d'),
-                //     ]);
-                // }
-                //     foreach($request->sectors as $sector_code){
-                //         InternSector::insert([
-                //             "transid"=>  strtoupper(bin2hex(random_bytes(4))),
-                //             "intern_code"=> $intern_code,
-                //             "sector_code" => $sector_code,
-                //             "deleted"=>'0',
-                //             "createdate"=> date('Y-m-d'),
-                //             "modifydate"=> date('Y-m-d'),
-                //         ]);
-                //     }
-                    
-
-                //     foreach($request->cities as $city){
-                //         InternCity::insert([
-                //             "transid"=>  strtoupper(bin2hex(random_bytes(4))),
-                //             "intern_code"=> $intern_code,
-                //             "city_desc" => strtoupper($city),
-                //             "deleted"=>'0',
-                //             "createdate"=> date('Y-m-d'),
-                //             "modifydate"=> date('Y-m-d'),
-                //         ]);
-                //     }
-
-                //     foreach($request->job_roles as $role_code){
-                //         InternJobRole::insert([
-                //             "transid"=>  strtoupper(bin2hex(random_bytes(4))),
-                //             "intern_code"=> $intern_code,
-                //             "role_code" => $role_code,
-                //             "deleted"=>'0',
-                //             "createdate"=> date('Y-m-d'),
-                //             "modifydate"=> date('Y-m-d'),
-                //         ]);
-                //     }
-          
-            
             
             $payload = [
                 "fname"=> $request->fname,
@@ -283,6 +226,7 @@ class RegistrationController extends Controller
                 "school_code"=> $request->school_code,
                 "school_name"=> optional($user->intern)->school->sch_desc,
                 "level" => optional($user->intern)->level->level_desc,
+                "intern_code"=> optional($user->intern)->intern_code,
                 "user_code"=> $user->user_code,
                 "email"=> $user->email,
                 "qualification"=> optional($user->intern)->qualification->qual_desc,
@@ -291,9 +235,12 @@ class RegistrationController extends Controller
                 
             ];
             
+         
+            
             SendOnBoardingNotifications::dispatch($user)->delay(Carbon::now()->addSeconds(10));
             
             DB::commit();
+            
             
             return response()->json([
                 "ok" => true,
@@ -316,6 +263,133 @@ class RegistrationController extends Controller
             ]);
         }
 
+    }
+
+    public function updateRegistration(Request $request): JsonResponse
+    {
+        try{
+            
+            $validator = Validator::make(
+            $request->all(),
+            [
+                "intern_code" => "required |exists:tblintern,intern_code",
+                "sectors"=>"required",
+                "districts"=>"required",
+                "cities" => "required",
+                "job_roles" => "required",
+                "experience" =>"required",
+                "regions"=>"required",
+                "internship_type"=> "required",
+                
+            ],
+            [
+                "intern_code.required"=> "Intern Code is required",
+                "intern_code.exists" => "Intern Code supplied does not exist",
+                "experience.required"=> "Work Experience is required",
+                "sectors.required"=> "Industry Field is required",
+                "regions" => "Region Field is required",
+                "districts.required"=>  "District Field is required",
+                "job_roles.required"=> "Job Roles Field is required",
+                "internship_type.required"=> "Internship Type Field is required",
+                "cities.required"=> "Cities Field is required",
+            ]
+        );
+
+        if ($validator->fails()) {
+            return response()->json([
+                "ok" => false,
+                "msg" => "Account creation failed. " . join(" ,", $validator->errors()->all()),
+                "error" => [
+                    "msg" => "Request validation failed. " . join(" ,", $validator->errors()->all()),
+                    "fix" => "Please fix all validation errors",
+                ]
+            ]);
+        }
+        
+        $intern  = Intern::where("intern_code",$request->intern_code)->where('deleted','0')->first();
+        
+        DB::beginTransaction();
+        $intern->update([
+            "experience" => $request->experience,
+            "internship_type" => $request->internship_type,
+        ]);
+        
+        foreach($request->regions as $region_code){
+                    InternRegion::insert([
+                        "transid"=>  strtoupper(bin2hex(random_bytes(4))),
+                        "intern_code"=> $request->intern_code,
+                        "region_code" => $region_code,
+                        "deleted"=>'0',
+                        "createdate"=> date('Y-m-d'),
+                        "modifydate"=> date('Y-m-d'),
+                    ]);
+                }
+
+                foreach($request->districts as $district_code){
+                    InternDistrict::insert([
+                        "transid"=>  strtoupper(bin2hex(random_bytes(4))),
+                        "intern_code"=> $request->intern_code,
+                        "district_code" => $district_code,
+                        "deleted"=>'0',
+                        "createdate"=> date('Y-m-d'),
+                        "modifydate"=> date('Y-m-d'),
+                    ]);
+                }
+                    foreach($request->sectors as $sector_code){
+                        InternSector::insert([
+                            "transid"=>  strtoupper(bin2hex(random_bytes(4))),
+                            "intern_code"=> $request->intern_code,
+                            "sector_code" => $sector_code,
+                            "deleted"=>'0',
+                            "createdate"=> date('Y-m-d'),
+                            "modifydate"=> date('Y-m-d'),
+                        ]);
+                    }
+                    
+
+                    foreach($request->cities as $city){
+                        InternCity::insert([
+                            "transid"=>  strtoupper(bin2hex(random_bytes(4))),
+                            "intern_code"=> $request->intern_code,
+                            "city_desc" => strtoupper($city),
+                            "deleted"=>'0',
+                            "createdate"=> date('Y-m-d'),
+                            "modifydate"=> date('Y-m-d'),
+                        ]);
+                    }
+
+                    foreach($request->job_roles as $role_code){
+                        InternJobRole::insert([
+                            "transid"=>  strtoupper(bin2hex(random_bytes(4))),
+                            "intern_code"=> $request->intern_code,
+                            "role_code" => $role_code,
+                            "deleted"=>'0',
+                            "createdate"=> date('Y-m-d'),
+                            "modifydate"=> date('Y-m-d'),
+                        ]);
+                    }
+                    
+                DB::commit();
+                
+                return response()->json([
+                    "ok"=> true,
+                    "msg"=> "Registration details updated successfully",
+                                    
+                ]);
+        
+        }catch(Exception $e){
+            
+            DB::rollBack();
+            
+            Log::error($e->getMessage());
+            return response()->json([
+                "ok"=> false,
+                 "msg"=> "Updating User registration displays failed",
+                 "error"=>[
+                    "msg"=> $e->getMessage(),
+                 ]
+                 ]);
+        }   
     }
 
 }
