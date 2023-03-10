@@ -19,4 +19,8 @@ class School extends Model
         "transid","sch_code","sch_desc","sch_type","sch_website","sch_bio","sch_phone","deleted","createuser",
         "createdate","modifyuser","modifydate"
     ];
+    
+    public function type(){
+        return $this->belongsTo(SchoolType::class,'sch_type','sch_type');
+    }
 }

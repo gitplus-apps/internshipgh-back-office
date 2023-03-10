@@ -21,5 +21,9 @@ class Programme extends Model
         "createdate","modifyuser","modifydate"
     ];
     
+    public function school(){
+       return $this->belongsTo(School::class,'sch_code','sch_code');
+    }
+    
     
 }

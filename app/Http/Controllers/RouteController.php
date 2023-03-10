@@ -12,12 +12,17 @@ use App\Models\Sector;
 use App\Models\Region;
 use App\Models\InternshipType;
 use App\Models\RoleCategory;
-use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Auth;
 class RouteController extends Controller
 {
    
     public function dashboard(){
-        return view('dashboard');
+        
+        if(Auth::user()->usertype === "intern"){
+            return view('modules.dashboards.intern');
+        }
+        
+        return view('modules.dashboards.admin');
     }
     
     public function registration(){
@@ -50,7 +55,41 @@ class RouteController extends Controller
 
         return view('modules.intern.setProfile', compact('sectors','regions','districts','jobroles','schools','internship_type','levels','programmes','qualifications'));
     }
-
     
+    public function getInterns(){
+        return view('modules.interns.index');
+    }
+    
+    public function getOrganizations(){
+        return view('modules.organizations.index');
+    }
+    
+    public function getSchools(){
+        return view('modules.schools.index');
+    }
+    
+    public function getSectors(){
+        return view("modules.sectors.index");
+    }
+    
+    public function getPrograms(){
+        return view("modules.programmes.index");
+    }
+    
+    public function getJobRoles(){
+        return view("modules.job_roles.index");
+    }
+
+    public function getRegions(){
+        return view("modules.regions.index");
+    }
+    
+    public function getDistricts(){
+        return view("modules.districts.index");
+    }
+    
+    public function getUsers(){
+        return view("modules.users.index");
+    }
 }
 

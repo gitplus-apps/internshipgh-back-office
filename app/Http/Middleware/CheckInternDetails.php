@@ -20,7 +20,7 @@ class CheckInternDetails
     
         $user = Auth::user();
  
-        if($user->usertype === "USER01"  && $user->intern== null ){
+        if($user->usertype === "intern"  && $user->intern== null ){
             
             
             return redirect()->route('profile');

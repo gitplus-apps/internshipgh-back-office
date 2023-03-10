@@ -64,8 +64,6 @@ class RegistrationController extends Controller
                 "sectors" => ['required'],
                 "districts" => ['required'],
                 "experience" => ['required'],
-                "start_date" => ['required'],
-                "end_date" => ['required'],
                 "job_roles" => ['required'],
                 "internship_type" => ['required'],
                 "regions" => ['required'],
@@ -88,8 +86,6 @@ class RegistrationController extends Controller
                 "districts.required" =>  "District Field is required",
                 "cities.required" => "City  Field is required",
                 "job_roles.required" => "Job Roles Field is required",
-                "start_date.required" => "Start Date Field is required",
-                "end_date.required" => "End Date Field is required",
                 "internship_type.required" => "Internship Type Field is required",
             ]
         );
@@ -193,7 +189,7 @@ class RegistrationController extends Controller
             
         } catch (\Exception $e) {
             DB::rollBack();
-            return back()->withErrors($validator)->withInput()->with('status','Oops!, Internal error occured');
+            return back()->withErrors($validator)->withInput()->with('error','Oops!, Internal error occured');
             
         }
     }

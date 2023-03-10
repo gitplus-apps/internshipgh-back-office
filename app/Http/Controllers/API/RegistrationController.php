@@ -211,7 +211,7 @@ class RegistrationController extends Controller
                     "user_code" => $user_code,
                     "phone"=> $request->phone,
                     "email"=> $request->email,
-                    "usertype"=> "USER01",
+                    "usertype"=> "intern",
                     "deleted"=>'0',
                     "password" =>Hash::make($request->password),
                     "createdate" =>  date("Y-m-d"),
@@ -375,7 +375,7 @@ class RegistrationController extends Controller
                 return response()->json([
                     "ok"=> true,
                     "msg"=> "Registration details updated successfully",
-                                    
+                    "data"=> $request->all()
                 ]);
         
         }catch(Exception $e){

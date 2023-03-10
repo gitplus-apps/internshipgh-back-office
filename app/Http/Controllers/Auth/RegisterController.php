@@ -74,7 +74,7 @@ class RegisterController extends Controller
             'user_code'=> $user_code,
             "createdate" =>  date("Y-m-d"),
             'password' => Hash::make($data['password']),
-            "usertype"=> "USER01",
+            "usertype"=> "intern",
         ]);
     }
 }
