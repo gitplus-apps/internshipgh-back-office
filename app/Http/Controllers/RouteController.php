@@ -37,7 +37,18 @@ class RouteController extends Controller
     }
     
     public function setProfile(){
-        return view('modules.intern.setProfile');
+
+        $sectors = Sector::all();
+        $regions = Region::all();
+        $districts = District::all();
+        $jobroles = RoleCategory::all();
+        $schools = School::all();
+        $internship_type = InternshipType::all();
+        $levels = Level::all();
+        $programmes = Programme::all();
+        $qualifications =  Qualification::all();
+
+        return view('modules.intern.setProfile', compact('sectors','regions','districts','jobroles','schools','internship_type','levels','programmes','qualifications'));
     }
 
     

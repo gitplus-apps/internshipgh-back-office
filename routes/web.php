@@ -19,6 +19,7 @@ Route::group(['middleware' => ['auth','intern.profile'] ], function(){
     Route::get('/', [RouteController::class, 'dashboard']);
     Route::get('/home', [RouteController::class, 'dashboard'])->name('home');
     Route::get('/add/profile', [RouteController::class, 'setProfile'])->name('profile')->withoutMiddleware('intern.profile');
+    Route::post('/register_user',[RegistrationController::class,'store'])->name('registerUser')->withoutMiddleware('intern.profile');
 });
 
 
