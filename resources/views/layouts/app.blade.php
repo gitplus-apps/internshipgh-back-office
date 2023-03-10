@@ -1,72 +1,90 @@
 <!doctype html>
-<html lang="en" data-theme="dark">
-<!-- Mirrored from clever-dashboard.webpixels.work/ by HTTrack Website Copier/3.x [XR&CO'2014], Sun, 20 Nov 2022 07:05:57 GMT -->
-<!-- Added by HTTrack -->
-<meta http-equiv="content-type" content="text/html;charset=UTF-8" /><!-- /Added by HTTrack -->
+<html lang="en">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
-    <meta name="color-scheme" content="dark light">
+    <meta charset="utf-8" />
+    <title>Dashboard | Internship Ghana</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta content="Premium Multipurpose Admin & Dashboard Template" name="description" />
+    <meta content="Themesbrand" name="author" />
+    <!-- App favicon -->
+    <link rel="shortcut icon" href="{{asset('assets/images/favicon.ico')}}">
 
-    <title>Internship - Ghana</title>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.2/font/bootstrap-icons.css">
-    <link rel="stylesheet" type="text/css" href="{{ asset('assets/css/main.css') }}">
-    <link rel="stylesheet" type="text/css" href="{{ asset('assets/css/utilities.css') }}"><!-- Google Tag Manager -->
-    <link rel="icon" href="{{ asset('assets/img/favicon/favicon.png') }}" type="image/x-icon">
-    <link rel="shortcut icon" href="{{ asset('assets/img/favicon/favicon.png') }}" type="image/x-icon">
-    <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
+    <!-- Bootstrap Css -->
+    <link href="{{asset('assets/css/bootstrap.min.css')}}" id="bootstrap-style" rel="stylesheet" type="text/css" />
 
-    <!-- End Google Tag Manager -->
-    <script defer data-domain="webpixels.works" src="https://plausible.io/js/plausible.js"></script>
+    <!-- Icons Css -->
+    <link href="{{asset('assets/css/icons.min.css')}}" rel="stylesheet" type="text/css" />
+    <!-- App Css-->
+    <link href="{{asset('assets/css/app.min.css')}}" id="app-style" rel="stylesheet" type="text/css" />
+
+
 </head>
 
-<body>
-    <div class="d-flex flex-column flex-lg-row h-lg-full bg-surface-secondary">
 
-        @include('includes.intern.sidebar')
+<body data-sidebar="dark">
 
-        <div class="flex-lg-1 h-screen overflow-y-lg-auto">
-            @include('includes.intern.header')
-            <header>
-                <div class="container-fluid">
-                    <div class="border-bottom pt-6">
-                        <div class="row align-items-center">
-                            <div class="col-sm col-12">
-                                <h1 class="h2 ls-tight"><span class="d-inline-block me-3">👋</span>Hi,
-                                    {{ auth()->user()->username }}!</h1>
-                            </div>
+<!-- Loader -->
+<div id="preloader">
+    <div id="status">
+        <div class="spinner"></div>
+    </div>
+</div>
 
-                        </div>
+<!-- Begin page -->
+<div id="layout-wrapper">
 
+   @include('includes.header')
+
+    <!-- ========== Left Sidebar Start ========== -->
+    @include('includes.sidebar')
+    <!-- Left Sidebar End -->
+
+    <!-- ============================================================== -->
+    <!-- Start right Content here -->
+    <!-- ============================================================== -->
+    <div class="main-content">
+        
+        @yield('page-content')
+        <!-- End Page-content -->
+
+        <footer class="footer">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-12">
+                        ©
+                        <script>document.write(new Date().getFullYear())</script> Gitplus Limited<span class="d-none d-sm-inline-block"> 
+                            </span>
                     </div>
                 </div>
-            </header>
-
-            @yield('content')
-
-        </div>
+            </div>
+        </footer>
     </div>
-    <script src="https://code.jquery.com/jquery-3.6.4.min.js"
-        integrity="sha256-oP6HI9z1XaZNBrJURtCoUT5SUnxFr8s3BzRl+cbzUq8=" crossorigin="anonymous"></script>
+    <!-- end main content-->
+
+</div>
+<!-- END layout-wrapper -->
 
 
-    <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
-    <script>
-        $(document).ready(function() {
-            $(".s2").select2({
-                // Give all select2's a placeholder
-                placeholder: {
-                    id: '-1', // the value of the option
-                    text: '',
-                },
-                width: '100%',
-                allowClear: true,
-            });
-        });
-    </script>
-    <script src="{{ asset('assets/js/main.js') }}"></script>
+
+<!-- Right bar overlay-->
+<div class="rightbar-overlay"></div>
+
+<!-- JAVASCRIPT -->
+<script src="{{asset('assets/libs/jquery/jquery.min.js')}}"></script>
+<script src="{{asset('assets/libs/bootstrap/js/bootstrap.bundle.min.js')}}"></script>
+<script src="{{asset('assets/libs/metismenu/metisMenu.min.js')}}"></script>
+<script src="{{asset('assets/libs/simplebar/simplebar.min.js')}}"></script>
+<script src="{{asset('assets/libs/node-waves/waves.min.js')}}"></script>
+
+<!--Morris Chart-->
+<script src="{{asset('assets/libs/morris.js/morris.min.js')}}"></script>
+<script src="{{asset('assets/libs/raphael/raphael.min.js')}}"></script>
+
+<script src="{{asset('assets/js/pages/dashboard.init.js')}}"></script>
+
+<script src="{{asset('assets/js/app.js')}}"></script>
+
 </body>
-<!-- Mirrored from clever-dashboard.webpixels.work/ by HTTrack Website Copier/3.x [XR&CO'2014], Sun, 20 Nov 2022 07:06:53 GMT -->
 
 </html>

@@ -50,7 +50,41 @@ class RouteController extends Controller
 
         return view('modules.intern.setProfile', compact('sectors','regions','districts','jobroles','schools','internship_type','levels','programmes','qualifications'));
     }
-
     
+    public function getInterns(){
+        return view('modules.interns.index');
+    }
+    
+    public function getOrganizations(){
+        return view('modules.organizations.index');
+    }
+    
+    public function getSchools(){
+        return view('modules.schools.index');
+    }
+    
+    public function getSectors(){
+        return view("modules.sectors.index");
+    }
+    
+    public function getPrograms(){
+        return view("modules.programs.index");
+    }
+    
+    public function getJobRoles(){
+        return view("modules.roles.index");
+    }
+
+    public function getRegions(){
+        return view("modules.regions.index");
+    }
+    
+    public function getDistricts(){
+        return view("modules.districts.index");
+    }
+    
+    public function getUsers(){
+        return view("modules.users.index");
+    }
 }
 
