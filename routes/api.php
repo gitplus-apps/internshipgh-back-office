@@ -8,6 +8,7 @@ use App\Http\Controllers\API\RegistrationController as MobileRegistrationControl
 use App\Http\Controllers\API\LoginController as MobileLoginController;
 use App\Http\Controllers\Admin\InternController as AdminInternController;
 use App\Http\Controllers\SectorController;
+use App\Http\Controllers\SchoolController;
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -67,4 +68,7 @@ Route::prefix("payments")->group(function () {
     
        Route::get("sectors",[SectorController::class ,'index']);
        Route::post("sectors",[SectorController::class,'store']);
+       
+       Route::get("schools",[SchoolController::class ,'index']);
+       Route::post("schools",[SchoolController::class,'store']);
 /* Admin Api routes end */
