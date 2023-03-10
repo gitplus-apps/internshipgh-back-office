@@ -44,6 +44,8 @@
           
         </div>
     </div>
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"
+        integrity="sha256-oP6HI9z1XaZNBrJURtCoUT5SUnxFr8s3BzRl+cbzUq8=" crossorigin="anonymous"></script>
     <script src="{{asset('assets/js/main.js')}}"></script>
 </body>
 <!-- Mirrored from clever-dashboard.webpixels.work/ by HTTrack Website Copier/3.x [XR&CO'2014], Sun, 20 Nov 2022 07:06:53 GMT -->
