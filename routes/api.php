@@ -7,6 +7,7 @@ use App\Http\Controllers\PaystackPaymentController;
 use App\Http\Controllers\API\RegistrationController as MobileRegistrationController;
 use App\Http\Controllers\API\LoginController as MobileLoginController;
 use App\Http\Controllers\Admin\InternController as AdminInternController;
+use App\Http\Controllers\SectorController;
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -23,19 +24,24 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 });
 
 /* Mobile api routes start */
-Route::get('/schools', [MobileRegistrationController::class, 'schools']);
-Route::get('/qualifications', [MobileRegistrationController::class, 'qualifications']);
-Route::get('/levels', [MobileRegistrationController::class, 'levels']);
-Route::get('/programs', [MobileRegistrationController::class, 'programs']);
-Route::get('/regions', [MobileRegistrationController::class, 'regions']);
-Route::get('/sectors', [MobileRegistrationController::class, 'sectors']);
-Route::get('/districts', [MobileRegistrationController::class, 'districts']);
-Route::get('/roles', [MobileRegistrationController::class, 'jobRoles']);
-Route::get('/types', [MobileRegistrationController::class, 'internshipType']);
+Route::prefix("v1")->group(function(){
+    
+    Route::get('/schools', [MobileRegistrationController::class, 'schools']);
+    Route::get('/qualifications', [MobileRegistrationController::class, 'qualifications']);
+    Route::get('/levels', [MobileRegistrationController::class, 'levels']);
+    Route::get('/programs', [MobileRegistrationController::class, 'programs']);
+    Route::get('/regions', [MobileRegistrationController::class, 'regions']);
+    Route::get('/sectors', [MobileRegistrationController::class, 'sectors']);
+    Route::get('/districts', [MobileRegistrationController::class, 'districts']);
+    Route::get('/roles', [MobileRegistrationController::class, 'jobRoles']);
+    Route::get('/types', [MobileRegistrationController::class, 'internshipType']);
+    
+    Route::post('registration', [MobileRegistrationController::class, 'registration']);
+    Route::post('/update/registration',[MobileRegistrationController::class, 'updateRegistration']);
+    Route::post('login', [MobileLoginController::class, 'login']);
+    
+});
 
-Route::post('registration', [MobileRegistrationController::class, 'registration']);
-Route::post('/update/registration',[MobileRegistrationController::class, 'updateRegistration']);
-Route::post('login', [MobileLoginController::class, 'login']);
 /* Mobile api routes end */
 
 
@@ -56,5 +62,9 @@ Route::prefix("payments")->group(function () {
 /* Admin Api routes start*/
     Route::prefix("admin")->group(function(){
         Route::get('interns', [AdminInternController::class, 'interns']); 
+     
     });
+    
+       Route::get("sectors",[SectorController::class ,'index']);
+       Route::post("sectors",[SectorController::class,'store']);
 /* Admin Api routes end */

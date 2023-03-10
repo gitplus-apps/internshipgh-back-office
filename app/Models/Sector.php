@@ -10,7 +10,7 @@ class Sector extends Model
     use HasFactory;
     
     protected $table = "tblsector";
-    protected $primaryKey = "transid";
+    protected $primaryKey = "sector_code";
     public $incrementing = false;
     const CREATED_AT = 'createdate';
     const UPDATED_AT = 'modifydate';
