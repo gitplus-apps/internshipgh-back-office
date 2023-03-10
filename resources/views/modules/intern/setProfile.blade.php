@@ -1,17 +1,27 @@
 
 @extends('layouts.app')
 
-@section('content')
-    <main class="py-6 bg-surface-secondary">
-        <div class="container-fluid max-w-screen-md vstack gap-6">
-            <div>
-                <form action="{{ url('register_user') }}" method="POST">
+@section('page-content')
+   <div class="page-content">
+            <div class="container-fluid">
+
+                <div class="row">
+                    <div class="col-8">
+                        <div class="card">
+                            <div class="card-body">
+
+                                <h2 class="display-8 text-center">Set Profile</h2>
+                                
+                                
+                                
+<form action="{{ url('register_user') }}" method="POST">
                     @csrf
                     <div class="mb-2">
                         <h3 class="text-danger">{{ session('status') }}</h3>
                     </div>
                     <div class="mb-5">
                         <h4>Personal Details</h4>
+                        <hr>
                     </div>
                     <div class="row g-5">
                         <div class="col-md-6">
@@ -61,6 +71,7 @@
                     {{-- Contact Details  --}}
                     <div class="my-5">
                         <h4>Contact Details</h4>
+                        <hr />
                     </div>
                     <div class="row g-5">
                         <div class="col-md-6">
@@ -96,12 +107,15 @@
                     {{-- Academic --}}
                     <div class="my-5">
                         <h4>Academic Details</h4>
+                        <hr />
+                        
                     </div>
+                    
                     <div class="row g-5">
                         <div class="col-md-6">
                             <div>
                                 <label class="form-label">School <span class="text-danger">*</span></label>
-                                <select name="school_code" class="form-control s2 w-full">
+                                <select name="school_code" class="form-control select2">
                                     <option value="">--Select--</option>
                                     @foreach ($schools as $item)
                                         <option value="{{ $item->sch_code }}">{{ $item->sch_desc }}</option>
@@ -115,7 +129,7 @@
                         <div class="col-md-6">
                             <div>
                                 <label class="form-label">Qualification<span class="text-danger">*</span></label>
-                                <select name="qual_code" class="form-control s2 w-full">
+                                <select name="qual_code" class="select2 form-control">
                                     <option value="">--Select--</option>
                                     @foreach ($qualifications as $item)
                                         <option value="{{ $item->qual_code }}">{{ $item->qual_desc }}</option>
@@ -129,7 +143,7 @@
                         <div class="col-md-6">
                             <div>
                                 <label class="form-label">Select Programme<span class="text-danger">*</span></label>
-                                <select name="prog_code" class="form-control s2 w-full">
+                                <select name="prog_code" class="select2 form-control ">
                                     <option value="">--Select--</option>
                                     @foreach ($programmes as $item)
                                         <option value="{{ $item->prog_code }}">{{ $item->prog_desc }}</option>
@@ -143,7 +157,7 @@
                         <div class="col-md-6">
                             <div>
                                 <label class="form-label">Select level<span class="text-danger">*</span></label>
-                                <select name="level_code" class="form-control s2 w-full">
+                                <select name="level_code" class="select2 form-control " >
                                     <option value="">--Select--</option>
                                     @foreach ($levels as $item)
                                         <option value="{{ $item->level_code }}">{{ $item->level_desc }}</option>
@@ -158,13 +172,14 @@
                     {{-- Internship details  --}}
                     <div class="my-5">
                         <h4>Internship Details</h4>
+                        <hr>
                     </div>
                     <div class="row g-5">
                         <div class="col-md-6">
                             <div>
                                 <label class="form-label">Preferred Sectors(Choose Multiple) <span
                                         class="text-danger">*</span></label>
-                                <select name="sectors[]" class="form-control s2 w-full" multiple>
+                                <select name="sectors[]" class="select2 form-control select2-multiple" multiple>
                                     <option>--Select--</option>
                                     @foreach ($sectors as $item)
                                         <option value="{{ $item->sector_code }}">{{ $item->sector_desc }}</option>
@@ -177,9 +192,9 @@
                         </div>
                         <div class="col-md-6">
                             <div>
-                                <label class="form-label">Prefferred Regions(Choose Mutiple) <span
+                                <label class="form-label">Preferred Regions(Choose Mutiple) <span
                                         class="text-danger">*</span></label>
-                                <select name="regions[]" class="form-control s2 w-full" multiple>
+                                <select name="regions[]" class="select2 form-control select2-multiple" multiple>
                                     <option>--Select--</option>
                                     @foreach ($regions as $item)
                                         <option value="{{ $item->code }}">{{ $item->description }}</option>
@@ -192,9 +207,9 @@
                         </div>
                         <div class="col-md-6">
                             <div>
-                                <label class="form-label" for="districts">Preffered Districts(Choose Multiple)<span
+                                <label class="form-label" for="districts">Prefered Districts(Choose Multiple)<span
                                         class="text-danger">*</span></label>
-                                <select name="districts[]" class="form-control s2 w-full" multiple>
+                                <select name="districts[]" class="select2 form-control select2-multiple" multiple>
                                     <option>--Select--</option>
                                     @foreach ($districts as $item)
                                         <option value="{{ $item->code }}">{{ $item->name }}</option>
@@ -219,6 +234,7 @@
                     {{-- Experience --}}
                     <div class="my-5">
                         <h4>Experience</h4>
+                        <hr>
                     </div>
                     <div class="row g-5">
                         <div class="col-md-6">
@@ -235,7 +251,7 @@
                             <div>
                                 <label class="form-label" for="job_roles">Preffered Job Roles(Choose Multiple) <span
                                         class="text-danger">*</span></label>
-                                <select name="job_roles[]" class="form-control s2 w-full" multiple>
+                                <select name="job_roles[]" class="select2 form-control select2-multiple" multiple>
                                     <option value="">--Select--</option>
                                     @foreach ($jobroles as $item)
                                         <option value="{{ $item->role_code }}">{{ $item->role_desc }}</option>
@@ -247,35 +263,12 @@
                             </div>
                         </div>
                     </div>
-                    {{-- date  --}}
-                    <div class="my-5">
-                        <h4>Internship Duration</h4>
-                    </div>
-                    <div class="row g-5">
-                        <div class="col-md-6">
-                            <div>
-                                <label class="form-label" for="start_date">Start Date <span
-                                        class="text-danger">*</span></label>
-                                <input type="date" name="start_date" class="form-control" value="{{ old('start_date') }}">
-                                @error('start_date')
-                                    <small class="text-danger">{{ $message }}</small>
-                                @enderror
-                            </div>
-                        </div>
-                        <div class="col-md-6">
-                            <div>
-                                <label class="form-label" for="end_date">End Date <span
-                                        class="text-danger">*</span></label>
-                                <input type="date" name="end_date" class="form-control" value="{{ old('end_date') }}">
-                                @error('end_date')
-                                    <small class="text-danger">{{ $message }}</small>
-                                @enderror
-                            </div>
-                        </div>
-                    </div>
+                   
+                    
                     {{-- Internship Type --}}
                     <div class="my-5">
                         <h4>Internship type</h4>
+                        <hr>
                     </div>
                     <div class="row g-5">
                         <div class="col-md-6">
@@ -299,12 +292,22 @@
 
                     <div class="row g-5">
                         <div class="col-12 text-end">
-                            <button type="submit" class="btn btn-md btn-primary">Save</button>
+                            <button type="submit" class="btn btn-lg btn-primary">Save Profile</button>
                         </div>
                     </div>
-                </form>
-            </div>
+</form>
 
+                            </div>
+                        </div>
+                    </div>
+                    <!-- end col -->
+                </div>
+                
+
+            </div>
+            <!-- container-fluid -->
         </div>
-    </main>
+    
+
 @endsection
+

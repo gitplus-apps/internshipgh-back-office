@@ -57,6 +57,12 @@
 <script src="{{asset('assets/libs/metismenu/metisMenu.min.js')}}"></script>
 <script src="{{asset('assets/libs/simplebar/simplebar.min.js')}}"></script>
 <script src="{{asset('assets/libs/node-waves/waves.min.js')}}"></script>
+<script src="{{asset('assets/libs/select2/js/select2.min.js')}}"></script>
+
+
+
+<script src="{{asset('assets/js/pages/form-advanced.init.js')}}"></script>
+
 
 <!--Morris Chart-->
 <script src="{{asset('assets/libs/morris.js/morris.min.js')}}"></script>
@@ -85,3 +91,7 @@
 </body>
 
 </html>
+
+
+
+
