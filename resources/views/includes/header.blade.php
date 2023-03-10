@@ -188,8 +188,15 @@
                         <a class="dropdown-item" href="#"><i class="dripicons-lock font-size-16 align-middle me-2"></i> Lock
                             screen</a>
                         <div class="dropdown-divider"></div>
-                        <a class="dropdown-item" href="#"><i class="dripicons-exit font-size-16 align-middle me-2"></i>
-                            Logout</a>
+                        <a class="dropdown-item" href="{{ route('logout') }}"
+                                onclick="event.preventDefault();
+                                                     document.getElementById('logout-form').submit();"><i class="dripicons-exit font-size-16 align-middle me-2"></i>
+                            Logout
+                        </a>
+                            
+                    <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+                        @csrf
+                    </form>
                     </div>
                 </div>
 
