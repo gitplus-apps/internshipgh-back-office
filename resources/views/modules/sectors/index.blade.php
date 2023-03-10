@@ -13,7 +13,7 @@
                                 <h2 class="display-8">SECTORS</h2>
                                 
 
-                                <table id="sectors-table" class="table table-bordered dt-responsive nowrap"
+                                <table id="sectors-table" class="table table-striped dt-responsive nowrap"
                                     style="border-collapse: collapse; border-spacing: 0; width: 100%;">
                                     <thead class="thead-dark">
                                         <tr>
