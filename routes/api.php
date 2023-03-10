@@ -9,6 +9,12 @@ use App\Http\Controllers\API\LoginController as MobileLoginController;
 use App\Http\Controllers\Admin\InternController as AdminInternController;
 use App\Http\Controllers\SectorController;
 use App\Http\Controllers\SchoolController;
+use App\Http\Controllers\ProgramController;
+use App\Http\Controllers\RegionController;
+use App\Http\Controllers\UserController;
+use App\Http\Controllers\DistrictController;
+use App\Http\Controllers\JobRoleController;
+
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -71,4 +77,12 @@ Route::prefix("payments")->group(function () {
        
        Route::get("schools",[SchoolController::class ,'index']);
        Route::post("schools",[SchoolController::class,'store']);
+       
+       Route::get("programs",[ProgramController::class ,'index']);
+       Route::get("job_roles",[JobRoleController::class ,'index']);
+       Route::get("regions",[RegionController::class ,'index']);
+       Route::get("districts",[DistrictController::class ,'index']);
+       Route::get("users",[UserController::class ,'index']);
+       
+       
 /* Admin Api routes end */
