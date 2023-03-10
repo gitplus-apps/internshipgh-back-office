@@ -98,19 +98,6 @@ class RegistrationController extends Controller
             return back()->withErrors($validator)->withInput();
         }
 
-        // $checkemail = User::where("email", $request->email)->first();
-        // $checkphone = User::where("phone",$request->phone)->first();
-
-        // if (!empty($checkemail) || !empty($checkphone)) {
-        //     return response()->json([
-        //         "ok" => false,
-        //         "msg" => "Account creation failed, email or phone number already taken"
-        //     ]);
-        // }
-
-
-
-
         try {
             DB::beginTransaction();
             $transid = strtoupper(bin2hex(random_bytes(4)));
@@ -141,17 +128,7 @@ class RegistrationController extends Controller
 
             ]);
 
-            // /User::insert([
-            //     //"transid"=> $user_transid,
-            //     "user_code" => $user_code,
-            //     "phone"=> $request->phone,
-            //     "email"=> $request->email,
-            //     "usertype"=> "USER01",
-            //     "deleted"=>'0',
-            //     "password" =>Hash::make('12345678'),
-            //     "createdate" =>  date("Y-m-d"),
-            //     "modifydate"=> date("Y-m-d"),
-            // ]);
+          
 
 
 
@@ -210,26 +187,6 @@ class RegistrationController extends Controller
                 ]);
             }
 
-            
-
-
-
-
-            // $message = <<<MSG
-            // Hello {$request->fname} {$request->lname}, welcome to Internship Ghana.
-            // Here, we link students to the right job environment to acquire the appropriate and relevant skillset needed in their desired field of practice.
-            // MSG;
-
-            // if (!empty($request->phone)) {
-            //     $sms = new Sms(env("ARKESEL_SMS_SENDER_ID", "InternGh"), env("ARKESEL_SMS_API_KEY"));
-            //     $sms->send($request->phone, $message);
-            // };
-
-            // Mail::to($request->email)->send(new InternRegistrationEmail([
-
-            //     "fname" => $request->fname,
-            //     "lname" => $request->lname,
-            // ]));
             DB::commit();
             return redirect('/')->with('status','Account creating successful');
 

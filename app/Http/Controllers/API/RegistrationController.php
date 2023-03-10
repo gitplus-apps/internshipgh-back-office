@@ -230,6 +230,7 @@ class RegistrationController extends Controller
                 "user_code"=> $user->user_code,
                 "email"=> $user->email,
                 "qualification"=> optional($user->intern)->qualification->qual_desc,
+                "program"=> optional($user->intern)->program->prog_desc,
                 "phone" => $user->phone,
                 "whatapp_number"=> optional($user->intern)->whatsapp,
                 
