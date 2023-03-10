@@ -81,6 +81,8 @@ class LoginController extends Controller
                 "phone" => $authenticatedUser->phone,
                 "whatapp_number"=> optional($authenticatedUser->intern)->whatsapp,
                 "intern_code"=> $authenticatedUser->intern->intern_code,  
+                "program"=> optional($authenticatedUser->intern)->program->prog_desc,
+                
             ];
             
             return response()->json([
