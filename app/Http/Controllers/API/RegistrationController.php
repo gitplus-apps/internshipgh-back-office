@@ -326,7 +326,7 @@ class RegistrationController extends Controller
                     ]);
                 }
 
-                foreach(json_decode($request->districts) as $district_code){
+                foreach(json_decode($request->districts, true) as $district_code){
                     InternDistrict::create([
                         "transid"=>  strtoupper(bin2hex(random_bytes(4))),
                         "intern_code"=> $request->intern_code,
@@ -336,7 +336,7 @@ class RegistrationController extends Controller
                         "modifydate"=> date('Y-m-d'),
                     ]);
                 }
-                    foreach(json_decode($request->sectors) as $sector_code){
+                    foreach(json_decode($request->sectors,true) as $sector_code){
                         InternSector::create([
                             "transid"=>  strtoupper(bin2hex(random_bytes(4))),
                             "intern_code"=> $request->intern_code,
@@ -348,7 +348,7 @@ class RegistrationController extends Controller
                     }
                     
 
-                    foreach(json_decode($request->cities) as $city){
+                    foreach(json_decode($request->cities, true) as $city){
                         InternCity::create([
                             "transid"=>  strtoupper(bin2hex(random_bytes(4))),
                             "intern_code"=> $request->intern_code,
@@ -359,7 +359,7 @@ class RegistrationController extends Controller
                         ]);
                     }
 
-                    foreach(json_decode($request->job_roles) as $role_code){
+                    foreach(json_decode($request->job_roles, true) as $role_code){
                         InternJobRole::create([
                             "transid"=>  strtoupper(bin2hex(random_bytes(4))),
                             "intern_code"=> $request->intern_code,
