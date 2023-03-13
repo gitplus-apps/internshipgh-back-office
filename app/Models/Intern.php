@@ -35,19 +35,24 @@ class Intern extends Model
         return $this->belongsTo(Level::class, 'level_code', 'level_code');
     }
     
-    public function region()
+    public function regions()
     {
-        return $this->hasMany(InternRegion::class, 'intern_code', 'intern_code');
+        return $this->belongsToMany(Region::class,"tblintern_region", 'intern_code', 'region_code');
     }
 
-    public function district()
+    public function districts()
     {
-        return $this->hasMany(InternDistrict::class, 'intern_code', 'intern_code');
+        return $this->belongsToMany(District::class,"tblintern_district", 'intern_code', 'district_code');
     }
 
     public function sectors()
     {
         return $this->belongsToMany(Sector::class,"tblintern_sector","intern_code","sector_code");
+    }
+    
+    public function jobRoles()
+    {
+        return $this->belongsToMany(RoleCategory::class,"tblintern_jobroles","intern_code","role_code");
     }
 
     public function qualification()

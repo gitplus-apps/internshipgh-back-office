@@ -4,7 +4,7 @@ namespace App\Http\Resources\Admin;
 
 use Illuminate\Http\Resources\Json\JsonResource;
 
-class InternSectorResource extends JsonResource
+class InternJobRolesResource extends JsonResource
 {
     /**
      * Transform the resource into an array.
@@ -15,8 +15,8 @@ class InternSectorResource extends JsonResource
     public function toArray($request)
     {
         return [
-            "code"=> $this->sector_code,
-            "description"=> $this->sector_desc,
+            "code"=> $this->role_code ,
+            "description"=> $this->role_desc,
         ];
     }
 }

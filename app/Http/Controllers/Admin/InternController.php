@@ -11,9 +11,7 @@ class InternController extends Controller
 {
     public function interns(){
         $interns = Intern::where('deleted','0')->get();
-        $intern = Intern::where("intern_code",'INTFDD0178D')->first();
-        
-        dd($intern->sectors);
+      
         
         return response()->json([
             "ok"=> true,

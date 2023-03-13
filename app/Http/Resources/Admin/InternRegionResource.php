@@ -4,7 +4,7 @@ namespace App\Http\Resources\Admin;
 
 use Illuminate\Http\Resources\Json\JsonResource;
 
-class InternSectorResource extends JsonResource
+class InternRegionResource extends JsonResource
 {
     /**
      * Transform the resource into an array.
@@ -14,9 +14,6 @@ class InternSectorResource extends JsonResource
      */
     public function toArray($request)
     {
-        return [
-            "code"=> $this->sector_code,
-            "description"=> $this->sector_desc,
-        ];
+        return parent::toArray($request);
     }
 }

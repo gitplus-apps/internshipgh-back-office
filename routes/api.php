@@ -69,10 +69,7 @@ Route::prefix("payments")->group(function () {
 
 
 /* Admin Api routes start*/
-    Route::prefix("admin")->group(function(){
-        Route::get('interns', [AdminInternController::class, 'interns']); 
-     
-    });
+       Route::get('interns', [AdminInternController::class, 'interns']); 
     
        Route::get("sectors",[SectorController::class ,'index']);
        Route::post("sectors",[SectorController::class,'store']);
