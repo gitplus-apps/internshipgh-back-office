@@ -315,8 +315,8 @@ class RegistrationController extends Controller
             "internship_type" => $request->internship_type,
         ]);
         
-        foreach(json_decode($request->regions) as $region_code){
-                    InternRegion::insert([
+        foreach(json_decode($request->regions,true) as $region_code){
+                    InternRegion::create([
                         "transid"=>  strtoupper(bin2hex(random_bytes(4))),
                         "intern_code"=> $request->intern_code,
                         "region_code" => $region_code,
@@ -326,8 +326,8 @@ class RegistrationController extends Controller
                     ]);
                 }
 
-                foreach(json_decode($request->districts) as $district_code){
-                    InternDistrict::insert([
+                foreach(json_decode($request->districts, true) as $district_code){
+                    InternDistrict::create([
                         "transid"=>  strtoupper(bin2hex(random_bytes(4))),
                         "intern_code"=> $request->intern_code,
                         "district_code" => $district_code,
@@ -336,8 +336,8 @@ class RegistrationController extends Controller
                         "modifydate"=> date('Y-m-d'),
                     ]);
                 }
-                    foreach(json_decode($request->sectors) as $sector_code){
-                        InternSector::insert([
+                    foreach(json_decode($request->sectors,true) as $sector_code){
+                        InternSector::create([
                             "transid"=>  strtoupper(bin2hex(random_bytes(4))),
                             "intern_code"=> $request->intern_code,
                             "sector_code" => $sector_code,
@@ -348,8 +348,8 @@ class RegistrationController extends Controller
                     }
                     
 
-                    foreach(json_decode($request->cities) as $city){
-                        InternCity::insert([
+                    foreach(json_decode($request->cities, true) as $city){
+                        InternCity::create([
                             "transid"=>  strtoupper(bin2hex(random_bytes(4))),
                             "intern_code"=> $request->intern_code,
                             "city_desc" => strtoupper($city),
@@ -359,8 +359,8 @@ class RegistrationController extends Controller
                         ]);
                     }
 
-                    foreach($request->job_roles as $role_code){
-                        InternJobRole::insert([
+                    foreach(json_decode($request->job_roles, true) as $role_code){
+                        InternJobRole::create([
                             "transid"=>  strtoupper(bin2hex(random_bytes(4))),
                             "intern_code"=> $request->intern_code,
                             "role_code" => $role_code,
@@ -381,13 +381,12 @@ class RegistrationController extends Controller
         }catch(Exception $e){
             
             DB::rollBack();
-            
+            Log::info($request->all());
             Log::error($e->getMessage());
             return response()->json([
                 "ok"=> false,
-                 "msg"=> "Updating User registration displays failed",
-                 "error"=>[
-                    "msg"=> $e->getMessage(),
+                 "msg"=> $e->getMessage(),
+                 "data"=>[
                  ]
                  ]);
         }   
