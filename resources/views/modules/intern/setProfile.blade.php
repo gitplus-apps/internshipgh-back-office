@@ -6,7 +6,7 @@
             <div class="container-fluid">
 
                 <div class="row">
-                    <div class="col-8">
+                    <div class="col-12 mx-auto">
                         <div class="card">
                             <div class="card-body">
 
@@ -115,7 +115,7 @@
                         <div class="col-md-6">
                             <div>
                                 <label class="form-label">School <span class="text-danger">*</span></label>
-                                <select name="school_code" class="form-control select2">
+                                <select name="school_code" class="form-control select2" id="institution">
                                     <option value="">--Select--</option>
                                     @foreach ($schools as $item)
                                         <option value="{{ $item->sch_code }}">{{ $item->sch_desc }}</option>
@@ -143,11 +143,9 @@
                         <div class="col-md-6">
                             <div>
                                 <label class="form-label">Select Programme<span class="text-danger">*</span></label>
-                                <select name="prog_code" class="select2 form-control ">
+                                <select name="prog_code" class="select2 form-control " id="programmes">
                                     <option value="">--Select--</option>
-                                    @foreach ($programmes as $item)
-                                        <option value="{{ $item->prog_code }}">{{ $item->prog_desc }}</option>
-                                    @endforeach
+                                  
                                 </select>
                                 @error('prog_code')
                                     <small class="text-danger">{{ $message }}</small>
@@ -290,7 +288,7 @@
 
 
 
-                    <div class="row g-5">
+                    <div class="row g-5 mt-2">
                         <div class="col-12 text-end">
                             <button type="submit" class="btn btn-lg btn-primary">Save Profile</button>
                         </div>
@@ -311,3 +309,41 @@
 
 @endsection
 
+@push('scripts')
+    <script>
+    let districts = @json($districts);
+    let qualifications = @json($qualifications);
+    let programmes = @json($programmes);
+    
+    $('#institution').on("change", function(e) {
+        
+        let sch_code = $('#institution').select2("val");
+    
+        getPrograms(sch_code);
+    });
+    
+    function getPrograms(sch_code){
+            let programDropDown = document.getElementById("programmes");
+            
+        if(sch_code != ""){
+            
+            let programs = programmes.filter((prg) => prg.sch_code == sch_code);
+    
+            let fragment = new DocumentFragment();
+        
+            
+            programs.map(program => {
+                let option = new Option(program.prog_desc, program.prog_code);
+                fragment.appendChild(option);
+            });
+        
+            programDropDown.innerHTML = null;
+            programDropDown.appendChild(fragment);
+        }else{
+            programDropDown.innerHTML = null;
+        }
+    
+    }
+        
+    </script>
+@endpush
