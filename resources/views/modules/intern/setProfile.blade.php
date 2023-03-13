@@ -6,7 +6,7 @@
             <div class="container-fluid">
 
                 <div class="row">
-                    <div class="col-8">
+                    <div class="col-12 mx-auto">
                         <div class="card">
                             <div class="card-body">
 
@@ -39,6 +39,12 @@
                         </div>
                         <div class="col-md-6">
                             <div>
+                                <label class="form-label" for="email">Middle Name</label>
+                                <input type="text" name="mname" class="form-control">
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div>
                                 <label class="form-label">Last name <span class="text-danger">*</span></label>
                                 <input type="text" name="lname" class="form-control" value="{{ old('lname') }}">
                                 @error('lname')
@@ -47,17 +53,12 @@
 
                             </div>
                         </div>
-                        <div class="col-md-6">
-                            <div>
-                                <label class="form-label" for="email">Middle Name</label>
-                                <input type="text" name="mname" class="form-control">
-                            </div>
-                        </div>
+                        
                         <div class="col-md-6">
                             <div>
                                 <label class="form-label">Gender<span class="text-danger">*</span></label>
                                 <select name="gender" id="" class="form-control">
-                                    <option value="">--Select--</option>
+                                    <option value="" selected disabled>--Select--</option>
                                     <option value="Male">Male</option>
                                     <option value="Female">Female</option>
                                 </select>
@@ -115,8 +116,8 @@
                         <div class="col-md-6">
                             <div>
                                 <label class="form-label">School <span class="text-danger">*</span></label>
-                                <select name="school_code" class="form-control select2">
-                                    <option value="">--Select--</option>
+                                <select name="school_code" class="form-control select2" id="institution">
+                                    <option disabled selected value="">--Select--</option>
                                     @foreach ($schools as $item)
                                         <option value="{{ $item->sch_code }}">{{ $item->sch_desc }}</option>
                                     @endforeach
@@ -130,7 +131,7 @@
                             <div>
                                 <label class="form-label">Qualification<span class="text-danger">*</span></label>
                                 <select name="qual_code" class="select2 form-control">
-                                    <option value="">--Select--</option>
+                                    <option value="" selected disabled>--Select--</option>
                                     @foreach ($qualifications as $item)
                                         <option value="{{ $item->qual_code }}">{{ $item->qual_desc }}</option>
                                     @endforeach
@@ -143,11 +144,9 @@
                         <div class="col-md-6">
                             <div>
                                 <label class="form-label">Select Programme<span class="text-danger">*</span></label>
-                                <select name="prog_code" class="select2 form-control ">
-                                    <option value="">--Select--</option>
-                                    @foreach ($programmes as $item)
-                                        <option value="{{ $item->prog_code }}">{{ $item->prog_desc }}</option>
-                                    @endforeach
+                                <select name="prog_code" class="select2 form-control " id="programmes">
+                                    <option value="" disabled selected>--Select--</option>
+                                  
                                 </select>
                                 @error('prog_code')
                                     <small class="text-danger">{{ $message }}</small>
@@ -158,7 +157,7 @@
                             <div>
                                 <label class="form-label">Select level<span class="text-danger">*</span></label>
                                 <select name="level_code" class="select2 form-control " >
-                                    <option value="">--Select--</option>
+                                    <option value="" selected disabled>--Select--</option>
                                     @foreach ($levels as $item)
                                         <option value="{{ $item->level_code }}">{{ $item->level_desc }}</option>
                                     @endforeach
@@ -180,7 +179,7 @@
                                 <label class="form-label">Preferred Sectors(Choose Multiple) <span
                                         class="text-danger">*</span></label>
                                 <select name="sectors[]" class="select2 form-control select2-multiple" multiple>
-                                    <option>--Select--</option>
+                                    <option disabled value="">--Select--</option>
                                     @foreach ($sectors as $item)
                                         <option value="{{ $item->sector_code }}">{{ $item->sector_desc }}</option>
                                     @endforeach
@@ -194,8 +193,8 @@
                             <div>
                                 <label class="form-label">Preferred Regions(Choose Mutiple) <span
                                         class="text-danger">*</span></label>
-                                <select name="regions[]" class="select2 form-control select2-multiple" multiple>
-                                    <option>--Select--</option>
+                                <select name="regions[]" class="select2 form-control select2-multiple" multiple id="regions">
+                                    <option disabled value="">--Select--</option>
                                     @foreach ($regions as $item)
                                         <option value="{{ $item->code }}">{{ $item->description }}</option>
                                     @endforeach
@@ -209,11 +208,9 @@
                             <div>
                                 <label class="form-label" for="districts">Prefered Districts(Choose Multiple)<span
                                         class="text-danger">*</span></label>
-                                <select name="districts[]" class="select2 form-control select2-multiple" multiple>
-                                    <option>--Select--</option>
-                                    @foreach ($districts as $item)
-                                        <option value="{{ $item->code }}">{{ $item->name }}</option>
-                                    @endforeach
+                                <select name="districts[]" class="select2 form-control select2-multiple" multiple id="districts">
+                                    <option disabled value="" >--Select--</option>
+                                   {{-- Data will be fetched here based on the region chosen --}}
                                 </select>
                                 @error('districts')
                                     <small class="text-danger">{{ $message }}</small>
@@ -222,7 +219,7 @@
                         </div>
                         <div class="col-md-6">
                             <div>
-                                <label class="form-label" for="cities">Preffered Cities(Type multiple cities separated
+                                <label class="form-label" for="cities">Preferred Cities(Type multiple cities separated
                                     by ,)<span class="text-danger">*</span></label>
                                 <input type="text" name="cities" class="form-control" placeholder="eg... Accra" value="{{ old('cities') }}">
                                 @error('cities')
@@ -252,7 +249,7 @@
                                 <label class="form-label" for="job_roles">Preffered Job Roles(Choose Multiple) <span
                                         class="text-danger">*</span></label>
                                 <select name="job_roles[]" class="select2 form-control select2-multiple" multiple>
-                                    <option value="">--Select--</option>
+                                    <option disabled  value="">--Select--</option>
                                     @foreach ($jobroles as $item)
                                         <option value="{{ $item->role_code }}">{{ $item->role_desc }}</option>
                                     @endforeach
@@ -276,7 +273,7 @@
                                 <label class="form-label" for="internship_type">Internship Type<span
                                         class="text-danger">*</span></label>
                                 <select name="internship_type" class="form-control s2 w-full" value="{{ old('internship_type') }}">
-                                    <option value="">--Select--</option>
+                                    <option value="" selected disabled>--Select--</option>
                                     @foreach ($internship_type as $item)
                                         <option value="{{ $item->type_code }}">{{ $item->type_desc }}</option>
                                     @endforeach
@@ -290,7 +287,7 @@
 
 
 
-                    <div class="row g-5">
+                    <div class="row g-5 mt-2">
                         <div class="col-12 text-end">
                             <button type="submit" class="btn btn-lg btn-primary">Save Profile</button>
                         </div>
@@ -311,3 +308,70 @@
 
 @endsection
 
+@push('scripts')
+    <script>
+    let districts = @json($districts);
+    let qualifications = @json($qualifications);
+    let programmes = @json($programmes);
+    
+    $('#institution').on("change", function(e) {
+        
+        let sch_code = $('#institution').select2("val");
+    
+        getPrograms(sch_code);
+    });
+    
+    function getPrograms(sch_code){
+            let programDropDown = document.getElementById("programmes");
+            
+        if(sch_code != ""){
+            
+            let programs = programmes.filter((prg) => prg.sch_code == sch_code);
+    
+            let fragment = new DocumentFragment();
+        
+            
+            programs.map(program => {
+                let option = new Option(program.prog_desc, program.prog_code);
+                fragment.appendChild(option);
+            });
+        
+            programDropDown.innerHTML = null;
+            programDropDown.appendChild(fragment);
+        }else{
+            programDropDown.innerHTML = null;
+        }
+    
+    }
+    
+     $('#regions').on("change", function(e) {
+        
+        var data = $('#regions').select2("val");
+    
+        getDistricts(data);
+    });
+    
+    function getDistricts(regions){
+        let districtDropDown = document.getElementById("districts");
+        
+        if(regions != ""){
+            let selectedDistricts = districts.filter((district) => regions.includes(district.region));
+    
+            let fragment = new DocumentFragment();
+        
+            
+            selectedDistricts.map(district => {
+                let option = new Option(district.name, district.code);
+                fragment.appendChild(option);
+            });
+        
+            districtDropDown.innerHTML = null;
+            districtDropDown.appendChild(fragment);
+        }else{
+            districtDropDown.innerHTML = null;
+        }
+
+    }
+        
+    </script>
+@endpush
