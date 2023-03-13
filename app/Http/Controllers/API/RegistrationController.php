@@ -315,7 +315,7 @@ class RegistrationController extends Controller
             "internship_type" => $request->internship_type,
         ]);
         
-        foreach($request->regions as $region_code){
+        foreach(json_decode($request->regions) as $region_code){
                     InternRegion::insert([
                         "transid"=>  strtoupper(bin2hex(random_bytes(4))),
                         "intern_code"=> $request->intern_code,
@@ -326,7 +326,7 @@ class RegistrationController extends Controller
                     ]);
                 }
 
-                foreach($request->districts as $district_code){
+                foreach(json_decode($request->districts) as $district_code){
                     InternDistrict::insert([
                         "transid"=>  strtoupper(bin2hex(random_bytes(4))),
                         "intern_code"=> $request->intern_code,
@@ -336,7 +336,7 @@ class RegistrationController extends Controller
                         "modifydate"=> date('Y-m-d'),
                     ]);
                 }
-                    foreach($request->sectors as $sector_code){
+                    foreach(json_decode($request->sectors) as $sector_code){
                         InternSector::insert([
                             "transid"=>  strtoupper(bin2hex(random_bytes(4))),
                             "intern_code"=> $request->intern_code,
@@ -348,7 +348,7 @@ class RegistrationController extends Controller
                     }
                     
 
-                    foreach($request->cities as $city){
+                    foreach(json_decode($request->cities) as $city){
                         InternCity::insert([
                             "transid"=>  strtoupper(bin2hex(random_bytes(4))),
                             "intern_code"=> $request->intern_code,
