@@ -4,6 +4,8 @@ namespace App\Http\Resources\Admin;
 
 use Illuminate\Http\Resources\Json\JsonResource;
 use App\Http\Resources\Admin\InternSectorResource;
+use App\Models\InternCity;
+use App\Models\InternDistrict;
 
 class InternResource extends JsonResource
 {
@@ -15,12 +17,13 @@ class InternResource extends JsonResource
      */
     public function toArray($request)
     {
-    
+        $cities = InternCity::select("city_desc")->where("intern_code", $this->intern_code)->get();
         return [
             "transid"=> $this->transid,
             "code"=> $this->intern_code,
+            "fullname"=> $this->mname ? $this->fname." ".$this->mname." ".$this->lname:$this->fname." ".$this->lname,
             "intern_type"=> $this->intern_type,
-            "intern_type_desc"=> $this->type->type_desc,
+            "intern_type_desc"=> optional($this->type)->type_desc,
             "gender"=> $this->gender,
             "school_code"=> $this->school_code,
             "school_name"=> $this->school->sch_desc,
@@ -39,7 +42,11 @@ class InternResource extends JsonResource
             "experience"=> $this->experience,
             "start_date"=> $this->start_date,
             "end_date"=> $this->end_date,
-            "sectors" => $this->sectors,
+            "sectors" => InternSectorResource::collection($this->sectors),
+            "districts"=> InternDistrictResource::collection($this->districts),
+            "regions"=>$this->regions,
+            "cities"=> $cities,
+            "job_roles"=> InternJobRolesResource::collection($this->jobRoles),
             
         ];
     }

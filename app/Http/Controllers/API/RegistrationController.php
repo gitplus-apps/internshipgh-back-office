@@ -132,7 +132,7 @@ class RegistrationController extends Controller
                 "lname" => ['required', 'string', 'max:255'],
                 "gender"=>['required'],
                 "email" => ['required',  'email', 'max:255', 'unique:tbluser,email'],
-                "phone" => ['required','unique:tbluser,phone'],
+                "phone" => ['required','unique:tbluser,phone','max:10', "min:10"],
                 "school_code" => ['required'],
                 "prog_code"=> ['required'],
                 "qual_code"=>  ['required'],
@@ -238,7 +238,7 @@ class RegistrationController extends Controller
             
          
             
-            SendOnBoardingNotifications::dispatch($user)->delay(Carbon::now()->addSeconds(10));
+            // SendOnBoardingNotifications::dispatch($user)->delay(Carbon::now()->addSeconds(10));
             
             DB::commit();
             
@@ -312,10 +312,10 @@ class RegistrationController extends Controller
         DB::beginTransaction();
         $intern->update([
             "experience" => $request->experience,
-            "internship_type" => $request->internship_type,
+            "intern_type" => $request->internship_type,
         ]);
         
-        foreach(json_decode($request->regions,true) as $region_code){
+                foreach(json_decode($request->regions,true) as $region_code){
                     InternRegion::create([
                         "transid"=>  strtoupper(bin2hex(random_bytes(4))),
                         "intern_code"=> $request->intern_code,
@@ -336,7 +336,7 @@ class RegistrationController extends Controller
                         "modifydate"=> date('Y-m-d'),
                     ]);
                 }
-                    foreach(json_decode($request->sectors,true) as $sector_code){
+                    foreach(json_decode($request->sectors, true) as $sector_code){
                         InternSector::create([
                             "transid"=>  strtoupper(bin2hex(random_bytes(4))),
                             "intern_code"=> $request->intern_code,
@@ -381,14 +381,14 @@ class RegistrationController extends Controller
         }catch(Exception $e){
             
             DB::rollBack();
-            Log::info($request->all());
             Log::error($e->getMessage());
+            
             return response()->json([
                 "ok"=> false,
                  "msg"=> $e->getMessage(),
                  "data"=>[
                  ]
-                 ]);
+            ]);
         }   
     }
 
