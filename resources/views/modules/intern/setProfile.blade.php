@@ -39,6 +39,12 @@
                         </div>
                         <div class="col-md-6">
                             <div>
+                                <label class="form-label" for="email">Middle Name</label>
+                                <input type="text" name="mname" class="form-control">
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div>
                                 <label class="form-label">Last name <span class="text-danger">*</span></label>
                                 <input type="text" name="lname" class="form-control" value="{{ old('lname') }}">
                                 @error('lname')
@@ -47,17 +53,12 @@
 
                             </div>
                         </div>
-                        <div class="col-md-6">
-                            <div>
-                                <label class="form-label" for="email">Middle Name</label>
-                                <input type="text" name="mname" class="form-control">
-                            </div>
-                        </div>
+                        
                         <div class="col-md-6">
                             <div>
                                 <label class="form-label">Gender<span class="text-danger">*</span></label>
                                 <select name="gender" id="" class="form-control">
-                                    <option value="">--Select--</option>
+                                    <option value="" selected disabled>--Select--</option>
                                     <option value="Male">Male</option>
                                     <option value="Female">Female</option>
                                 </select>
@@ -116,7 +117,7 @@
                             <div>
                                 <label class="form-label">School <span class="text-danger">*</span></label>
                                 <select name="school_code" class="form-control select2" id="institution">
-                                    <option value="">--Select--</option>
+                                    <option disabled selected value="">--Select--</option>
                                     @foreach ($schools as $item)
                                         <option value="{{ $item->sch_code }}">{{ $item->sch_desc }}</option>
                                     @endforeach
@@ -130,7 +131,7 @@
                             <div>
                                 <label class="form-label">Qualification<span class="text-danger">*</span></label>
                                 <select name="qual_code" class="select2 form-control">
-                                    <option value="">--Select--</option>
+                                    <option value="" selected disabled>--Select--</option>
                                     @foreach ($qualifications as $item)
                                         <option value="{{ $item->qual_code }}">{{ $item->qual_desc }}</option>
                                     @endforeach
@@ -144,7 +145,7 @@
                             <div>
                                 <label class="form-label">Select Programme<span class="text-danger">*</span></label>
                                 <select name="prog_code" class="select2 form-control " id="programmes">
-                                    <option value="">--Select--</option>
+                                    <option value="" disabled selected>--Select--</option>
                                   
                                 </select>
                                 @error('prog_code')
@@ -156,7 +157,7 @@
                             <div>
                                 <label class="form-label">Select level<span class="text-danger">*</span></label>
                                 <select name="level_code" class="select2 form-control " >
-                                    <option value="">--Select--</option>
+                                    <option value="" selected disabled>--Select--</option>
                                     @foreach ($levels as $item)
                                         <option value="{{ $item->level_code }}">{{ $item->level_desc }}</option>
                                     @endforeach
@@ -178,7 +179,7 @@
                                 <label class="form-label">Preferred Sectors(Choose Multiple) <span
                                         class="text-danger">*</span></label>
                                 <select name="sectors[]" class="select2 form-control select2-multiple" multiple>
-                                    <option>--Select--</option>
+                                    <option disabled value="">--Select--</option>
                                     @foreach ($sectors as $item)
                                         <option value="{{ $item->sector_code }}">{{ $item->sector_desc }}</option>
                                     @endforeach
@@ -193,7 +194,7 @@
                                 <label class="form-label">Preferred Regions(Choose Mutiple) <span
                                         class="text-danger">*</span></label>
                                 <select name="regions[]" class="select2 form-control select2-multiple" multiple id="regions">
-                                    <option>--Select--</option>
+                                    <option disabled value="">--Select--</option>
                                     @foreach ($regions as $item)
                                         <option value="{{ $item->code }}">{{ $item->description }}</option>
                                     @endforeach
@@ -208,7 +209,7 @@
                                 <label class="form-label" for="districts">Prefered Districts(Choose Multiple)<span
                                         class="text-danger">*</span></label>
                                 <select name="districts[]" class="select2 form-control select2-multiple" multiple id="districts">
-                                    <option>--Select--</option>
+                                    <option disabled value="" >--Select--</option>
                                    {{-- Data will be fetched here based on the region chosen --}}
                                 </select>
                                 @error('districts')
@@ -218,7 +219,7 @@
                         </div>
                         <div class="col-md-6">
                             <div>
-                                <label class="form-label" for="cities">Preffered Cities(Type multiple cities separated
+                                <label class="form-label" for="cities">Preferred Cities(Type multiple cities separated
                                     by ,)<span class="text-danger">*</span></label>
                                 <input type="text" name="cities" class="form-control" placeholder="eg... Accra" value="{{ old('cities') }}">
                                 @error('cities')
@@ -248,7 +249,7 @@
                                 <label class="form-label" for="job_roles">Preffered Job Roles(Choose Multiple) <span
                                         class="text-danger">*</span></label>
                                 <select name="job_roles[]" class="select2 form-control select2-multiple" multiple>
-                                    <option value="">--Select--</option>
+                                    <option disabled  value="">--Select--</option>
                                     @foreach ($jobroles as $item)
                                         <option value="{{ $item->role_code }}">{{ $item->role_desc }}</option>
                                     @endforeach
@@ -272,7 +273,7 @@
                                 <label class="form-label" for="internship_type">Internship Type<span
                                         class="text-danger">*</span></label>
                                 <select name="internship_type" class="form-control s2 w-full" value="{{ old('internship_type') }}">
-                                    <option value="">--Select--</option>
+                                    <option value="" selected disabled>--Select--</option>
                                     @foreach ($internship_type as $item)
                                         <option value="{{ $item->type_code }}">{{ $item->type_desc }}</option>
                                     @endforeach
