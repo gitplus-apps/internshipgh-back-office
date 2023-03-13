@@ -192,7 +192,7 @@
                             <div>
                                 <label class="form-label">Preferred Regions(Choose Mutiple) <span
                                         class="text-danger">*</span></label>
-                                <select name="regions[]" class="select2 form-control select2-multiple" multiple>
+                                <select name="regions[]" class="select2 form-control select2-multiple" multiple id="regions">
                                     <option>--Select--</option>
                                     @foreach ($regions as $item)
                                         <option value="{{ $item->code }}">{{ $item->description }}</option>
@@ -207,11 +207,9 @@
                             <div>
                                 <label class="form-label" for="districts">Prefered Districts(Choose Multiple)<span
                                         class="text-danger">*</span></label>
-                                <select name="districts[]" class="select2 form-control select2-multiple" multiple>
+                                <select name="districts[]" class="select2 form-control select2-multiple" multiple id="districts">
                                     <option>--Select--</option>
-                                    @foreach ($districts as $item)
-                                        <option value="{{ $item->code }}">{{ $item->name }}</option>
-                                    @endforeach
+                                   {{-- Data will be fetched here based on the region chosen --}}
                                 </select>
                                 @error('districts')
                                     <small class="text-danger">{{ $message }}</small>
@@ -343,6 +341,35 @@
             programDropDown.innerHTML = null;
         }
     
+    }
+    
+     $('#regions').on("change", function(e) {
+        
+        var data = $('#regions').select2("val");
+    
+        getDistricts(data);
+    });
+    
+    function getDistricts(regions){
+        let districtDropDown = document.getElementById("districts");
+        
+        if(regions != ""){
+            let selectedDistricts = districts.filter((district) => regions.includes(district.region));
+    
+            let fragment = new DocumentFragment();
+        
+            
+            selectedDistricts.map(district => {
+                let option = new Option(district.name, district.code);
+                fragment.appendChild(option);
+            });
+        
+            districtDropDown.innerHTML = null;
+            districtDropDown.appendChild(fragment);
+        }else{
+            districtDropDown.innerHTML = null;
+        }
+
     }
         
     </script>
