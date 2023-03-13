@@ -47,6 +47,8 @@ Route::prefix("v1")->group(function(){
     Route::post('/update/registration',[MobileRegistrationController::class, 'updateRegistration']);
     Route::post('login', [MobileLoginController::class, 'login']);
     
+    Route::post('/account/delete', [UserController::class,'delete']);
+    
 });
 
 /* Mobile api routes end */
