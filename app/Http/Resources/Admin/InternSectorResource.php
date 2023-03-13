@@ -15,8 +15,8 @@ class InternSectorResource extends JsonResource
     public function toArray($request)
     {
         return [
-            "sector_code"=> $this->sector_code,
-            "sector_description"=> $this->sector_desc,
+            "code"=> $this->sector_code,
+            "description"=> $this->sector_desc,
         ];
     }
 }

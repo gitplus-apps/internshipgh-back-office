@@ -44,6 +44,11 @@
             <!-- container-fluid -->
         </div>
     
+        {{-- modals start --}}
+            @include("modules.interns.modals.info")
+        
+        {{-- modals end --}}
+    
 @endsection
 @push('scripts')
     <script>
@@ -86,7 +91,7 @@
                     'render': function(data, type, full, meta) {
                         var html = '';
                           html += `<button type='button' data-row-transid='$this->transid'
-                                                    rel='tooltip' class='btn  btn-primary btn-sm edit-btn'>
+                                                    rel='tooltip' class='btn  btn-primary btn-sm view-btn'>
                                                        <i class='fas fa-eye'></i>
                                                     </button>`;
                                                     
@@ -157,18 +162,37 @@
         });
     
             
-            $("#admin-products-table").on("click", ".edit-btn", function() {
-                let data = adminProductTable.row($(this).parents('tr')).data();
-               
-                $("#update-product-modal").modal("show");
-                $("#update-product-id").val(data.code);
-                $("#update-product-itemname").val(data.itemname);
-                $("#update-product-price").val(data.price);
-             
-    
-                $("#update-product-category").val(data.category_id).trigger("change");
-                $("#update-product-desc").val(data.desc);
-                $("#update-product-shop").val(data.shopcode).trigger("change");
+            $("#interns-table").on("click", ".view-btn", function() {
+                let data = internsTable.row($(this).parents('tr')).data();
+               console.log(data);
+                $("#info-intern-modal").modal("show");
+                document.getElementById("info-intern-code").innerText =data.code;
+                document.getElementById("info-intern-name").innerText =data.fullname;
+                document.getElementById("info-intern-gender").innerText =data.gender;
+                document.getElementById("info-intern-school").innerText =data.school_name;
+                document.getElementById("info-intern-program").innerText =data.prog_desc;
+                document.getElementById("info-intern-qual").innerText =data.qual_desc;
+                document.getElementById("info-intern-level").innerText =data.level_desc;
+                document.getElementById("info-intern-experience").innerText =data.experience;
+                document.getElementById("info-intern-email").innerText =data.email;
+                document.getElementById("info-intern-phone").innerText =data.phone;
+                document.getElementById("info-intern-whatsapp").innerText =data.whatsapp;
+                
+                let cities = "";
+                data.cities.forEach(city => cities += city.city_desc +" ,\n");
+                document.getElementById("info-intern-cities").innerText = cities;
+                
+                let districts = "";
+                data.districts.forEach(district => districts += district.district +" ,\n");
+                document.getElementById("info-intern-districts").innerText = districts;
+                
+                let regions = "";
+                data.regions.forEach(region => regions += region.description +" ,\n");
+                document.getElementById("info-intern-regions").innerText = regions;
+                
+                let sectors = "";
+                data.sectors.forEach(sector => sectors += sector.description +" ,\n");
+                document.getElementById("info-intern-sectors").innerText = sectors;
                
             });
     
